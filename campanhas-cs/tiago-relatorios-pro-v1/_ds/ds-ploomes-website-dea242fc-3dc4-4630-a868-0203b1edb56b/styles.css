@@ -1,0 +1,8 @@
+/* ============================================================
+   Ploomes Design System — root stylesheet
+   Consumers link ONE file: this one. It pulls in the rest.
+   ============================================================ */
+@import url('colors_and_type.css');
+@import url('components/kit/fig-tokens.css');
+@import url('components/kit/fig-typography.css');
+@import url('components/kit/fig-assets.css');

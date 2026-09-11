@@ -1,0 +1,186 @@
+/* ============================================================
+   Ploomes Design System — colour + type foundation
+   Imported by styles.css. Values mirror the Figma variable
+   collections and the Brandbook v1.0.3 (see brandbook.md).
+   ============================================================ */
+
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/Manrope-VariableFont_wght.ttf') format('truetype-variations'),url('fonts/Manrope-VariableFont_wght.ttf') format('truetype')}
+@font-face{font-family:'Lora';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/Lora-VariableFont_wght.ttf') format('truetype-variations'),url('fonts/Lora-VariableFont_wght.ttf') format('truetype')}
+@font-face{font-family:'Lora';font-style:italic;font-weight:400 700;font-display:swap;src:url('fonts/Lora-Italic-VariableFont_wght.ttf') format('truetype-variations'),url('fonts/Lora-Italic-VariableFont_wght.ttf') format('truetype')}
+
+:root{
+/* — Brand core (Figma: Ploo) ————————————————— */
+--ploo-dark:#1E0C45;
+--ploo-purple:#843CFF;
+--ploo-purple-2:#7C40FF;
+--ploo-light:#EBE5FF;
+--ploo-light-2:#EBE6FD;
+/* — Brand ramp ————————————————————————————— */
+--ploo-brand-10:#F5F1FF;
+--ploo-brand-20:#DCD3FF;
+--ploo-brand-30:#C6AFFF;
+--ploo-brand-40:#AA82FF;
+--ploo-brand-50:#8429FF;
+--ploo-brand-60:#7714EB;
+--ploo-brand-70:#6210C6;
+--ploo-brand-80:#5211A1;
+--ploo-brand-90:#33086F;
+/* — Neutrals (Figma) ——————————————————————— */
+--ploo-neutral-lightest:#F4F4F4;
+--ploo-neutral-lighter:#E0E0E0;
+--ploo-neutral-light:#C6C6C6;
+--ploo-neutral:#8D8D8D;
+--ploo-neutral-2:#666666;
+--ploo-neutral-dark:#525252;
+--ploo-neutral-dark-2:#444444;
+--ploo-neutral-darker:#393939;
+--ploo-neutral-darkest:#161616;
+--ploo-black:#000000;
+--ploo-white:#FFFFFF;
+/* — Semantic (Figma) ——————————————————————— */
+--ploo-success:#027A48;
+--ploo-success-light:#ECFDF3;
+--ploo-error:#B42318;
+--ploo-error-light:#FEF3F2;
+/* — Aliases ———————————————————————————————— */
+--ploomes-purple:var(--ploo-purple);
+--ploomes-purple-2:var(--ploo-purple-2);
+--ploomes-purple-deep:var(--ploo-brand-60);
+--ploomes-purple-vivid:var(--ploo-brand-50);
+--ploomes-purple-soft:var(--ploo-brand-30);
+--ploomes-ink:var(--ploo-dark);
+--ploomes-ink-deep:var(--ploo-brand-90);
+/* — Purple scale ——————————————————————————— */
+--purple-50:var(--ploo-brand-10);
+--purple-100:var(--ploo-brand-20);
+--purple-200:var(--ploo-brand-30);
+--purple-300:var(--ploo-brand-40);
+--purple-400:#9F5FFF;
+--purple-500:var(--ploo-purple);
+--purple-600:var(--ploo-brand-60);
+--purple-700:var(--ploo-brand-70);
+--purple-800:var(--ploo-brand-80);
+--purple-900:var(--ploo-dark);
+/* — Neutral scale —————————————————————————— */
+--neutral-0:#FFFFFF;
+--neutral-50:#FAFAFC;
+--neutral-100:var(--ploo-neutral-lightest);
+--neutral-200:var(--ploo-neutral-lighter);
+--neutral-300:var(--ploo-neutral-light);
+--neutral-400:var(--ploo-neutral);
+--neutral-500:var(--ploo-neutral-2);
+--neutral-600:var(--ploo-neutral-dark);
+--neutral-700:var(--ploo-neutral-darker);
+--neutral-800:var(--ploo-neutral-darkest);
+--neutral-900:var(--ploo-black);
+/* — Status ————————————————————————————————— */
+--success:var(--ploo-success);
+--success-soft:var(--ploo-success-light);
+--success-ink:#05603A;
+--warning:#F59E0B;
+--warning-soft:#FDE7B0;
+--warning-ink:#92400E;
+--danger:var(--ploo-error);
+--danger-soft:var(--ploo-error-light);
+--danger-ink:#912018;
+--info:#4976F4;
+--info-soft:#EDF2FE;
+--whatsapp-bg:#C8F7CE;
+--whatsapp-ink:#1FAF38;
+/* — Surfaces ——————————————————————————————— */
+--bg:var(--neutral-50);
+--bg-surface:var(--neutral-0);
+--bg-subtle:var(--neutral-100);
+--bg-2:var(--neutral-200);
+--bg-brand:var(--ploomes-purple);
+--bg-brand-soft:var(--purple-50);
+--surface-page:var(--ploo-brand-10);
+/* — Foreground ————————————————————————————— */
+--fg:var(--ploomes-ink);
+--fg-1:var(--ploomes-ink);
+--fg-2:rgba(30, 12, 69, 0.65);
+--fg-3:rgba(30, 12, 69, 0.45);
+--fg-on-brand:var(--neutral-0);
+--fg-brand:var(--ploomes-purple);
+/* — Borders ———————————————————————————————— */
+--border:var(--ploo-light);
+--border-neutral:var(--neutral-200);
+--border-strong:var(--neutral-300);
+--border-brand:var(--ploomes-purple);
+/* — Type ——————————————————————————————————— */
+--font-sans:'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+--font-serif:'Lora', Georgia, 'Times New Roman', serif;
+--font-mono:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+--fw-extralight:200; /* @kind font */
+--fw-light:300; /* @kind font */
+--fw-regular:400; /* @kind font */
+--fw-medium:500; /* @kind font */
+--fw-semibold:600; /* @kind font */
+--fw-bold:700; /* @kind font */
+--fw-extrabold:800; /* @kind font */
+--fs-12:0.75rem;
+--fs-13:0.8125rem;
+--fs-14:0.875rem;
+--fs-15:0.9375rem;
+--fs-16:1rem;
+--fs-18:1.125rem;
+--fs-20:1.25rem;
+--fs-24:1.5rem;
+--fs-28:1.75rem;
+--fs-32:2rem;
+--fs-40:2.5rem;
+--fs-48:3rem;
+--fs-64:4rem;
+--fs-80:5rem;
+--lh-tight:1.1; /* @kind font */
+--lh-snug:1.25; /* @kind font */
+--lh-normal:1.45; /* @kind font */
+--lh-relaxed:1.6; /* @kind font */
+--tracking-tightest:-0.04em; /* @kind font */
+--tracking-tight:-0.02em; /* @kind font */
+--tracking-normal:0; /* @kind font */
+--tracking-wide:0.04em; /* @kind font */
+/* — Space ——————————————————————————————————— */
+--space-1:4px;
+--space-2:8px;
+--space-3:12px;
+--space-4:16px;
+--space-5:20px;
+--space-6:24px;
+--space-8:32px;
+--space-10:40px;
+--space-12:48px;
+--space-16:64px;
+--space-20:80px;
+--space-24:96px;
+/* — Radii ——————————————————————————————————— */
+--radius-xs:4px;
+--radius-sm:8px;
+--radius-md:12px;
+--radius-lg:16px;
+--radius-xl:20px;
+--radius-2xl:28px;
+--radius-pill:9999px;
+/* — Elevation ———————————————————————————————— */
+--shadow-xs:0 1px 2px rgba(30, 12, 69, 0.04);
+--shadow-sm:0 2px 6px rgba(30, 12, 69, 0.06);
+--shadow-md:0 6px 18px rgba(30, 12, 69, 0.08);
+--shadow-lg:0 14px 32px rgba(30, 12, 69, 0.10);
+--shadow-xl:0 28px 60px rgba(30, 12, 69, 0.14);
+--shadow-brand:0 12px 32px rgba(132, 60, 255, 0.28);
+/* — Motion ——————————————————————————————————— */
+--ease-out:cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+--ease-in-out:cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+--dur-fast:140ms; /* @kind other */
+--dur-base:220ms; /* @kind other */
+--dur-slow:420ms /* @kind other */
+}
+
+/* — Base ————————————————————————————————————— */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-sans);font-size:var(--fs-16);line-height:var(--lh-normal);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,h6{margin:0;font-family:var(--font-sans);font-weight:var(--fw-bold);line-height:var(--lh-tight);letter-spacing:var(--tracking-tight);color:var(--fg-1)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--fg-brand);text-decoration:none;transition:color var(--dur-fast) var(--ease-out)}
+a:hover{color:var(--ploomes-purple-deep)}
+strong{font-weight:var(--fw-semibold)}
