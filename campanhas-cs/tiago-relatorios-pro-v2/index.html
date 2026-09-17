@@ -111,17 +111,17 @@ body[data-reveal-ready] [data-reveal="out"]{opacity:0;transform:translateY(20px)
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:12px">
               <div style="background:var(--neutral-50);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px">
                 <div style="font-size:var(--fs-12);color:var(--fg-3);margin-bottom:6px">Parado no funil há +30 dias</div>
-                <div style="font-size:25px;font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight)">{{ k1 }}</div>
+                <div data-kpi="k1" style="font-size:25px;font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight);font-variant-numeric:tabular-nums;min-width:8.5ch;white-space:nowrap">{{ k1 }}</div>
                 <div style="height:6px;border-radius:var(--radius-pill);background:var(--purple-100);margin-top:10px"><div style="width:64%;height:100%;border-radius:var(--radius-pill);background:var(--ploomes-purple)"></div></div>
               </div>
               <div style="background:var(--neutral-50);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px">
                 <div style="font-size:var(--fs-12);color:var(--fg-3);margin-bottom:6px">Falta para bater a meta</div>
-                <div style="font-size:25px;font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight)">{{ k2 }}</div>
+                <div data-kpi="k2" style="font-size:25px;font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight);font-variant-numeric:tabular-nums;min-width:8.5ch;white-space:nowrap">{{ k2 }}</div>
                 <div style="height:6px;border-radius:var(--radius-pill);background:var(--purple-100);margin-top:10px"><div style="width:48%;height:100%;border-radius:var(--radius-pill);background:var(--ploomes-purple)"></div></div>
               </div>
               <div style="background:var(--ploo-dark);border-radius:var(--radius-lg);padding:14px;color:#fff">
                 <div style="font-size:var(--fs-12);color:rgba(255,255,255,.62);margin-bottom:6px">Forecast ponderado do mês</div>
-                <div style="font-size:25px;font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight)">{{ k3 }}</div>
+                <div data-kpi="k3" style="font-size:25px;font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight);font-variant-numeric:tabular-nums;min-width:8.5ch;white-space:nowrap">{{ k3 }}</div>
                 <div style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:3px 9px;border-radius:var(--radius-pill);background:var(--success-soft);color:var(--success-ink);font-size:var(--fs-12);font-weight:var(--fw-semibold)">▲ 82% da meta</div>
               </div>
             </div>
@@ -528,7 +528,7 @@ body[data-reveal-ready] [data-reveal="out"]{opacity:0;transform:translateY(20px)
             <summary style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 0;cursor:pointer;font-size:var(--fs-16);font-weight:var(--fw-semibold);color:var(--fg-1)">Isso substitui um projeto de BI?
               <span data-chev style="flex-shrink:0;color:var(--ploomes-purple);display:inline-flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span>
             </summary>
-            <p style="padding:0 0 20px;font-size:var(--fs-15);line-height:1.65;color:var(--fg-2);max-width:680px">Depende do que você precisa responder. Um BI existe para cruzar fontes de fora do comercial: ERP, financeiro, logística. O Analytics PRO resolve a camada comercial, que é onde nasce a maior parte das perguntas de rotina: forecast, conversão por origem, ciclo de vendas, esforço do time. A diferença prática é de prazo e de dependência: no PRO o painel já existe e é lido pelo próprio gestor, sem fila de BI, sem exportação e sem alguém para modelar o dado. Quem já tem BI costuma manter os dois, com o CRM deixando de ser a origem de planilha manual.</p>
+            <p style="padding:0 0 20px;font-size:var(--fs-15);line-height:1.65;color:var(--fg-2);max-width:680px">A regra é simples: o Analytics PRO lê qualquer dado que esteja dentro do Ploomes, não apenas o comercial. Se sua equipe de logística, pós-venda, jurídico ou implantação roda o processo dela em um funil do CRM, esses dados entram em relatório do mesmo jeito que os de vendas, com os mesmos cruzamentos. O que ele não faz é inventar dado que mora fora: se o seu ERP não está integrado ao Ploomes, a informação dele não chega ao CRM e, portanto, não compõe relatório. É aí que um BI continua fazendo sentido, para consolidar sistemas diferentes. Na prática, quanto mais da sua operação já vive no Ploomes, menos você precisa de uma camada extra, e o painel é lido pelo próprio gestor, sem fila, exportação ou alguém para modelar o dado.</p>
           </details>
           <details style="border-bottom:1px solid var(--border)">
             <summary style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 0;cursor:pointer;font-size:var(--fs-16);font-weight:var(--fw-semibold);color:var(--fg-1)">Meus dados no CRM não estão organizados o suficiente.
@@ -641,7 +641,7 @@ class Component extends DCLogic {
       waHref: "https://wa.me/" + phone + "?text=" + msg,
       mailHref: "mailto:" + email + "?subject=" + encodeURIComponent("Quero conhecer o Analytics PRO"),
       unusedFaq: [
-        { q: "Isso substitui um projeto de BI?", a: "Depende do que você precisa responder. Um BI existe para cruzar fontes de fora do comercial: ERP, financeiro, logística. O Analytics PRO resolve a camada comercial, que é onde nasce a maior parte das perguntas de rotina: forecast, conversão por origem, ciclo de vendas, esforço do time. A diferença prática é de prazo e de dependência: no PRO o painel já existe e é lido pelo próprio gestor, sem fila de BI, sem exportação e sem alguém para modelar o dado. Quem já tem BI costuma manter os dois, com o CRM deixando de ser a origem de planilha manual." },
+        { q: "Isso substitui um projeto de BI?", a: "A regra é simples: o Analytics PRO lê qualquer dado que esteja dentro do Ploomes, não apenas o comercial. Se sua equipe de logística, pós-venda, jurídico ou implantação roda o processo dela em um funil do CRM, esses dados entram em relatório do mesmo jeito que os de vendas, com os mesmos cruzamentos. O que ele não faz é inventar dado que mora fora: se o seu ERP não está integrado ao Ploomes, a informação dele não chega ao CRM e, portanto, não compõe relatório. É aí que um BI continua fazendo sentido, para consolidar sistemas diferentes. Na prática, quanto mais da sua operação já vive no Ploomes, menos você precisa de uma camada extra, e o painel é lido pelo próprio gestor, sem fila, exportação ou alguém para modelar o dado." },
         { q: "Meus dados no CRM não estão organizados o suficiente.", a: "Vale conversar mesmo assim. Na conversa, seu executivo explica quais informações cada relatório usa e o que costuma ser necessário no preenchimento para que ele fique confiável. A partir daí vocês avaliam juntos o próximo passo." },
         { q: "Quem consegue usar? Preciso de alguém técnico?", a: "A leitura é feita por quem decide: gestor, líder de vendas, operações. Não há consulta a escrever nem exportação a montar. Os painéis abrem prontos e os filtros usam os mesmos conceitos que seu time já conhece do CRM: etapa, origem, responsável, período." },
         { q: "O time da ponta também acompanha?", a: "Sim, e é aí que a adoção acontece. Vendedores e SDRs enxergam a própria performance e os próprios negócios parados, inclusive pelo aplicativo. O efeito colateral mais citado por gestores é o volume de pedidos de relatório que simplesmente deixa de chegar na mesa deles." },
@@ -689,13 +689,15 @@ class Component extends DCLogic {
   }
 
   countUp(target, decimals, suffix, key, prefix) {
+    const el = document.querySelector("[data-kpi='" + key + "']");
+    if (!el) return;
     const t0 = performance.now(), dur = 1200;
     const fmt = (v) => (prefix || "") + v.toFixed(decimals).replace(".", ",") + suffix;
     const tick = (t) => {
       const p = Math.min(1, (t - t0) / dur);
       const e = 1 - Math.pow(1 - p, 3);
-      this.setState({ [key]: fmt(target * e) });
-      if (p < 1) requestAnimationFrame(tick);
+      el.textContent = fmt(target * e);
+      if (p < 1) requestAnimationFrame(tick); else el.textContent = fmt(target);
     };
     requestAnimationFrame(tick);
   }
