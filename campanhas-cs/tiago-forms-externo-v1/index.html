@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/ds-ploomes-website-dea242fc-3dc4-4630-a868-0203b1edb56b/colors_and_type.css">
+<script src="_ds/ds-ploomes-website-dea242fc-3dc4-4630-a868-0203b1edb56b/_ds_bundle.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; scroll-behavior: smooth; }
+  body { font-family: "Manrope", sans-serif; color: #1E0C45; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: #843CFF; text-decoration: none; transition: color .14s ease, opacity .14s ease, transform .14s ease; }
+  a:hover { color: #7714EB; }
+  button { font-family: "Manrope", sans-serif; }
+  @keyframes fx-chase { 0%, 100% { opacity: .10; transform: scale(.7); } 22% { opacity: 1; transform: scale(1); } 55% { opacity: .18; transform: scale(.8); } }
+  @keyframes fx-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes fx-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes fx-ring { 0% { opacity: .55; transform: scale(.85); } 70% { opacity: 0; transform: scale(1.35); } 100% { opacity: 0; transform: scale(1.35); } }
+  [data-grid="hero"] { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr); gap: clamp(36px, 5vw, 72px); align-items: center; }
+  [data-grid="compare"] { display: grid; grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr); gap: 0; align-items: stretch; }
+  [data-grid="steps"] { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 30px); }
+  [data-grid="benefits"] { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2vw, 26px); }
+  [data-grid="proof"] { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+  [data-grid="faq"] { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  [data-span="2"] { grid-column: span 2; }
+  @media (max-width: 1080px) {
+    [data-grid="hero"], [data-grid="proof"], [data-grid="faq"] { grid-template-columns: minmax(0, 1fr); }
+    [data-grid="steps"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 24px; }
+    [data-timeline-track], [data-timeline-line] { display: none; }
+    [data-grid="benefits"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 720px) {
+    [data-grid="compare"] { grid-template-columns: minmax(0, 1fr); }
+    [data-compare-hinge] { flex-direction: row !important; height: 84px !important; width: 100% !important; }
+    [data-grid="benefits"] { grid-template-columns: minmax(0, 1fr); }
+    [data-span="2"] { grid-column: span 1; }
+    [data-grid="steps"] { grid-template-columns: minmax(0, 1fr); }
+    [data-hide-sm] { display: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .14s !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</helmet>
+
+<div data-page-root="1" data-motion="{{ motionMode }}" style="position: relative; width: 100%; overflow: hidden; background: #FFFFFF;">
+
+  <header style="position: sticky; top: 0; z-index: 40; background: rgba(30,12,69,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.10);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 14px; min-width: 0;">
+        <img src="assets/ploomes-sankhya-negative.svg" alt="Ploomes by Sankhya" style="height: 26px; width: auto;">
+        <span data-hide-sm="1" style="height: 20px; width: 1px; background: rgba(255,255,255,0.22);"></span>
+        <span data-hide-sm="1" style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: #C6AFFF; white-space: nowrap;">Formulários Externos</span>
+      </div>
+      <a href="#conversar" style="display: inline-flex; align-items: center; gap: 8px; background: #843CFF; color: #FFFFFF; font-size: 14px; font-weight: 700; padding: 11px 20px; border-radius: 12px; box-shadow: 0 8px 22px rgba(132,60,255,0.32); transition: transform .14s ease, background .14s ease;" style-hover="background: #7714EB; color: #FFFFFF; transform: translateY(-1px);" style-active="transform: scale(0.98);">Quero otimizar a entrada de dados</a>
+    </div>
+  </header>
+
+  <section style="position: relative; background: linear-gradient(155deg, #1E0C45 0%, #33086F 58%, #5211A1 100%); padding: clamp(48px, 7vw, 92px) clamp(16px, 4vw, 48px) clamp(64px, 8vw, 110px); overflow: hidden;">
+    <img src="assets/wing-fan-gradient.png" alt="" aria-hidden="true" style="position: absolute; right: -180px; top: -140px; width: clamp(420px, 46vw, 760px); opacity: 0.30; pointer-events: none;">
+    <div aria-hidden="true" style="position: absolute; left: -160px; bottom: -220px; width: 620px; height: 620px; border-radius: 9999px; background: radial-gradient(closest-side, rgba(132,60,255,0.55), rgba(132,60,255,0)); filter: blur(60px); pointer-events: none;"></div>
+
+    <div data-grid="hero" style="position: relative; max-width: 1240px; margin: 0 auto;">
+      <div style="min-width: 0;">
+        <div data-reveal="up" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.10); border: 1px solid rgba(198,175,255,0.35); color: #EBE5FF; border-radius: 9999px; padding: 8px 16px 8px 10px; font-size: clamp(12px, 1.2vw, 14px); font-weight: 600; margin-bottom: clamp(20px, 2.6vw, 30px);">
+          <img src="assets/ic-formularios.png" alt="" style="width: 24px; height: 24px; border-radius: 7px;">
+          Formulários Externos · condição exclusiva para clientes Ploomes
+        </div>
+        <p data-reveal="up" data-reveal-delay="60" style="font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: clamp(17px, 1.9vw, 23px); line-height: 1.42; color: #C6AFFF; margin: 0 0 clamp(16px, 2vw, 22px); max-width: 32ch; text-wrap: pretty;">Boa parte de quem devia atualizar o seu CRM nunca vai ter login nele — e não precisa ter.</p>
+        <h1 data-reveal="up" data-reveal-delay="110" style="font-size: clamp(32px, 4.2vw, 56px); font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; color: #FFFFFF; margin: 0 0 clamp(18px, 2.2vw, 26px); text-wrap: pretty;">Deixe qualquer pessoa atualizar o seu CRM, sem digitar por ela e sem gastar mais uma licença.</h1>
+        <p data-reveal="up" data-reveal-delay="160" style="font-size: clamp(15px, 1.5vw, 19px); line-height: 1.58; color: rgba(235,229,255,0.86); margin: 0 0 clamp(26px, 3vw, 36px); max-width: 58ch; text-wrap: pretty;">Leve um formulário personalizado a quem não tem, e não precisa ter, login no Ploomes — lead, cliente, fornecedor, parceiro — e deixe a resposta cair direto no cadastro certo.</p>
+        <div data-reveal="up" data-reveal-delay="210" style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: clamp(24px, 3vw, 34px);">
+          <a href="#conversar" style="display: inline-flex; align-items: center; justify-content: center; background: #843CFF; color: #FFFFFF; font-size: clamp(15px, 1.4vw, 17px); font-weight: 700; border-radius: 14px; padding: 17px 30px; box-shadow: 0 14px 34px rgba(132,60,255,0.42); transition: transform .14s ease, background .14s ease, box-shadow .14s ease;" style-hover="background: #7714EB; color: #FFFFFF; transform: translateY(-2px); box-shadow: 0 18px 40px rgba(132,60,255,0.5);" style-active="transform: scale(0.98);">Quero otimizar a entrada de dados</a>
+          <a href="https://my.demio.com/ref/q49AGRoURNhaGGKc" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; color: #FFFFFF; font-size: clamp(14px, 1.35vw, 16px); font-weight: 600; border-radius: 14px; padding: 16px 24px; border: 1px solid rgba(255,255,255,0.35); transition: transform .14s ease, background .14s ease, border-color .14s ease;" style-hover="color: #FFFFFF; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.7); transform: translateY(-2px);" style-active="transform: scale(0.98);">
+            <span style="display: inline-flex; width: 22px; height: 22px; border-radius: 9999px; background: rgba(255,255,255,0.18); align-items: center; justify-content: center; font-size: 10px;">▶</span>
+            Assistir ao webinar sobre o tema
+          </a>
+        </div>
+        <div data-reveal="up" data-reveal-delay="260" style="display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 13px; font-weight: 600; color: rgba(235,229,255,0.72);">
+          <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 6px; height: 6px; border-radius: 9999px; background: #AA82FF;"></span>Sem login</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 6px; height: 6px; border-radius: 9999px; background: #AA82FF;"></span>Sem licença extra</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 6px; height: 6px; border-radius: 9999px; background: #AA82FF;"></span>Link público ou iframe</span>
+        </div>
+      </div>
+
+      <div data-reveal="up" data-reveal-delay="180" style="position: relative; min-width: 0; padding: 10px 0 70px;">
+        <div data-hero-float="1" style="position: relative; z-index: 2; border-radius: 18px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 80px rgba(13,4,36,0.45), 0 4px 14px rgba(13,4,36,0.3);">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #F4F4F4; border-bottom: 1px solid #E0E0E0;">
+            <span style="display: flex; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 9999px; background: #FF5F57;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 9999px; background: #FEBC2E;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 9999px; background: #28C840;"></span>
+            </span>
+            <span style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; padding: 6px 12px; font-size: 12px; color: #666666; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+              <span style="color: #027A48; font-size: 11px;">●</span>forms.ploomes.com/cadastro-de-cliente
+            </span>
+          </div>
+          <div style="display: flex; min-height: 300px;">
+            <div style="width: 38%; background: linear-gradient(170deg, #5211A1 0%, #33086F 100%); padding: 22px 18px; display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; align-items: center; gap: 9px;">
+                <span style="width: 28px; height: 28px; border-radius: 8px; background: rgba(255,255,255,0.9);"></span>
+                <span style="font-size: 12px; font-weight: 700; color: #FFFFFF;">Sua empresa</span>
+              </div>
+              <p style="margin: 0; font-size: 14px; font-weight: 700; line-height: 1.3; color: #FFFFFF;">Atualize seu cadastro</p>
+              <p style="margin: 0; font-size: 11.5px; line-height: 1.5; color: rgba(235,229,255,0.75);">Leva menos de um minuto e mantém seus dados em dia com a nossa equipe.</p>
+              <div style="margin-top: auto; display: flex; gap: 6px;">
+                <span style="width: 16px; height: 16px; border-radius: 5px; background: #843CFF;"></span>
+                <span style="width: 16px; height: 16px; border-radius: 5px; background: #AA82FF;"></span>
+                <span style="width: 16px; height: 16px; border-radius: 5px; background: #EBE5FF;"></span>
+              </div>
+            </div>
+            <div style="flex: 1; min-width: 0; padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 13px;">
+              <div>
+                <p style="margin: 0 0 5px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8D8D8D;">Razão social</p>
+                <div style="border: 1px solid #E0E0E0; border-radius: 8px; padding: 9px 11px; font-size: 12.5px; color: #1E0C45;">ABC Sistemas Ltda.</div>
+              </div>
+              <div>
+                <p style="margin: 0 0 5px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8D8D8D;">CNPJ</p>
+                <div data-key-field="1" style="border: 1px solid #843CFF; border-radius: 8px; padding: 9px 11px; font-size: 12.5px; color: #1E0C45; box-shadow: 0 0 0 3px rgba(132,60,255,0.14);">15.436.940/0001-03</div>
+              </div>
+              <div>
+                <p style="margin: 0 0 5px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8D8D8D;">E-mail do responsável</p>
+                <div style="border: 1px solid #E0E0E0; border-radius: 8px; padding: 9px 11px; font-size: 12.5px; color: #1E0C45;">compras@abcsistemas.com.br</div>
+              </div>
+              <div style="margin-top: 4px; background: #843CFF; color: #FFFFFF; text-align: center; border-radius: 10px; padding: 11px; font-size: 13px; font-weight: 700;">Enviar</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-hero-dots="1" aria-hidden="true" style="position: absolute; z-index: 3; right: 18%; bottom: 84px; width: 120px; height: 70px; pointer-events: none;">
+          <span style="position: absolute; left: 0%; top: 0%; width: 10px; height: 10px; border-radius: 9999px; background: #FFFFFF; box-shadow: 0 0 0 3px rgba(132,60,255,0.55); animation: fx-chase 2.2s ease-in-out infinite;"></span>
+          <span style="position: absolute; left: 30%; top: 30%; width: 10px; height: 10px; border-radius: 9999px; background: #FFFFFF; box-shadow: 0 0 0 3px rgba(132,60,255,0.55); animation: fx-chase 2.2s ease-in-out infinite; animation-delay: .18s;"></span>
+          <span style="position: absolute; left: 60%; top: 60%; width: 10px; height: 10px; border-radius: 9999px; background: #FFFFFF; box-shadow: 0 0 0 3px rgba(132,60,255,0.55); animation: fx-chase 2.2s ease-in-out infinite; animation-delay: .36s;"></span>
+          <span style="position: absolute; left: 90%; top: 90%; width: 10px; height: 10px; border-radius: 9999px; background: #FFFFFF; box-shadow: 0 0 0 3px rgba(132,60,255,0.55); animation: fx-chase 2.2s ease-in-out infinite; animation-delay: .54s;"></span>
+        </div>
+
+        <div data-hero-card="1" style="position: absolute; z-index: 4; right: -6px; bottom: 0; width: min(86%, 330px); background: #FFFFFF; border-radius: 14px; padding: 14px; box-shadow: 0 24px 50px rgba(13,4,36,0.4); border: 1px solid #EBE5FF;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 11px;">
+            <span style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(160deg, #843CFF, #5211A1); display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 11px; font-weight: 800;">AB</span>
+            <div style="min-width: 0;">
+              <p style="margin: 0; font-size: 12.5px; font-weight: 700; color: #1E0C45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">ABC Sistemas</p>
+              <p style="margin: 1px 0 0; font-size: 10.5px; color: #8D8D8D;">Cliente · Ploomes CRM</p>
+            </div>
+            <span data-hero-check="1" style="margin-left: auto; display: inline-flex; align-items: center; gap: 5px; background: #ECFDF3; color: #027A48; border-radius: 9999px; padding: 4px 9px; font-size: 10.5px; font-weight: 700;">✓ Atualizado</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px;"><span style="color: #8D8D8D;">CNPJ</span><span data-hero-fill="1" style="color: #1E0C45; font-weight: 600;">15.436.940/0001-03</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px;"><span style="color: #8D8D8D;">E-mail</span><span style="color: #1E0C45; font-weight: 600;">compras@abcsistemas.com.br</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px;"><span style="color: #8D8D8D;">Origem</span><span style="color: #1E0C45; font-weight: 600;">Formulário externo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="position: relative; background: #FFFFFF; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <p data-reveal="up" style="margin: 0 0 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #843CFF;">O problema atual</p>
+      <div style="display: flex; flex-wrap: wrap; gap: clamp(26px, 4vw, 60px); align-items: flex-start; margin-bottom: clamp(38px, 5vw, 60px);">
+        <p data-reveal="up" data-reveal-delay="60" style="flex: 1 1 430px; min-width: 280px; margin: 0; font-size: clamp(17px, 1.7vw, 22px); line-height: 1.5; font-weight: 500; color: #1E0C45; text-wrap: pretty;">Hoje, atualizar o Ploomes é tarefa de quem tem login — e isso custa mais do que parece. Você gasta suas licenças com colaboradores que só entram no CRM esporadicamente para lançar uma informação pontual. E para os stakeholders externos não existe licença que resolva: eles nunca vão ter uma conta no seu Ploomes.</p>
+        <p data-reveal="up" data-reveal-delay="120" style="flex: 1 1 320px; min-width: 260px; margin: 0; font-size: clamp(15px, 1.45vw, 18px); line-height: 1.6; color: #525252; border-left: 3px solid #EBE5FF; padding-left: clamp(16px, 2vw, 26px); text-wrap: pretty;">O resultado sobra para o time comercial. Quem já negocia, atende e fecha venda ainda para tudo para copiar dado de e-mail, planilha ou WhatsApp para dentro do CRM.</p>
+      </div>
+
+      <div data-grid="compare">
+        <div data-reveal="left" style="background: #F4F4F4; border: 1px solid #E0E0E0; border-radius: 20px; padding: clamp(22px, 2.6vw, 34px); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease;" style-hover="transform: translateY(-3px); box-shadow: 0 16px 34px rgba(30,12,69,0.10);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <span style="width: 42px; height: 42px; border-radius: 12px; background: #E0E0E0; display: flex; align-items: center; justify-content: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666666" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+            </span>
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #666666;">Hoje</span>
+          </div>
+          <p style="margin: 0 0 20px; font-size: clamp(16px, 1.6vw, 20px); font-weight: 600; line-height: 1.4; color: #393939; text-wrap: pretty;">Time comercial vira digitador, o que consome tempo e abre espaço para erro e esquecimento.</p>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 10px; padding: 10px 12px;">
+              <span style="width: 18px; height: 18px; border-radius: 9999px; background: #FEF3F2; color: #B42318; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">×</span>
+              <span style="font-size: 13px; color: #525252;">E-mail</span>
+              <span style="flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #C6C6C6 0 5px, transparent 5px 10px);"></span>
+              <span style="font-size: 12px; color: #8D8D8D;">copia e cola</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 10px; padding: 10px 12px;">
+              <span style="width: 18px; height: 18px; border-radius: 9999px; background: #FEF3F2; color: #B42318; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">×</span>
+              <span style="font-size: 13px; color: #525252;">Planilha</span>
+              <span style="flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #C6C6C6 0 5px, transparent 5px 10px);"></span>
+              <span style="font-size: 12px; color: #8D8D8D;">copia e cola</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 10px; padding: 10px 12px;">
+              <span style="width: 18px; height: 18px; border-radius: 9999px; background: #FEF3F2; color: #B42318; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">×</span>
+              <span style="font-size: 13px; color: #525252;">WhatsApp</span>
+              <span style="flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #C6C6C6 0 5px, transparent 5px 10px);"></span>
+              <span style="font-size: 12px; color: #8D8D8D;">copia e cola</span>
+            </div>
+          </div>
+        </div>
+
+        <div data-compare-hinge="1" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;">
+          <span data-hide-sm="1" style="flex: 1; width: 2px; background: linear-gradient(180deg, rgba(132,60,255,0) 0%, #DCD3FF 100%);"></span>
+          <span data-icon-swap="1" style="position: relative; width: 56px; height: 56px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCD3FF; box-shadow: 0 10px 24px rgba(30,12,69,0.12); display: flex; align-items: center; justify-content: center; flex: none; margin: 8px;">
+            <svg data-swap-a="1" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8D8D8D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; transition: opacity .4s ease, transform .4s ease;"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+            <svg data-swap-b="1" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#843CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; opacity: 0; transition: opacity .4s ease, transform .4s ease;"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.4 4.5"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.4-1.4"></path></svg>
+          </span>
+          <span data-hide-sm="1" style="flex: 1; width: 2px; background: linear-gradient(180deg, #DCD3FF 0%, rgba(132,60,255,0) 100%);"></span>
+        </div>
+
+        <div data-reveal="right" data-reveal-delay="100" style="background: linear-gradient(160deg, #6210C6 0%, #843CFF 100%); border-radius: 20px; padding: clamp(22px, 2.6vw, 34px); box-shadow: 0 24px 50px rgba(98,16,198,0.28); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease;" style-hover="transform: translateY(-3px); box-shadow: 0 30px 60px rgba(98,16,198,0.36);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <span style="width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.4 4.5"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.4-1.4"></path></svg>
+            </span>
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #EBE5FF;">Com o módulo Formulários Externos</span>
+          </div>
+          <p style="margin: 0 0 20px; font-size: clamp(16px, 1.6vw, 20px); font-weight: 600; line-height: 1.4; color: #FFFFFF; text-wrap: pretty;">Qualquer pessoa preenche uma página com a cara da sua empresa, sem precisar de login, e o dado cai direto no cadastro certo — cliente ou negócio.</p>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.14); border-radius: 10px; padding: 10px 12px;">
+              <span style="width: 18px; height: 18px; border-radius: 9999px; background: #ECFDF3; color: #027A48; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">✓</span>
+              <span style="font-size: 13px; color: #FFFFFF;">Link público</span>
+              <span style="flex: 1; height: 1px; background: rgba(255,255,255,0.3);"></span>
+              <span style="font-size: 12px; color: rgba(235,229,255,0.85);">sem login</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.14); border-radius: 10px; padding: 10px 12px;">
+              <span style="width: 18px; height: 18px; border-radius: 9999px; background: #ECFDF3; color: #027A48; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">✓</span>
+              <span style="font-size: 13px; color: #FFFFFF;">Iframe no seu site</span>
+              <span style="flex: 1; height: 1px; background: rgba(255,255,255,0.3);"></span>
+              <span style="font-size: 12px; color: rgba(235,229,255,0.85);">sem licença</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.14); border-radius: 10px; padding: 10px 12px;">
+              <span style="width: 18px; height: 18px; border-radius: 9999px; background: #ECFDF3; color: #027A48; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">✓</span>
+              <span style="font-size: 13px; color: #FFFFFF;">Cadastro certo</span>
+              <span style="flex: 1; height: 1px; background: rgba(255,255,255,0.3);"></span>
+              <span style="font-size: 12px; color: rgba(235,229,255,0.85);">cliente ou negócio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" style="position: relative; background: #F5F1FF; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); overflow: hidden;">
+    <img src="assets/wing-trail-purple.png" alt="" aria-hidden="true" style="position: absolute; left: -120px; bottom: -80px; width: clamp(240px, 24vw, 380px); opacity: 0.14; pointer-events: none;">
+    <div style="position: relative; max-width: 1180px; margin: 0 auto;">
+      <p data-reveal="up" style="margin: 0 0 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6210C6;">Como funciona</p>
+      <h2 data-reveal="up" data-reveal-delay="60" style="margin: 0 0 clamp(40px, 5vw, 64px); font-size: clamp(27px, 3.2vw, 44px); font-weight: 800; line-height: 1.14; letter-spacing: -0.025em; color: #1E0C45; max-width: 22ch;">Do formulário ao cadastro<br><span style="font-family: 'Lora', serif; font-style: italic; font-weight: 500; color: #6210C6; letter-spacing: -0.01em;">em quatro passos, sem passar por ninguém do time.</span></h2>
+
+      <div style="position: relative;">
+        <div data-timeline-track="1" aria-hidden="true" style="position: absolute; left: 30px; right: 30px; top: 66px; height: 2px; background: #DCD3FF;"></div>
+        <div data-timeline-line="1" aria-hidden="true" style="position: absolute; left: 30px; right: 30px; top: 66px; height: 2px; background: linear-gradient(90deg, #6210C6, #AA82FF);"></div>
+        <div data-grid="steps" style="position: relative;">
+
+          <div data-reveal="up" data-reveal-delay="80" style="min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+              <span style="width: 54px; height: 54px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCD3FF; box-shadow: 0 8px 18px rgba(30,12,69,0.08); display: flex; align-items: center; justify-content: center; flex: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#843CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h4"></path></svg>
+              </span>
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6210C6;">Passo 1</span>
+            </div>
+            <p style="margin: 0 0 10px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 700; line-height: 1.26; color: #1E0C45; text-wrap: pretty;">Monte o formulário dentro do Ploomes</p>
+            <p style="margin: 0 0 16px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Escolha se ele cria um cadastro novo ou atualiza um já existente, defina os campos, o texto de apoio, o logotipo e a cor de fundo.</p>
+            <div style="background: #FFFFFF; border: 1px solid #DCD3FF; border-radius: 14px; padding: 12px; box-shadow: 0 10px 24px rgba(30,12,69,0.06);">
+              <div style="display: flex; gap: 6px; margin-bottom: 10px;">
+                <span style="font-size: 10px; font-weight: 700; color: #FFFFFF; background: #843CFF; border-radius: 6px; padding: 4px 8px;">Criar</span>
+                <span style="font-size: 10px; font-weight: 700; color: #8D8D8D; background: #F4F4F4; border-radius: 6px; padding: 4px 8px;">Atualizar</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-size: 11px; color: #525252; background: #F5F1FF; border-radius: 7px; padding: 7px 9px;">Razão social</span>
+                <span style="font-size: 11px; color: #525252; background: #F5F1FF; border-radius: 7px; padding: 7px 9px;">CNPJ</span>
+                <span style="font-size: 11px; color: #525252; background: #F5F1FF; border-radius: 7px; padding: 7px 9px;">E-mail</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px;">
+                <span style="width: 18px; height: 18px; border-radius: 5px; background: #E0E0E0;"></span>
+                <span style="width: 16px; height: 16px; border-radius: 9999px; background: #6210C6;"></span>
+                <span style="width: 16px; height: 16px; border-radius: 9999px; background: #AA82FF;"></span>
+                <span style="width: 16px; height: 16px; border-radius: 9999px; background: #EBE5FF;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal="up" data-reveal-delay="220" style="min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+              <span style="width: 54px; height: 54px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCD3FF; box-shadow: 0 8px 18px rgba(30,12,69,0.08); display: flex; align-items: center; justify-content: center; flex: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#843CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
+              </span>
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6210C6;">Passo 2</span>
+            </div>
+            <p style="margin: 0 0 10px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 700; line-height: 1.26; color: #1E0C45; text-wrap: pretty;">Compartilhe do seu jeito</p>
+            <p style="margin: 0 0 16px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Envie o link por WhatsApp, e-mail, ou incorpore o formulário em seu site de forma simples.</p>
+            <div style="background: #FFFFFF; border: 1px solid #DCD3FF; border-radius: 14px; padding: 12px; box-shadow: 0 10px 24px rgba(30,12,69,0.06); display: flex; flex-direction: column; gap: 8px;">
+              <span style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: #1E0C45; background: #ECFDF3; border-radius: 8px; padding: 8px 10px;"><span style="width: 16px; height: 16px; border-radius: 9999px; background: #027A48;"></span>WhatsApp</span>
+              <span style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: #1E0C45; background: #F5F1FF; border-radius: 8px; padding: 8px 10px;"><span style="width: 16px; height: 16px; border-radius: 4px; background: #843CFF;"></span>E-mail</span>
+              <span style="display: block; font-family: ui-monospace, monospace; font-size: 10.5px; color: #C6AFFF; background: #1E0C45; border-radius: 8px; padding: 8px 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">&lt;iframe src="forms.ploomes.com…"&gt;</span>
+            </div>
+          </div>
+
+          <div data-reveal="up" data-reveal-delay="360" style="min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+              <span style="width: 54px; height: 54px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCD3FF; box-shadow: 0 8px 18px rgba(30,12,69,0.08); display: flex; align-items: center; justify-content: center; flex: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#843CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"></circle><path d="m10.85 12.15 7.5-7.5"></path><path d="m16 7 2 2"></path><path d="m19 4 2 2"></path></svg>
+              </span>
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6210C6;">Passo 3</span>
+            </div>
+            <p style="margin: 0 0 10px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 700; line-height: 1.26; color: #1E0C45; text-wrap: pretty;">Um campo-chave, como o CNPJ, evita duplicidade</p>
+            <p style="margin: 0 0 16px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Se a mesma pessoa preencher de novo, o Ploomes atualiza o cadastro existente em vez de criar um segundo.</p>
+            <div style="background: #FFFFFF; border: 1px solid #DCD3FF; border-radius: 14px; padding: 12px; box-shadow: 0 10px 24px rgba(30,12,69,0.06);">
+              <p style="margin: 0 0 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8D8D8D;">Campo-chave: CNPJ</p>
+              <div data-merge-a="1" style="display: flex; align-items: center; gap: 8px; background: #F5F1FF; border-radius: 8px; padding: 8px 10px; font-size: 11px; color: #1E0C45; transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .6s ease;">
+                <span style="width: 6px; height: 6px; border-radius: 9999px; background: #843CFF;"></span>ABC Sistemas · 15.436.940/0001-03
+              </div>
+              <div data-merge-b="1" style="display: flex; align-items: center; gap: 8px; background: #F4F4F4; border-radius: 8px; padding: 8px 10px; font-size: 11px; color: #666666; margin-top: 6px; transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .6s ease;">
+                <span style="width: 6px; height: 6px; border-radius: 9999px; background: #C6C6C6;"></span>ABC Sistemas · 15.436.940/0001-03
+              </div>
+              <div data-merge-out="1" style="display: flex; align-items: center; gap: 7px; margin-top: 10px; font-size: 11px; font-weight: 700; color: #027A48; opacity: 0; transition: opacity .5s ease;">
+                <span style="width: 16px; height: 16px; border-radius: 9999px; background: #ECFDF3; display: flex; align-items: center; justify-content: center; font-size: 10px;">✓</span>Cadastro atualizado, não duplicado
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal="up" data-reveal-delay="500" style="min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+              <span style="width: 54px; height: 54px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCD3FF; box-shadow: 0 8px 18px rgba(30,12,69,0.08); display: flex; align-items: center; justify-content: center; flex: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#843CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z"></path></svg>
+              </span>
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6210C6;">Passo 4</span>
+            </div>
+            <p style="margin: 0 0 10px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 700; line-height: 1.26; color: #1E0C45; text-wrap: pretty;">Você pode configurar campos ocultos que são preenchidos automaticamente no envio</p>
+            <p style="margin: 0 0 16px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Por exemplo, mapeando que o lead veio do site, assim que o formulário é preenchido.</p>
+            <div style="background: #FFFFFF; border: 1px solid #DCD3FF; border-radius: 14px; padding: 12px; box-shadow: 0 10px 24px rgba(30,12,69,0.06);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #F5F1FF; border-radius: 8px; padding: 8px 10px; font-size: 11px;">
+                <span style="color: #8D8D8D;">Campo oculto</span>
+                <span style="color: #1E0C45; font-weight: 700;">Origem</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 1px dashed #DCD3FF; border-radius: 8px; padding: 8px 10px; font-size: 11px; margin-top: 6px;">
+                <span style="color: #8D8D8D;">Valor</span>
+                <span data-autofill="1" style="color: #6210C6; font-weight: 700; transition: opacity .4s ease, transform .4s ease;">—</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px;">
+                <span style="font-size: 10px; font-weight: 700; color: #8D8D8D;">No envio</span>
+                <span style="flex: 1; height: 1px; background: #E0E0E0;"></span>
+                <span data-autotag="1" style="font-size: 10.5px; font-weight: 700; color: #FFFFFF; background: #C6AFFF; border-radius: 9999px; padding: 4px 10px; transition: background .45s ease, transform .45s ease;">aguardando</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="position: relative; background: #FFFFFF; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <p data-reveal="up" style="margin: 0 0 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #843CFF;">Benefícios</p>
+      <h2 data-reveal="up" data-reveal-delay="60" style="margin: 0 0 clamp(34px, 4.5vw, 56px); font-size: clamp(27px, 3.2vw, 44px); font-weight: 800; line-height: 1.14; letter-spacing: -0.025em; color: #1E0C45; max-width: 24ch;">O que muda quando o dado entra sozinho<br><span style="font-family: 'Lora', serif; font-style: italic; font-weight: 500; color: #6210C6; letter-spacing: -0.01em;">direto da fonte, no cadastro certo.</span></h2>
+
+      <div data-grid="benefits">
+        <div data-reveal="up" data-reveal-delay="60" style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 20px; padding: clamp(20px, 2.2vw, 28px); box-shadow: 0 10px 26px rgba(30,12,69,0.05); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, border-color .22s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 22px 46px rgba(30,12,69,0.12); border-color: #C6AFFF;">
+          <p style="margin: 0 0 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; color: #C6AFFF;">01</p>
+          <p style="margin: 0 0 9px; font-size: 18px; font-weight: 700; line-height: 1.26; color: #1E0C45;">Licença bem aproveitada</p>
+          <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Reserve o acesso ao CRM para quem usa com frequência e deixe o formulário externo cuidar de quem preenche dados só de vez em quando.</p>
+          <div style="background: #F5F1FF; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="font-size: 11px; font-weight: 700; color: #1E0C45; width: 92px; flex: none;">Com licença</span>
+              <span style="flex: 1; height: 8px; border-radius: 9999px; background: #DCD3FF; overflow: hidden;"><span data-bar="1" data-bar-w="34" style="display: block; height: 100%; width: 0%; border-radius: 9999px; background: #6210C6; transition: width 1.1s cubic-bezier(.22,1,.36,1);"></span></span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 11px; font-weight: 700; color: #1E0C45; width: 92px; flex: none;">Sem licença</span>
+              <span style="flex: 1; height: 8px; border-radius: 9999px; background: #DCD3FF; overflow: hidden;"><span data-bar="1" data-bar-w="88" data-bar-delay="200" style="display: block; height: 100%; width: 0%; border-radius: 9999px; background: #843CFF; transition: width 1.1s cubic-bezier(.22,1,.36,1);"></span></span>
+            </div>
+            <p style="margin: 10px 0 0; font-size: 10.5px; color: #8D8D8D;">Quem usa sempre · quem preenche de vez em quando</p>
+          </div>
+        </div>
+
+        <div data-reveal="up" data-reveal-delay="130" style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 20px; padding: clamp(20px, 2.2vw, 28px); box-shadow: 0 10px 26px rgba(30,12,69,0.05); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, border-color .22s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 22px 46px rgba(30,12,69,0.12); border-color: #C6AFFF;">
+          <p style="margin: 0 0 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; color: #C6AFFF;">02</p>
+          <p style="margin: 0 0 9px; font-size: 18px; font-weight: 700; line-height: 1.26; color: #1E0C45;">Tempo do vendedor melhor aproveitado</p>
+          <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Cada hora a menos preenchendo cadastro é uma hora a mais tocando as oportunidades que estão paradas no funil.</p>
+          <div style="background: #F5F1FF; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; height: 10px; border-radius: 9999px; overflow: hidden; background: #DCD3FF;">
+              <span data-bar="1" data-bar-w="22" style="display: block; height: 100%; width: 0%; background: #C6AFFF; transition: width 1.1s cubic-bezier(.22,1,.36,1);"></span>
+              <span data-bar="1" data-bar-w="78" data-bar-delay="180" style="display: block; height: 100%; width: 0%; background: #843CFF; transition: width 1.1s cubic-bezier(.22,1,.36,1);"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; font-size: 10.5px; font-weight: 700;">
+              <span style="color: #8D8D8D;">Preenchendo cadastro</span>
+              <span style="color: #6210C6;">Tocando o funil</span>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="up" data-reveal-delay="200" style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 20px; padding: clamp(20px, 2.2vw, 28px); box-shadow: 0 10px 26px rgba(30,12,69,0.05); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, border-color .22s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 22px 46px rgba(30,12,69,0.12); border-color: #C6AFFF;">
+          <p style="margin: 0 0 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; color: #C6AFFF;">03</p>
+          <p style="margin: 0 0 9px; font-size: 18px; font-weight: 700; line-height: 1.26; color: #1E0C45;">Menos negócio perdido por dado errado</p>
+          <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Informação direto da fonte, sem intermediário copiando de planilha ou WhatsApp, reduz o erro que atrasa ou derruba uma negociação.</p>
+          <div style="background: #F5F1FF; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 7px; font-size: 10.5px; color: #8D8D8D;">
+              <span style="background: #FFFFFF; border-radius: 6px; padding: 5px 8px;">Fonte</span>
+              <span style="flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #C6C6C6 0 4px, transparent 4px 8px);"></span>
+              <span style="background: #FFFFFF; border-radius: 6px; padding: 5px 8px;">Planilha</span>
+              <span style="flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #C6C6C6 0 4px, transparent 4px 8px);"></span>
+              <span style="background: #FEF3F2; color: #B42318; border-radius: 6px; padding: 5px 8px; font-weight: 700;">×</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 7px; font-size: 10.5px; color: #1E0C45;">
+              <span style="background: #FFFFFF; border-radius: 6px; padding: 5px 8px; font-weight: 700;">Fonte</span>
+              <span style="flex: 1; height: 2px; border-radius: 9999px; background: #843CFF;"></span>
+              <span style="background: #843CFF; color: #FFFFFF; border-radius: 6px; padding: 5px 8px; font-weight: 700;">Cadastro</span>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="up" data-reveal-delay="270" style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 20px; padding: clamp(20px, 2.2vw, 28px); box-shadow: 0 10px 26px rgba(30,12,69,0.05); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, border-color .22s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 22px 46px rgba(30,12,69,0.12); border-color: #C6AFFF;">
+          <p style="margin: 0 0 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; color: #C6AFFF;">04</p>
+          <p style="margin: 0 0 9px; font-size: 18px; font-weight: 700; line-height: 1.26; color: #1E0C45;">Cadastro sempre atualizado</p>
+          <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: #525252; text-wrap: pretty;">Fornecedor, parceiro e cliente mantêm os próprios dados em dia sem virar tarefa de ninguém do seu time.</p>
+          <div style="background: #F5F1FF; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 9px; background: #FFFFFF; border-radius: 9px; padding: 8px 10px;"><span style="width: 20px; height: 20px; border-radius: 9999px; background: #DCD3FF;"></span><span style="font-size: 11.5px; color: #1E0C45; flex: 1;">Fornecedor</span><span style="font-size: 10px; font-weight: 700; color: #027A48;">em dia</span></div>
+            <div style="display: flex; align-items: center; gap: 9px; background: #FFFFFF; border-radius: 9px; padding: 8px 10px;"><span style="width: 20px; height: 20px; border-radius: 9999px; background: #C6AFFF;"></span><span style="font-size: 11.5px; color: #1E0C45; flex: 1;">Parceiro</span><span style="font-size: 10px; font-weight: 700; color: #027A48;">em dia</span></div>
+            <div style="display: flex; align-items: center; gap: 9px; background: #FFFFFF; border-radius: 9px; padding: 8px 10px;"><span style="width: 20px; height: 20px; border-radius: 9999px; background: #843CFF;"></span><span style="font-size: 11.5px; color: #1E0C45; flex: 1;">Cliente</span><span style="font-size: 10px; font-weight: 700; color: #027A48;">em dia</span></div>
+          </div>
+        </div>
+
+        <div data-reveal="up" data-reveal-delay="340" data-span="2" style="background: linear-gradient(140deg, #1E0C45 0%, #5211A1 100%); border-radius: 20px; padding: clamp(20px, 2.2vw, 30px); box-shadow: 0 20px 44px rgba(30,12,69,0.28); display: flex; flex-wrap: wrap; gap: clamp(18px, 2.4vw, 32px); align-items: center; transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 30px 60px rgba(30,12,69,0.4);">
+          <div style="flex: 1 1 260px; min-width: 240px;">
+            <p style="margin: 0 0 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; color: #AA82FF;">05</p>
+            <p style="margin: 0 0 9px; font-size: 19px; font-weight: 700; line-height: 1.26; color: #FFFFFF;">Transforme respostas em ações</p>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(235,229,255,0.82); text-wrap: pretty;">Automatize a criação de tarefas para o seu time comercial ou o envio imediato de e-mails de boas-vindas ao cliente.</p>
+          </div>
+          <div style="flex: 1 1 260px; min-width: 240px; display: flex; align-items: center; gap: 10px;">
+            <span data-flow="1" style="flex: 1; text-align: center; background: rgba(255,255,255,0.12); border: 1px solid rgba(198,175,255,0.35); border-radius: 12px; padding: 12px 8px; font-size: 11.5px; font-weight: 700; color: #FFFFFF; transition: transform .45s cubic-bezier(.22,1,.36,1), background .45s ease;">Resposta</span>
+            <span style="color: #AA82FF; font-size: 14px;">→</span>
+            <span data-flow="1" data-flow-delay="220" style="flex: 1; text-align: center; background: rgba(255,255,255,0.12); border: 1px solid rgba(198,175,255,0.35); border-radius: 12px; padding: 12px 8px; font-size: 11.5px; font-weight: 700; color: #FFFFFF; transition: transform .45s cubic-bezier(.22,1,.36,1), background .45s ease;">Tarefa</span>
+            <span style="color: #AA82FF; font-size: 14px;">→</span>
+            <span data-flow="1" data-flow-delay="440" style="flex: 1; text-align: center; background: rgba(255,255,255,0.12); border: 1px solid rgba(198,175,255,0.35); border-radius: 12px; padding: 12px 8px; font-size: 11.5px; font-weight: 700; color: #FFFFFF; transition: transform .45s cubic-bezier(.22,1,.36,1), background .45s ease;">E-mail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="position: relative; background: #1E0C45; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); overflow: hidden;">
+    <img src="assets/wing-fan-light.png" alt="" aria-hidden="true" style="position: absolute; right: -140px; bottom: -120px; width: clamp(280px, 30vw, 460px); opacity: 0.10; pointer-events: none;">
+    <div style="position: relative; max-width: 1180px; margin: 0 auto;">
+      <p data-reveal="up" style="margin: 0 0 clamp(28px, 3.5vw, 44px); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #AA82FF;">Prova de quem já viveu o problema</p>
+      <div data-grid="proof">
+        <blockquote data-reveal="up" data-reveal-delay="60" style="position: relative; margin: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(198,175,255,0.22); border-radius: 22px; padding: clamp(26px, 3.4vw, 46px);">
+          <span aria-hidden="true" style="position: absolute; top: 6px; left: 20px; font-family: 'Lora', serif; font-size: 96px; line-height: 1; color: rgba(170,130,255,0.35);">“</span>
+          <p style="position: relative; margin: 0 0 24px; font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: clamp(19px, 2.3vw, 31px); line-height: 1.38; color: #FFFFFF; text-wrap: pretty;">A gente não sabia em que fase cada cliente estava, quais produtos ele estava interessado em comprar, porque tudo isso estava espalhado em e-mail, WhatsApp, anotação do vendedor — era um terror.</p>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <img src="assets/heber-oliveira.png" alt="Heber Oliveira" style="width: 52px; height: 52px; border-radius: 9999px; object-fit: cover; object-position: center 18%; border: 2px solid rgba(198,175,255,0.5); flex: none;">
+            <div>
+              <p style="margin: 0; font-size: 15px; font-weight: 700; color: #FFFFFF;">Heber Oliveira</p>
+              <p style="margin: 2px 0 0; font-size: 13px; color: #C6AFFF;">líder comercial da Intercarta · indústria do setor gráfico</p>
+            </div>
+          </div>
+        </blockquote>
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+          <p data-reveal="up" data-reveal-delay="120" style="margin: 0; font-size: clamp(15px, 1.45vw, 17px); line-height: 1.62; color: rgba(235,229,255,0.9); text-wrap: pretty;">A Intercarta, indústria do setor gráfico, viveu de perto o problema que o Formulários Externos ataca: informação de cliente espalhada entre e-mail, WhatsApp e anotação do vendedor. Nas palavras de Heber Oliveira, líder comercial da empresa:</p>
+          <p data-reveal="up" data-reveal-delay="180" style="margin: 0; font-size: clamp(15px, 1.45vw, 17px); line-height: 1.62; color: rgba(235,229,255,0.72); text-wrap: pretty;">Depois de estruturar a entrada de dados no Ploomes, a empresa relata o fim dessa perda de informação e uma melhora relevante na taxa de conversão. Formulários Externos ataca exatamente esse gargalo um passo antes: leva a estruturação da informação para a própria fonte — o lead, o cliente, o parceiro — em vez de depender de alguém anotar e repassar depois.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: clamp(44px, 6vw, 76px) clamp(16px, 4vw, 48px);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <p data-reveal="up" style="margin: 0 0 clamp(24px, 3vw, 36px); text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8D8D8D;">Empresas que já usam o Ploomes na operação comercial</p>
+      <div data-reveal="up" data-reveal-delay="80" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: clamp(18px, 3vw, 40px); align-items: center; justify-items: center;">
+        <img src="assets/cli-unimed.svg" alt="Unimed" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-moura.svg" alt="Baterias Moura" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-facchini.svg" alt="Facchini" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-philips.svg" alt="Philips" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-lockton.svg" alt="Lockton" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-truckvan.svg" alt="Truckvan" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-forza.svg" alt="Forza" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+        <img src="assets/cli-sansuy.webp" alt="Sansuy" style="max-height: 38px; width: auto; filter: grayscale(1); opacity: 0.55; transition: filter .2s ease, opacity .2s ease, transform .2s ease;" style-hover="filter: grayscale(0); opacity: 1; transform: translateY(-2px);">
+      </div>
+    </div>
+  </section>
+
+  <section style="position: relative; background: #F5F1FF; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px);">
+    <div data-grid="faq" style="max-width: 1180px; margin: 0 auto;">
+      <div style="min-width: 0;">
+        <p data-reveal="up" style="margin: 0 0 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6210C6;">FAQ</p>
+        <h2 data-reveal="up" data-reveal-delay="60" style="margin: 0 0 22px; font-size: clamp(26px, 3vw, 38px); font-weight: 800; line-height: 1.14; letter-spacing: -0.025em; color: #1E0C45;">Perguntas que chegam antes da contratação</h2>
+        <div data-reveal="up" data-reveal-delay="120" style="display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; border: 1px solid #DCD3FF; border-radius: 16px; padding: 12px 16px; box-shadow: 0 10px 24px rgba(30,12,69,0.06);">
+          <img src="assets/ic-formularios.png" alt="" style="width: 38px; height: 38px; border-radius: 10px;">
+          <span style="font-size: 13px; font-weight: 700; color: #1E0C45;">Formulários Externos<br><span style="font-weight: 500; color: #8D8D8D;">módulo do Ploomes CRM</span></span>
+        </div>
+      </div>
+      <div data-faq-root="1" style="min-width: 0;">
+
+        <div style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;" style-hover="border-color: #C6AFFF; box-shadow: 0 10px 24px rgba(30,12,69,0.07);">
+          <button type="button" data-faq-btn="0" onClick="{{ faq0 }}" style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; background: none; border: 0; padding: 20px 22px; cursor: pointer; text-align: left; font-size: clamp(15px, 1.45vw, 17px); font-weight: 700; line-height: 1.38; color: #1E0C45; transition: color .14s ease;" style-hover="color: #6210C6;">
+            <span>Preciso dar acesso ao CRM para quem vai preencher o formulário?</span>
+            <span data-faq-mark="0" style="flex: none; width: 26px; height: 26px; border-radius: 9px; background: #F5F1FF; color: #6210C6; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; transition: transform .28s cubic-bezier(.65,0,.35,1), background .2s ease, color .2s ease;">+</span>
+          </button>
+          <div data-faq-panel="0" style="overflow: hidden; max-height: 0; opacity: 0; transition: max-height .32s cubic-bezier(.65,0,.35,1), opacity .24s ease;">
+            <p style="margin: 0; padding: 0 22px 22px; font-size: 15px; line-height: 1.62; color: #525252; text-wrap: pretty;">Não. Formulários Externos funciona por link público ou por iframe incorporado no seu site — quem preenche não precisa de login nem de licença Ploomes, seja lead, cliente, fornecedor ou parceiro.</p>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;" style-hover="border-color: #C6AFFF; box-shadow: 0 10px 24px rgba(30,12,69,0.07);">
+          <button type="button" data-faq-btn="1" onClick="{{ faq1 }}" style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; background: none; border: 0; padding: 20px 22px; cursor: pointer; text-align: left; font-size: clamp(15px, 1.45vw, 17px); font-weight: 700; line-height: 1.38; color: #1E0C45; transition: color .14s ease;" style-hover="color: #6210C6;">
+            <span>O formulário de criação também serve para atualizar um cadastro que já existe?</span>
+            <span data-faq-mark="1" style="flex: none; width: 26px; height: 26px; border-radius: 9px; background: #F5F1FF; color: #6210C6; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; transition: transform .28s cubic-bezier(.65,0,.35,1), background .2s ease, color .2s ease;">+</span>
+          </button>
+          <div data-faq-panel="1" style="overflow: hidden; max-height: 0; opacity: 0; transition: max-height .32s cubic-bezier(.65,0,.35,1), opacity .24s ease;">
+            <p style="margin: 0; padding: 0 22px 22px; font-size: 15px; line-height: 1.62; color: #525252; text-wrap: pretty;">Sim, se você configurar um campo-chave, como CNPJ ou e-mail: quando alguém preenche de novo com o mesmo valor, o Ploomes atualiza o cadastro existente em vez de criar um duplicado. Já o formulário do tipo atualização funciona diferente — ele gera um link individual por cliente ou negócio e serve só para atualizar aquele registro específico, nunca para criar um novo.</p>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;" style-hover="border-color: #C6AFFF; box-shadow: 0 10px 24px rgba(30,12,69,0.07);">
+          <button type="button" data-faq-btn="2" onClick="{{ faq2 }}" style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; background: none; border: 0; padding: 20px 22px; cursor: pointer; text-align: left; font-size: clamp(15px, 1.45vw, 17px); font-weight: 700; line-height: 1.38; color: #1E0C45; transition: color .14s ease;" style-hover="color: #6210C6;">
+            <span>Dá para colocar esse formulário dentro do meu próprio site?</span>
+            <span data-faq-mark="2" style="flex: none; width: 26px; height: 26px; border-radius: 9px; background: #F5F1FF; color: #6210C6; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; transition: transform .28s cubic-bezier(.65,0,.35,1), background .2s ease, color .2s ease;">+</span>
+          </button>
+          <div data-faq-panel="2" style="overflow: hidden; max-height: 0; opacity: 0; transition: max-height .32s cubic-bezier(.65,0,.35,1), opacity .24s ease;">
+            <p style="margin: 0; padding: 0 22px 22px; font-size: 15px; line-height: 1.62; color: #525252; text-wrap: pretty;">Sim, e é simples: você copia o código pronto que o Ploomes gera e cola na página do seu site. Não precisa escrever nada, só colar.</p>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;" style-hover="border-color: #C6AFFF; box-shadow: 0 10px 24px rgba(30,12,69,0.07);">
+          <button type="button" data-faq-btn="3" onClick="{{ faq3 }}" style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; background: none; border: 0; padding: 20px 22px; cursor: pointer; text-align: left; font-size: clamp(15px, 1.45vw, 17px); font-weight: 700; line-height: 1.38; color: #1E0C45; transition: color .14s ease;" style-hover="color: #6210C6;">
+            <span>Dá para usar o formulário para pedir consentimento de LGPD?</span>
+            <span data-faq-mark="3" style="flex: none; width: 26px; height: 26px; border-radius: 9px; background: #F5F1FF; color: #6210C6; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; transition: transform .28s cubic-bezier(.65,0,.35,1), background .2s ease, color .2s ease;">+</span>
+          </button>
+          <div data-faq-panel="3" style="overflow: hidden; max-height: 0; opacity: 0; transition: max-height .32s cubic-bezier(.65,0,.35,1), opacity .24s ease;">
+            <p style="margin: 0; padding: 0 22px 22px; font-size: 15px; line-height: 1.62; color: #525252; text-wrap: pretty;">Dá para montar isso com um campo do tipo caixa de seleção marcado como obrigatório, com o texto do aceite — o valor fica registrado no cadastro. O módulo não tem, porém, um recurso pronto de consentimento com texto versionado, link clicável no próprio campo ou data e hora do aceite em campo automático. Para um fluxo de consentimento mais robusto, vale alinhar com seu time jurídico e com seu executivo de contas.</p>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #EBE5FF; border-radius: 16px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;" style-hover="border-color: #C6AFFF; box-shadow: 0 10px 24px rgba(30,12,69,0.07);">
+          <button type="button" data-faq-btn="4" onClick="{{ faq4 }}" style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; background: none; border: 0; padding: 20px 22px; cursor: pointer; text-align: left; font-size: clamp(15px, 1.45vw, 17px); font-weight: 700; line-height: 1.38; color: #1E0C45; transition: color .14s ease;" style-hover="color: #6210C6;">
+            <span>Dá para rastrear as conversões desse formulário com Google Tag Manager ou pixel de campanha?</span>
+            <span data-faq-mark="4" style="flex: none; width: 26px; height: 26px; border-radius: 9px; background: #F5F1FF; color: #6210C6; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; transition: transform .28s cubic-bezier(.65,0,.35,1), background .2s ease, color .2s ease;">+</span>
+          </button>
+          <div data-faq-panel="4" style="overflow: hidden; max-height: 0; opacity: 0; transition: max-height .32s cubic-bezier(.65,0,.35,1), opacity .24s ease;">
+            <p style="margin: 0; padding: 0 22px 22px; font-size: 15px; line-height: 1.62; color: #525252; text-wrap: pretty;">Não diretamente: o formulário nativo não aceita código próprio (JavaScript ou CSS) nem tags de terceiros embutidas, por design do módulo. Para medir a origem do tráfego, uma alternativa é usar o rastreamento do canal por onde você compartilha o link. Se o tracking completo for essencial para sua operação, vale avaliar com seu executivo de contas um formulário próprio, publicado fora do Ploomes e integrado à API — nesse caso, é possível ter tracking completo, layout exclusivo e funcionalidades extras.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="conversar" style="position: relative; background: linear-gradient(140deg, #33086F 0%, #5211A1 52%, #843CFF 100%); padding: clamp(64px, 8vw, 112px) clamp(16px, 4vw, 48px); overflow: hidden;">
+    <img src="assets/wing-fan-gradient.png" alt="" aria-hidden="true" style="position: absolute; left: -160px; bottom: -180px; width: clamp(320px, 34vw, 540px); opacity: 0.26; transform: scaleX(-1); pointer-events: none;">
+    <div style="position: relative; max-width: 980px; margin: 0 auto; text-align: center;">
+      <img data-reveal="up" src="assets/ploomes-sankhya-negative.svg" alt="Ploomes by Sankhya" style="height: 30px; width: auto; margin: 0 auto clamp(26px, 3vw, 36px);">
+      <p data-reveal="up" data-reveal-delay="60" style="margin: 0 0 clamp(18px, 2.4vw, 26px); font-size: clamp(20px, 2.5vw, 32px); font-weight: 800; line-height: 1.28; letter-spacing: -0.025em; color: #FFFFFF; text-wrap: pretty;">Cada mês sem o módulo Formulários Externos é mais um mês gastando suas licenças com quem só usa o CRM esporadicamente — e perdendo dado de quem nunca teve, e nunca vai ter, acesso a ele. Fale com seu executivo de contas e ative o módulo ainda esta semana.</p>
+      <p data-reveal="up" data-reveal-delay="110" style="margin: 0 auto clamp(30px, 3.6vw, 42px); max-width: 66ch; font-size: clamp(14px, 1.4vw, 17px); line-height: 1.6; color: rgba(235,229,255,0.86); text-wrap: pretty;">Precisa de mais personalização — visual exclusivo, captura de nota (NPS) ou um formulário específico por negócio? Isso também é possível, com um formulário próprio integrado à API do Ploomes. Pergunte ao seu executivo de contas.</p>
+      <div data-reveal="up" data-reveal-delay="160" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px;">
+        <a href="https://wa.me/5511914335284" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; color: #1E0C45; font-size: clamp(15px, 1.4vw, 17px); font-weight: 700; border-radius: 14px; padding: 18px 32px; box-shadow: 0 16px 36px rgba(13,4,36,0.32); transition: transform .14s ease, box-shadow .14s ease, color .14s ease;" style-hover="color: #6210C6; transform: translateY(-2px); box-shadow: 0 22px 44px rgba(13,4,36,0.42);" style-active="transform: scale(0.98);">Falar com meu executivo de contas</a>
+        <a href="mailto:tiago.ribeiro@ploomes.com?subject=Formul%C3%A1rios%20Externos" style="display: inline-flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: clamp(14px, 1.35vw, 16px); font-weight: 600; border-radius: 14px; padding: 17px 26px; border: 1px solid rgba(255,255,255,0.45); transition: transform .14s ease, background .14s ease, border-color .14s ease;" style-hover="color: #FFFFFF; background: rgba(255,255,255,0.14); border-color: #FFFFFF; transform: translateY(-2px);" style-active="transform: scale(0.98);">Prefiro receber por e-mail</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #1E0C45; padding: clamp(28px, 3.4vw, 42px) clamp(16px, 4vw, 48px);">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <img src="assets/ploomes-sankhya-negative.svg" alt="Ploomes by Sankhya" style="height: 22px; width: auto;">
+      <p style="margin: 0; font-size: 14px; color: rgba(235,229,255,0.66);">Ploomes — campanha exclusiva para clientes Ploomes.</p>
+    </div>
+  </footer>
+
+  <div data-agm="1" style="position: fixed; right: clamp(14px, 2.5vw, 28px); bottom: clamp(14px, 2.5vw, 28px); z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; max-width: calc(100vw - 28px);">
+    <div data-agm-card="1" style="width: min(340px, calc(100vw - 32px)); background: #FFFFFF; border: 1px solid #DCD3FF; border-radius: 20px; box-shadow: 0 28px 60px rgba(13,4,36,0.28); overflow: hidden; opacity: 0; transform: translateY(14px) scale(0.98); pointer-events: none; transition: opacity .22s ease, transform .22s cubic-bezier(.22,1,.36,1);">
+      <div style="position: relative; background: linear-gradient(140deg, #33086F, #843CFF); padding: 18px 20px; display: flex; align-items: center; gap: 13px;">
+        <img src="assets/agm-tiago.webp" alt="Tiago Ribeiro" style="width: 46px; height: 46px; border-radius: 9999px; object-fit: cover; border: 2px solid rgba(255,255,255,0.55); flex: none;">
+        <div style="min-width: 0;">
+          <p style="margin: 0; font-size: 15px; font-weight: 700; color: #FFFFFF;">Tiago Ribeiro</p>
+          <p style="margin: 2px 0 0; font-size: 12px; color: rgba(235,229,255,0.85);">Account Growth Manager, Ploomes</p>
+        </div>
+        <button type="button" data-agm-close="1" onClick="{{ toggleAgm }}" aria-label="Fechar" style="margin-left: auto; width: 26px; height: 26px; border-radius: 9999px; border: 0; background: rgba(255,255,255,0.18); color: #FFFFFF; font-size: 13px; cursor: pointer; flex: none; transition: background .14s ease;" style-hover="background: rgba(255,255,255,0.32);">✕</button>
+      </div>
+      <div style="padding: 18px 20px 20px;">
+        <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.55; color: #525252; text-wrap: pretty;">Quer ativar o módulo Formulários Externos na sua operação? Me chame por aqui que eu respondo.</p>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <a href="https://wa.me/5511914335284" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 9px; background: #027A48; color: #FFFFFF; font-size: 14px; font-weight: 700; border-radius: 12px; padding: 13px; transition: transform .14s ease, background .14s ease;" style-hover="background: #016239; color: #FFFFFF; transform: translateY(-1px);">Falar no WhatsApp · (11) 91433-5284</a>
+          <a href="mailto:tiago.ribeiro@ploomes.com?subject=Formul%C3%A1rios%20Externos" style="display: flex; align-items: center; justify-content: center; gap: 9px; background: #F5F1FF; color: #1E0C45; font-size: 14px; font-weight: 700; border-radius: 12px; padding: 13px; transition: transform .14s ease, background .14s ease, color .14s ease;" style-hover="background: #EBE5FF; color: #6210C6; transform: translateY(-1px);">Enviar e-mail</a>
+        </div>
+        <p style="margin: 12px 0 0; text-align: center; font-size: 12px; color: #8D8D8D;">tiago.ribeiro@ploomes.com</p>
+      </div>
+    </div>
+    <button type="button" data-agm-toggle="1" onClick="{{ toggleAgm }}" style="display: inline-flex; align-items: center; gap: 11px; background: #1E0C45; color: #FFFFFF; border: 1px solid rgba(198,175,255,0.35); border-radius: 9999px; padding: 9px 20px 9px 9px; cursor: pointer; box-shadow: 0 16px 34px rgba(13,4,36,0.34); font-size: 14px; font-weight: 700; transition: transform .16s cubic-bezier(.22,1,.36,1), background .16s ease;" style-hover="background: #33086F; transform: translateY(-2px);" style-active="transform: scale(0.98);">
+      <span style="position: relative; width: 38px; height: 38px; border-radius: 9999px; flex: none;">
+        <img src="assets/agm-tiago.webp" alt="" style="width: 38px; height: 38px; border-radius: 9999px; object-fit: cover;">
+        <span data-agm-ring="1" aria-hidden="true" style="position: absolute; inset: -4px; border-radius: 9999px; border: 2px solid rgba(170,130,255,0.7); animation: fx-ring 2.6s ease-out infinite;"></span>
+      </span>
+      Falar com Tiago
+    </button>
+  </div>
+
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#33086F"></rect><rect x="30" y="26" width="60" height="68" rx="10" fill="#FFFFFF"></rect><rect x="40" y="40" width="40" height="6" rx="3" fill="#C6AFFF"></rect><rect x="40" y="54" width="40" height="6" rx="3" fill="#C6AFFF"></rect><rect x="40" y="68" width="24" height="6" rx="3" fill="#C6AFFF"></rect><circle cx="78" cy="80" r="9" fill="#843CFF"></circle></svg></template>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroLoop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimento&quot;},&quot;scrollReveals&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimento&quot;},&quot;faqFirstOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;FAQ&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.watchers = [];
+    this.agmOpen = false;
+    this.setup();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.sweep, true);
+    window.removeEventListener("resize", this.sweep);
+    clearTimeout(this.safety);
+  }
+
+  /* IntersectionObserver is the nice path; the scroll/resize sweep and the
+     safety timer guarantee nothing stays hidden if IO never fires. */
+  whenVisible(el, cb, margin) {
+    const w = { el: el, margin: margin == null ? 0.9 : margin, done: false };
+    w.run = () => { if (w.done) return; w.done = true; cb(el); };
+    this.watchers.push(w);
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { io.disconnect(); w.run(); } });
+      }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
+      io.observe(el);
+    }
+  }
+
+  /* Finish pending CSS transitions so end states apply even where the
+     document timeline never advances. */
+  settle(el) {
+    if (!el || !el.getAnimations) return;
+    try { el.getAnimations().forEach((a) => { if (a.playState !== "finished") a.finish(); }); } catch (err) { /* noop */ }
+  }
+
+  setup() {
+    if (this.didSetup) return;
+    this.didSetup = true;
+    this.sweep = () => {
+      const h = window.innerHeight || 800;
+      this.watchers.forEach((w) => {
+        if (w.done) return;
+        const r = w.el.getBoundingClientRect();
+        if (r.top < h * w.margin && r.bottom > -h * 0.25) w.run();
+      });
+    };
+    this.setupReveals();
+    this.setupTimeline();
+    this.setupIconSwap();
+    this.setupStepAnimations();
+    this.setupBars();
+    this.setupFaq();
+    this.setupHero();
+    window.addEventListener("scroll", this.sweep, true);
+    window.addEventListener("resize", this.sweep);
+    this.sweep();
+    setTimeout(this.sweep, 60);
+    setTimeout(this.sweep, 320);
+    setTimeout(this.sweep, 900);
+    this.safety = setTimeout(() => { this.watchers.forEach((w) => w.run()); }, 1700);
+  }
+
+  setupReveals() {
+    if (this.reduce || this.props.scrollReveals === false) return;
+    Array.from(document.querySelectorAll("[data-reveal]")).forEach((el) => {
+      const dir = el.getAttribute("data-reveal");
+      const base = el.style.transition;
+      const delay = parseInt(el.getAttribute("data-reveal-delay") || 0, 10);
+      el.style.opacity = "0";
+      el.style.transform = dir === "left" ? "translateX(-22px)" : dir === "right" ? "translateX(22px)" : "translateY(20px)";
+      el.style.transition = "opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1)";
+      el.style.transitionDelay = delay + "ms";
+      el.style.willChange = "opacity, transform";
+      this.whenVisible(el, (node) => {
+        node.style.opacity = "1";
+        node.style.transform = "none";
+        setTimeout(() => {
+          this.settle(node);
+          node.style.transition = base;
+          node.style.transitionDelay = "";
+          node.style.willChange = "auto";
+        }, 680 + delay);
+      });
+    });
+  }
+
+  setupTimeline() {
+    const line = document.querySelector("[data-timeline-line]");
+    if (!line) return;
+    if (this.reduce) return;
+    line.style.transformOrigin = "left center";
+    line.style.transform = "scaleX(0)";
+    line.style.transition = "transform 1.7s cubic-bezier(.22,1,.36,1)";
+    this.whenVisible(line, (node) => {
+      node.style.transform = "scaleX(1)";
+      setTimeout(() => { this.settle(node); node.style.transition = "none"; }, 1800);
+    }, 0.78);
+  }
+
+  setupIconSwap() {
+    const host = document.querySelector("[data-icon-swap]");
+    if (!host) return;
+    const a = host.querySelector("[data-swap-a]");
+    const b = host.querySelector("[data-swap-b]");
+    if (!a || !b) return;
+    const swap = () => {
+      a.style.opacity = "0";
+      a.style.transform = "scale(.72) rotate(-12deg)";
+      b.style.opacity = "1";
+      b.style.transform = "scale(1)";
+      host.style.transition = "border-color .4s ease, box-shadow .4s ease";
+      host.style.borderColor = "#843CFF";
+      host.style.boxShadow = "0 12px 28px rgba(132,60,255,0.28)";
+      setTimeout(() => { this.settle(a); this.settle(b); this.settle(host); }, 520);
+    };
+    if (this.reduce) { swap(); return; }
+    this.whenVisible(host, () => { setTimeout(swap, 520); }, 0.82);
+  }
+
+  setupStepAnimations() {
+    const mergeA = document.querySelector("[data-merge-a]");
+    const mergeB = document.querySelector("[data-merge-b]");
+    const mergeOut = document.querySelector("[data-merge-out]");
+    if (mergeA && mergeB && mergeOut) {
+      const play = () => {
+        mergeB.style.transform = "translateY(-38px)";
+        mergeB.style.opacity = "0";
+        mergeA.style.transform = "scale(1.02)";
+        mergeOut.style.opacity = "1";
+        setTimeout(() => { this.settle(mergeB); this.settle(mergeOut); mergeA.style.transform = "none"; }, 760);
+      };
+      if (this.reduce) { play(); } else { this.whenVisible(mergeA, () => setTimeout(play, 520), 0.8); }
+    }
+    const fill = document.querySelector("[data-autofill]");
+    const tag = document.querySelector("[data-autotag]");
+    if (fill && tag) {
+      const play = () => {
+        fill.textContent = "site";
+        fill.style.transform = "translateY(0)";
+        tag.textContent = "preenchido";
+        tag.style.background = "#027A48";
+        tag.style.transform = "scale(1.04)";
+        setTimeout(() => { tag.style.transform = "scale(1)"; this.settle(tag); this.settle(fill); }, 420);
+      };
+      if (this.reduce) { play(); } else { this.whenVisible(fill, () => setTimeout(play, 700), 0.8); }
+    }
+    Array.from(document.querySelectorAll("[data-flow]")).forEach((el) => {
+      const delay = parseInt(el.getAttribute("data-flow-delay") || 0, 10);
+      const play = () => {
+        el.style.background = "rgba(255,255,255,0.22)";
+        el.style.transform = "translateY(-4px)";
+        setTimeout(() => { el.style.transform = "translateY(0)"; this.settle(el); }, 380);
+      };
+      if (this.reduce) { play(); } else { this.whenVisible(el, () => setTimeout(play, 300 + delay), 0.85); }
+    });
+  }
+
+  setupBars() {
+    Array.from(document.querySelectorAll("[data-bar]")).forEach((el) => {
+      const target = el.getAttribute("data-bar-w") + "%";
+      const delay = parseInt(el.getAttribute("data-bar-delay") || 0, 10);
+      if (this.reduce) { el.style.width = target; return; }
+      this.whenVisible(el, () => {
+        setTimeout(() => {
+          el.style.width = target;
+          setTimeout(() => { this.settle(el); el.style.transition = "none"; }, 1200);
+        }, delay);
+      }, 0.85);
+    });
+  }
+
+  toggleFaq(i) {
+    const root = document.querySelector("[data-faq-root]");
+    if (!root) return;
+    const key = String(i);
+    const btn = root.querySelector('[data-faq-btn="' + key + '"]');
+    if (this.openFaq === key) {
+      this.closeFaq(key);
+      if (btn) btn.setAttribute("aria-expanded", "false");
+      this.openFaq = null;
+      return;
+    }
+    if (this.openFaq !== null && this.openFaq !== undefined) {
+      this.closeFaq(this.openFaq);
+      const prev = root.querySelector('[data-faq-btn="' + this.openFaq + '"]');
+      if (prev) prev.setAttribute("aria-expanded", "false");
+    }
+    this.showFaq(key);
+    if (btn) btn.setAttribute("aria-expanded", "true");
+    this.openFaq = key;
+  }
+
+  closeFaq(i) {
+    const root = document.querySelector("[data-faq-root]");
+    if (!root) return;
+    const panel = root.querySelector('[data-faq-panel="' + i + '"]');
+    const mark = root.querySelector('[data-faq-mark="' + i + '"]');
+    if (!panel) return;
+    panel.style.maxHeight = panel.scrollHeight + "px";
+    void panel.offsetHeight;
+    panel.style.maxHeight = "0px";
+    panel.style.opacity = "0";
+    if (mark) { mark.style.transform = "none"; mark.style.background = "#F5F1FF"; mark.style.color = "#6210C6"; }
+  }
+
+  showFaq(i, instant) {
+    const root = document.querySelector("[data-faq-root]");
+    if (!root) return;
+    const panel = root.querySelector('[data-faq-panel="' + i + '"]');
+    const mark = root.querySelector('[data-faq-mark="' + i + '"]');
+    if (!panel) return;
+    if (instant) {
+      panel.style.maxHeight = "none";
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + 40 + "px";
+      setTimeout(() => { if (this.openFaq === String(i)) panel.style.maxHeight = "none"; }, 360);
+    }
+    panel.style.opacity = "1";
+    if (mark) { mark.style.transform = "rotate(45deg)"; mark.style.background = "#843CFF"; mark.style.color = "#FFFFFF"; }
+  }
+
+  setupFaq() {
+    const root = document.querySelector("[data-faq-root]");
+    if (!root) return;
+    this.openFaq = null;
+    root.querySelectorAll("[data-faq-btn]").forEach((btn) => { btn.setAttribute("aria-expanded", "false"); });
+    if (this.props.faqFirstOpen !== false) {
+      const first = root.querySelector('[data-faq-btn="0"]');
+      if (first) { this.showFaq("0", true); first.setAttribute("aria-expanded", "true"); this.openFaq = "0"; }
+    }
+  }
+
+  toggleAgm() {
+    const card = document.querySelector("[data-agm-card]");
+    const toggle = document.querySelector("[data-agm-toggle]");
+    if (!card) return;
+    this.agmOpen = !this.agmOpen;
+    card.style.opacity = this.agmOpen ? "1" : "0";
+    card.style.transform = this.agmOpen ? "translateY(0) scale(1)" : "translateY(14px) scale(0.98)";
+    card.style.pointerEvents = this.agmOpen ? "auto" : "none";
+    if (toggle) toggle.setAttribute("aria-expanded", this.agmOpen ? "true" : "false");
+    setTimeout(() => this.settle(card), 260);
+  }
+
+  setupHero() {
+    const on = this.props.heroLoop !== false && !this.reduce;
+    const dots = document.querySelector("[data-hero-dots]");
+    const card = document.querySelector("[data-hero-card]");
+    const ring = document.querySelector("[data-agm-ring]");
+    if (!on) {
+      if (dots) dots.querySelectorAll("span").forEach((s) => { s.style.animation = "none"; s.style.opacity = "0.9"; });
+      if (ring) ring.style.animation = "none";
+      return;
+    }
+    if (card) card.style.animation = "fx-bob 6.5s ease-in-out infinite";
+  }
+
+  renderVals() {
+    return {
+      motionMode: this.props.scrollReveals === false ? "static" : "animated",
+      faq0: () => this.toggleFaq(0),
+      faq1: () => this.toggleFaq(1),
+      faq2: () => this.toggleFaq(2),
+      faq3: () => this.toggleFaq(3),
+      faq4: () => this.toggleFaq(4),
+      toggleAgm: () => this.toggleAgm()
+    };
+  }
+}
+</script>
+</body>
+</html>
