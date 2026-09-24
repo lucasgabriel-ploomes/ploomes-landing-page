@@ -199,14 +199,56 @@
   .revenue-item { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
   .revenue-item .rname { font-size: 0.8125rem; font-weight: 800; }
   .revenue-item .rmeta { font-size: 0.75rem; color: var(--fg-2); margin-top: 3px; line-height: 1.4; }
-  .revenue-item .rgoal { font-size: 0.75rem; margin-top: 8px; color: var(--fg-2); }
+  .revenue-item .rgoal { font-size: 0.75rem; margin-top: 8px; color: var(--fg-2); line-height: 1.6; }
+  .revenue-item .rgoal .rlead { display: block; }
   .revenue-item .rstatus { margin-top: 8px; }
+  .revenue-item .rstatus .badge { white-space: normal; text-align: left; line-height: 1.4; }
+
+  /* Pillars — as 3 perguntas do relatório */
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .pillar-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 16px 18px; }
+  .pillar-card .pnum { font-size: 10.5px; font-weight: 800; color: var(--fg-brand); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .pillar-card .pq { font-size: 0.875rem; font-weight: 800; margin: 0 0 8px; line-height: 1.35; }
+  .pillar-card .pa { font-size: 0.78125rem; color: var(--fg-2); line-height: 1.5; margin-bottom: 10px; }
+
+  /* Filter row */
+  .filter-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .filter-row label { font-size: 0.75rem; font-weight: 700; color: var(--fg-2); }
+  select.filter-select {
+    font-family: var(--font-sans); font-size: 0.78125rem; font-weight: 600; color: var(--fg-1);
+    background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 7px 32px 7px 12px; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23843CFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center;
+  }
+  select.filter-select:focus { outline: 2px solid var(--ploo-brand-20); outline-offset: 1px; }
+
+  /* Callout note (reused for funnel clarification) */
+  .info-note {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 10px;
+    background: var(--bg-brand-soft); border: 1px solid var(--border); margin-bottom: 16px;
+    font-size: 0.78125rem; color: var(--fg-2); line-height: 1.55;
+  }
+  .info-note svg { flex: none; margin-top: 2px; color: var(--fg-brand); }
+  .info-note strong { color: var(--fg-1); }
+
+  /* Channel comparison bars */
+  .chcomp-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 16px 18px; }
+  .chcomp-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .chcomp-row:last-of-type { margin-bottom: 0; }
+  .chcomp-row .cclabel { width: 150px; flex: none; font-size: 0.75rem; font-weight: 700; color: var(--fg-1); }
+  .chcomp-row .cctrack { flex: 1; }
+  .chcomp-row .ccfill { height: 18px; border-radius: 4px; }
+  .chcomp-row .ccvalue { width: 56px; flex: none; font-size: 0.78125rem; font-weight: 800; text-align: right; }
+  .chcomp-sub { font-size: 0.71875rem; color: var(--fg-3); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--gridline); line-height: 1.5; }
 
   footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--gridline); font-size: 0.71875rem; color: var(--fg-3); line-height: 1.6; }
 
   @media (max-width: 900px) {
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
     .rank-grid { grid-template-columns: 1fr; }
+    .pillar-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -222,15 +264,35 @@
 
 <div class="wrap">
 
+  <section id="sec-perguntas">
+    <h2>O que este relatório responde</h2>
+    <p class="section-sub">Toda campanha é avaliada por três perguntas. As duas últimas ainda dependem de dados que o time de CS está coletando.</p>
+    <div class="pillar-grid" id="pillar-grid"></div>
+  </section>
+
   <section id="sec-resumo">
     <h2>Resumo executivo</h2>
-    <p class="section-sub">Os números consolidados do período coberto por este relatório.</p>
+    <p class="section-sub">Números do período coberto por este relatório. Use o filtro para ver só uma campanha.</p>
+    <div class="filter-row">
+      <label for="camp-filter">Campanha:</label>
+      <select class="filter-select" id="camp-filter"></select>
+    </div>
     <div class="kpi-row" id="kpi-row"></div>
+  </section>
+
+  <section id="sec-canais">
+    <h2>Comparativo de canais</h2>
+    <p class="section-sub">Qual canal converte proporcionalmente mais &mdash; não em volume bruto, mas em taxa de clique sobre quem de fato recebeu/abriu. Soma de todas as campanhas.</p>
+    <div class="chcomp-card" id="chcomp-card"></div>
   </section>
 
   <section id="sec-funil">
     <h2>Funil por campanha</h2>
     <p class="section-sub">Envio/exibição &rarr; visualização/abertura &rarr; clique, por canal usado em cada campanha.</p>
+    <div class="info-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span><strong>Exibido &times; Visualizado (canal Post):</strong> "Exibido" é o post entregue &mdash; o cliente bateu na audiência e estava com sessão ativa no Ploomes, como um e-mail que chegou na caixa de entrada. "Visualizado" exige que o Intercom confirme que o conteúdo realmente renderizou na tela &mdash; esse evento pode não disparar por bloqueador de anúncio/tracking no navegador do cliente, mesmo com o post configurado para aparecer em tela cheia (não como snippet). O próprio Intercom considera saudável uma taxa de visualização entre 90% e 98%; abaixo disso não é necessariamente um problema de configuração nosso.</span>
+    </div>
     <div class="funnel-grid" id="funnel-grid"></div>
   </section>
 
@@ -277,11 +339,12 @@
   </section>
 
   <section id="sec-receita">
-    <h2>Impacto em receita <span class="badge badge-neutral">Em breve</span></h2>
+    <h2>Metas, leads necessários e receita <span class="badge badge-neutral">Leads e receita: em breve</span></h2>
+    <p class="section-sub">Conversão (leads) e receita são as duas perguntas que este relatório ainda não responde com dado real &mdash; só com a meta. Assim que Tiago e Ângela preencherem os leads gerados e a receita fechada por campanha (segmentados por carteira Start Small / Middle Large), esses números entram aqui.</p>
     <div class="revenue-card">
       <div class="revenue-note">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <span>Este relatório ainda não traz receita (MRR/ARR) nem fechamento de upsell associado a cada campanha &mdash; é o próximo passo do roadmap, não um esquecimento. As metas abaixo são o alvo definido para cada campanha; a receita realizada entra aqui assim que o dado existir.</span>
+        <span>A faixa de leads necessários abaixo é uma <strong>meta calculada</strong> (meta financeira &divide; ticket médio = vendas necessárias; vendas necessárias &divide; conversão lead&rarr;venda = leads necessários), não um número de leads já gerados. Premissa de conversão: <span id="premissa-leads-txt"></span>.</span>
       </div>
       <div class="revenue-grid" id="revenue-grid"></div>
     </div>
@@ -292,7 +355,7 @@
 </div>
 
 <script>
-const DATA = {"atualizado_em": "2026-09-22", "fonte": "Intercom", "resumo": {"email": {"enviados": 25520, "aberturas": 6344, "cliques": 269, "taxa_abertura": 24.86, "ctr": 1.05, "ctor": 4.24}, "banner": {"telas": 21439, "cliques": 1223, "taxa_clique": 5.7}, "post": {"telas": 15518, "aberturas": 13229, "cliques": 330, "taxa_visualizacao": 85.25, "taxa_clique": 2.13}, "geral": {"exposicoes": 62477, "cliques_totais": 1822, "problemas": 3237, "n_campanhas": 5, "periodo_inicio": "2026-07-02", "periodo_fim": "2026-09-22", "engajamento_geral": 2.92}}, "campanhas": [{"nome": "Radar Ploomes", "canais": ["banner"], "data_inicio": "2026-07-02", "data_fim": "2026-07-10", "variantes_n": 4, "banner": {"telas": 5348, "cliques": 602, "taxa_clique": 11.26}, "exposicoes": 5348, "cliques_totais": 602, "engajamento_geral": 11.26}, {"nome": "Integração Serasa - Onda 1", "canais": ["post"], "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "variantes_n": 4, "post": {"telas": 738, "aberturas": 610, "cliques": 29, "taxa_visualizacao": 82.66, "taxa_clique": 3.93}, "exposicoes": 738, "cliques_totais": 29, "engajamento_geral": 3.93}, {"nome": "Integração Serasa - Onda 2", "canais": ["banner", "email", "post"], "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "variantes_n": 12, "email": {"enviados": 11115, "aberturas": 2973, "cliques": 185, "taxa_abertura": 26.75, "ctr": 1.66, "ctor": 6.22}, "banner": {"telas": 7016, "cliques": 337, "taxa_clique": 4.8}, "post": {"telas": 5751, "aberturas": 5183, "cliques": 130, "taxa_visualizacao": 90.12, "taxa_clique": 2.26}, "exposicoes": 23882, "cliques_totais": 652, "engajamento_geral": 2.73}, {"nome": "Propostas e Documentos", "canais": ["banner", "email", "post"], "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "variantes_n": 6, "email": {"enviados": 1157, "aberturas": 268, "cliques": 7, "taxa_abertura": 23.16, "ctr": 0.61, "ctor": 2.61}, "banner": {"telas": 779, "cliques": 17, "taxa_clique": 2.18}, "post": {"telas": 775, "aberturas": 730, "cliques": 15, "taxa_visualizacao": 94.19, "taxa_clique": 1.94}, "exposicoes": 2711, "cliques_totais": 39, "engajamento_geral": 1.44}, {"nome": "Playbook AI", "canais": ["banner", "email", "post"], "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "variantes_n": 6, "em_andamento": true, "email": {"enviados": 13248, "aberturas": 3103, "cliques": 77, "taxa_abertura": 23.42, "ctr": 0.58, "ctor": 2.48}, "banner": {"telas": 8296, "cliques": 267, "taxa_clique": 3.22}, "post": {"telas": 8254, "aberturas": 6706, "cliques": 156, "taxa_visualizacao": 81.25, "taxa_clique": 1.89}, "exposicoes": 29798, "cliques_totais": 500, "engajamento_geral": 1.68}], "ranking_ctor": [{"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "ctor": 8.21, "ctr": 2.08, "taxa_abertura": 25.29}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "ctor": 8.0, "ctr": 2.37, "taxa_abertura": 29.64}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "ctor": 4.27, "ctr": 1.12, "taxa_abertura": 26.11}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "ctor": 3.85, "ctr": 1.0, "taxa_abertura": 25.87}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "ctor": 3.46, "ctr": 0.79, "taxa_abertura": 22.73}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "ctor": 3.43, "ctr": 0.84, "taxa_abertura": 24.57}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "ctor": 1.83, "ctr": 0.4, "taxa_abertura": 21.72}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "ctor": 1.72, "ctr": 0.41, "taxa_abertura": 23.99}], "ranking_banner": [{"campanha": "Radar Ploomes", "variante": "Small Banner A", "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Banner B", "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Banner A", "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "taxa_clique": 4.04}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "taxa_clique": 3.73}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "taxa_clique": 2.95}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "taxa_clique": 2.8}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "taxa_clique": 0.42}], "ranking_post": [{"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "taxa_clique": 4.4, "taxa_visualizacao": 86.79}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "taxa_clique": 4.08, "taxa_visualizacao": 80.82}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "taxa_clique": 3.63, "taxa_visualizacao": 81.85}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "taxa_clique": 3.49, "taxa_visualizacao": 82.56}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "taxa_clique": 2.46, "taxa_visualizacao": 91.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "taxa_clique": 2.28, "taxa_visualizacao": 91.02}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "taxa_clique": 2.23, "taxa_visualizacao": 93.88}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "taxa_clique": 2.03, "taxa_visualizacao": 84.95}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "taxa_clique": 2.03, "taxa_visualizacao": 75.29}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "taxa_clique": 1.77, "taxa_visualizacao": 86.18}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "taxa_clique": 1.39, "taxa_visualizacao": 95.83}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "taxa_clique": 1.27, "taxa_visualizacao": 94.92}], "tabela": [{"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1618, "cliques_banner": 167, "problemas": 0, "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1749, "cliques_banner": 194, "problemas": 0, "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 1141, "cliques_banner": 161, "problemas": 0, "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 840, "cliques_banner": 80, "problemas": 0, "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 203, "cliques": null, "telas": 248, "cliques_banner": 9, "problemas": 0, "taxa_visualizacao": 81.85, "taxa_clique": 3.63}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 198, "cliques": null, "telas": 245, "cliques_banner": 10, "problemas": 0, "taxa_visualizacao": 80.82, "taxa_clique": 4.08}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 138, "cliques": null, "telas": 159, "cliques_banner": 7, "problemas": 0, "taxa_visualizacao": 86.79, "taxa_clique": 4.4}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 71, "cliques": null, "telas": 86, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 82.56, "taxa_clique": 3.49}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1187, "cliques_banner": 49, "problemas": 0, "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1536, "cliques_banner": 100, "problemas": 0, "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 2575, "cliques_banner": 104, "problemas": 0, "taxa_clique": 4.04}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1718, "cliques_banner": 84, "problemas": 0, "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 2361, "aberturas": 597, "cliques": 49, "telas": null, "cliques_banner": null, "problemas": 192, "taxa_abertura": 25.29, "ctr": 2.08, "ctor": 8.21}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2255, "aberturas": 554, "cliques": 19, "telas": null, "cliques_banner": null, "problemas": 372, "taxa_abertura": 24.57, "ctr": 0.84, "ctor": 3.43}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 3542, "aberturas": 1050, "cliques": 84, "telas": null, "cliques_banner": null, "problemas": 184, "taxa_abertura": 29.64, "ctr": 2.37, "ctor": 8.0}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2957, "aberturas": 772, "cliques": 33, "telas": null, "cliques_banner": null, "problemas": 411, "taxa_abertura": 26.11, "ctr": 1.12, "ctor": 4.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 276, "cliques": null, "telas": 288, "cliques_banner": 4, "problemas": 0, "taxa_visualizacao": 95.83, "taxa_clique": 1.39}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1005, "cliques": null, "telas": 1183, "cliques_banner": 24, "problemas": 0, "taxa_visualizacao": 84.95, "taxa_clique": 2.03}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 2342, "cliques": null, "telas": 2566, "cliques_banner": 63, "problemas": 0, "taxa_visualizacao": 91.27, "taxa_clique": 2.46}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1560, "cliques": null, "telas": 1714, "cliques_banner": 39, "problemas": 0, "taxa_visualizacao": 91.02, "taxa_clique": 2.28}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 543, "cliques_banner": 16, "problemas": 0, "taxa_clique": 2.95}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 236, "cliques_banner": 1, "problemas": 0, "taxa_clique": 0.42}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 755, "aberturas": 164, "cliques": 3, "telas": null, "cliques_banner": null, "problemas": 85, "taxa_abertura": 21.72, "ctr": 0.4, "ctor": 1.83}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 402, "aberturas": 104, "cliques": 4, "telas": null, "cliques_banner": null, "problemas": 65, "taxa_abertura": 25.87, "ctr": 1.0, "ctor": 3.85}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 506, "cliques": null, "telas": 539, "cliques_banner": 12, "problemas": 0, "taxa_visualizacao": 93.88, "taxa_clique": 2.23}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 224, "cliques": null, "telas": 236, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 94.92, "taxa_clique": 1.27}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": null, "cliques": null, "telas": 4538, "cliques_banner": 127, "problemas": 0, "taxa_clique": 2.8}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": null, "cliques": null, "telas": 3758, "cliques_banner": 140, "problemas": 0, "taxa_clique": 3.73}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": 7265, "aberturas": 1743, "cliques": 30, "telas": null, "cliques_banner": null, "problemas": 924, "taxa_abertura": 23.99, "ctr": 0.41, "ctor": 1.72}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": 5983, "aberturas": 1360, "cliques": 47, "telas": null, "cliques_banner": null, "problemas": 1004, "taxa_abertura": 22.73, "ctr": 0.79, "ctor": 3.46}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": 3890, "cliques": null, "telas": 4514, "cliques_banner": 80, "problemas": 0, "taxa_visualizacao": 86.18, "taxa_clique": 1.77}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": 2816, "cliques": null, "telas": 3740, "cliques_banner": 76, "problemas": 0, "taxa_visualizacao": 75.29, "taxa_clique": 2.03}], "metas": [{"campanha": "Radar Ploomes", "meta": 3000, "foco": "Cross-sell do módulo Radar Ploomes", "status": "Campanha divulgada — receita ainda não coletada"}, {"campanha": "Integração Serasa", "meta": 11400, "foco": "Venda da integração Ploomes + Serasa para consulta de crédito", "status": "Campanha divulgada (2 ondas) — receita ainda não coletada"}, {"campanha": "Propostas e Documentos", "meta": 7000, "foco": "Cross-sell do módulo de automação de propostas e documentos", "status": "Campanha divulgada — receita ainda não coletada"}, {"campanha": "Playbook AI", "meta": 4000, "foco": "Cross-sell do módulo Biblioteca com IA (playbooks)", "status": "Campanha em andamento (dados parciais) — receita ainda não coletada"}]};
+const DATA = {"atualizado_em": "2026-09-22", "fonte": "Intercom", "resumo": {"email": {"enviados": 25520, "aberturas": 6344, "cliques": 269, "taxa_abertura": 24.86, "ctr": 1.05, "ctor": 4.24}, "banner": {"telas": 21439, "cliques": 1223, "taxa_clique": 5.7}, "post": {"telas": 15518, "aberturas": 13229, "cliques": 330, "taxa_visualizacao": 85.25, "taxa_clique": 2.13}, "geral": {"exposicoes": 62477, "cliques_totais": 1822, "problemas": 3237, "n_campanhas": 5, "periodo_inicio": "2026-07-02", "periodo_fim": "2026-09-22", "engajamento_geral": 2.92}}, "campanhas": [{"nome": "Radar Ploomes", "canais": ["banner"], "data_inicio": "2026-07-02", "data_fim": "2026-07-10", "variantes_n": 4, "banner": {"telas": 5348, "cliques": 602, "taxa_clique": 11.26}, "exposicoes": 5348, "cliques_totais": 602, "engajamento_geral": 11.26}, {"nome": "Integração Serasa - Onda 1", "canais": ["post"], "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "variantes_n": 4, "post": {"telas": 738, "aberturas": 610, "cliques": 29, "taxa_visualizacao": 82.66, "taxa_clique": 3.93}, "exposicoes": 738, "cliques_totais": 29, "engajamento_geral": 3.93}, {"nome": "Integração Serasa - Onda 2", "canais": ["banner", "email", "post"], "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "variantes_n": 12, "email": {"enviados": 11115, "aberturas": 2973, "cliques": 185, "taxa_abertura": 26.75, "ctr": 1.66, "ctor": 6.22}, "banner": {"telas": 7016, "cliques": 337, "taxa_clique": 4.8}, "post": {"telas": 5751, "aberturas": 5183, "cliques": 130, "taxa_visualizacao": 90.12, "taxa_clique": 2.26}, "exposicoes": 23882, "cliques_totais": 652, "engajamento_geral": 2.73}, {"nome": "Propostas e Documentos", "canais": ["banner", "email", "post"], "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "variantes_n": 6, "email": {"enviados": 1157, "aberturas": 268, "cliques": 7, "taxa_abertura": 23.16, "ctr": 0.61, "ctor": 2.61}, "banner": {"telas": 779, "cliques": 17, "taxa_clique": 2.18}, "post": {"telas": 775, "aberturas": 730, "cliques": 15, "taxa_visualizacao": 94.19, "taxa_clique": 1.94}, "exposicoes": 2711, "cliques_totais": 39, "engajamento_geral": 1.44}, {"nome": "Playbook AI", "canais": ["banner", "email", "post"], "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "variantes_n": 6, "em_andamento": true, "email": {"enviados": 13248, "aberturas": 3103, "cliques": 77, "taxa_abertura": 23.42, "ctr": 0.58, "ctor": 2.48}, "banner": {"telas": 8296, "cliques": 267, "taxa_clique": 3.22}, "post": {"telas": 8254, "aberturas": 6706, "cliques": 156, "taxa_visualizacao": 81.25, "taxa_clique": 1.89}, "exposicoes": 29798, "cliques_totais": 500, "engajamento_geral": 1.68}], "ranking_ctor": [{"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "ctor": 8.21, "ctr": 2.08, "taxa_abertura": 25.29}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "ctor": 8.0, "ctr": 2.37, "taxa_abertura": 29.64}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "ctor": 4.27, "ctr": 1.12, "taxa_abertura": 26.11}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "ctor": 3.85, "ctr": 1.0, "taxa_abertura": 25.87}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "ctor": 3.46, "ctr": 0.79, "taxa_abertura": 22.73}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "ctor": 3.43, "ctr": 0.84, "taxa_abertura": 24.57}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "ctor": 1.83, "ctr": 0.4, "taxa_abertura": 21.72}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "ctor": 1.72, "ctr": 0.41, "taxa_abertura": 23.99}], "ranking_banner": [{"campanha": "Radar Ploomes", "variante": "Small Banner A", "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Banner B", "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Banner A", "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "taxa_clique": 4.04}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "taxa_clique": 3.73}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "taxa_clique": 2.95}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "taxa_clique": 2.8}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "taxa_clique": 0.42}], "ranking_post": [{"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "taxa_clique": 4.4, "taxa_visualizacao": 86.79}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "taxa_clique": 4.08, "taxa_visualizacao": 80.82}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "taxa_clique": 3.63, "taxa_visualizacao": 81.85}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "taxa_clique": 3.49, "taxa_visualizacao": 82.56}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "taxa_clique": 2.46, "taxa_visualizacao": 91.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "taxa_clique": 2.28, "taxa_visualizacao": 91.02}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "taxa_clique": 2.23, "taxa_visualizacao": 93.88}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "taxa_clique": 2.03, "taxa_visualizacao": 84.95}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "taxa_clique": 2.03, "taxa_visualizacao": 75.29}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "taxa_clique": 1.77, "taxa_visualizacao": 86.18}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "taxa_clique": 1.39, "taxa_visualizacao": 95.83}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "taxa_clique": 1.27, "taxa_visualizacao": 94.92}], "tabela": [{"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1618, "cliques_banner": 167, "problemas": 0, "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1749, "cliques_banner": 194, "problemas": 0, "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 1141, "cliques_banner": 161, "problemas": 0, "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 840, "cliques_banner": 80, "problemas": 0, "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 203, "cliques": null, "telas": 248, "cliques_banner": 9, "problemas": 0, "taxa_visualizacao": 81.85, "taxa_clique": 3.63}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 198, "cliques": null, "telas": 245, "cliques_banner": 10, "problemas": 0, "taxa_visualizacao": 80.82, "taxa_clique": 4.08}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 138, "cliques": null, "telas": 159, "cliques_banner": 7, "problemas": 0, "taxa_visualizacao": 86.79, "taxa_clique": 4.4}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 71, "cliques": null, "telas": 86, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 82.56, "taxa_clique": 3.49}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1187, "cliques_banner": 49, "problemas": 0, "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1536, "cliques_banner": 100, "problemas": 0, "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 2575, "cliques_banner": 104, "problemas": 0, "taxa_clique": 4.04}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1718, "cliques_banner": 84, "problemas": 0, "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 2361, "aberturas": 597, "cliques": 49, "telas": null, "cliques_banner": null, "problemas": 192, "taxa_abertura": 25.29, "ctr": 2.08, "ctor": 8.21}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2255, "aberturas": 554, "cliques": 19, "telas": null, "cliques_banner": null, "problemas": 372, "taxa_abertura": 24.57, "ctr": 0.84, "ctor": 3.43}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 3542, "aberturas": 1050, "cliques": 84, "telas": null, "cliques_banner": null, "problemas": 184, "taxa_abertura": 29.64, "ctr": 2.37, "ctor": 8.0}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2957, "aberturas": 772, "cliques": 33, "telas": null, "cliques_banner": null, "problemas": 411, "taxa_abertura": 26.11, "ctr": 1.12, "ctor": 4.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 276, "cliques": null, "telas": 288, "cliques_banner": 4, "problemas": 0, "taxa_visualizacao": 95.83, "taxa_clique": 1.39}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1005, "cliques": null, "telas": 1183, "cliques_banner": 24, "problemas": 0, "taxa_visualizacao": 84.95, "taxa_clique": 2.03}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 2342, "cliques": null, "telas": 2566, "cliques_banner": 63, "problemas": 0, "taxa_visualizacao": 91.27, "taxa_clique": 2.46}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1560, "cliques": null, "telas": 1714, "cliques_banner": 39, "problemas": 0, "taxa_visualizacao": 91.02, "taxa_clique": 2.28}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 543, "cliques_banner": 16, "problemas": 0, "taxa_clique": 2.95}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 236, "cliques_banner": 1, "problemas": 0, "taxa_clique": 0.42}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 755, "aberturas": 164, "cliques": 3, "telas": null, "cliques_banner": null, "problemas": 85, "taxa_abertura": 21.72, "ctr": 0.4, "ctor": 1.83}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 402, "aberturas": 104, "cliques": 4, "telas": null, "cliques_banner": null, "problemas": 65, "taxa_abertura": 25.87, "ctr": 1.0, "ctor": 3.85}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 506, "cliques": null, "telas": 539, "cliques_banner": 12, "problemas": 0, "taxa_visualizacao": 93.88, "taxa_clique": 2.23}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 224, "cliques": null, "telas": 236, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 94.92, "taxa_clique": 1.27}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": null, "cliques": null, "telas": 4538, "cliques_banner": 127, "problemas": 0, "taxa_clique": 2.8}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": null, "cliques": null, "telas": 3758, "cliques_banner": 140, "problemas": 0, "taxa_clique": 3.73}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": 7265, "aberturas": 1743, "cliques": 30, "telas": null, "cliques_banner": null, "problemas": 924, "taxa_abertura": 23.99, "ctr": 0.41, "ctor": 1.72}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": 5983, "aberturas": 1360, "cliques": 47, "telas": null, "cliques_banner": null, "problemas": 1004, "taxa_abertura": 22.73, "ctr": 0.79, "ctor": 3.46}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": 3890, "cliques": null, "telas": 4514, "cliques_banner": 80, "problemas": 0, "taxa_visualizacao": 86.18, "taxa_clique": 1.77}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-22", "enviados": null, "aberturas": 2816, "cliques": null, "telas": 3740, "cliques_banner": 76, "problemas": 0, "taxa_visualizacao": 75.29, "taxa_clique": 2.03}], "premissas_leads": {"realista": 0.02, "otimista": 0.05, "fonte": "Reunião Tiago Ribeiro (AGM CS) + Lucas Gabriel, 24/09/2026", "nota": "Conversão de lead para venda fechada: 2% no cenário realista (observado após a campanha Radar Ploomes), 5% no cenário otimista (estimativa original de planejamento)."}, "metas": [{"campanha": "Radar Ploomes", "meta": 3000, "ticket_medio": 600, "foco": "Cross-sell do módulo Radar Ploomes", "status": "Campanha divulgada — receita ainda não coletada"}, {"campanha": "Integração Serasa", "meta": 11400, "ticket_medio": 400, "foco": "Venda da integração Ploomes + Serasa para consulta de crédito", "status": "Campanha divulgada (2 ondas) — receita ainda não coletada"}, {"campanha": "Propostas e Documentos", "meta": 7000, "ticket_medio": 900, "foco": "Cross-sell do módulo de automação de propostas e documentos", "status": "Campanha divulgada — receita ainda não coletada"}, {"campanha": "Playbook AI", "meta": 4000, "ticket_medio": 350, "foco": "Cross-sell do módulo Biblioteca com IA (playbooks)", "status": "Campanha em andamento (dados parciais) — receita ainda não coletada"}]};
 
 const CAMP_COLOR_VAR = {
   "Radar Ploomes": "--c-radar",
@@ -339,15 +402,39 @@ function deltaBadge(curr, prev) {
   `;
 })();
 
-// ---------- KPI row ----------
-(function renderKPI(){
-  const r = DATA.resumo;
+// ---------- KPI row (com filtro por campanha) ----------
+function resumoFiltrado(campNome) {
+  if (!campNome || campNome === "__all__") return DATA.resumo;
+  const camp = DATA.campanhas.find(c => c.nome === campNome);
+  if (!camp) return DATA.resumo;
+  const problemas = DATA.tabela.filter(r => r.campanha === campNome).reduce((s,r) => s + (r.problemas || 0), 0);
+  return {
+    email: camp.email || null,
+    banner: camp.banner || null,
+    post: camp.post || null,
+    geral: {
+      exposicoes: camp.exposicoes,
+      cliques_totais: camp.cliques_totais,
+      problemas,
+      n_campanhas: 1,
+      periodo_inicio: camp.data_inicio,
+      periodo_fim: camp.data_fim,
+      engajamento_geral: camp.engajamento_geral,
+    },
+  };
+}
+
+function renderKPI(r) {
   const tiles = [
     {label: "Exposições totais", value: fmtInt(r.geral.exposicoes), sub: "envios de e-mail + exibições de banner/post"},
     {label: "Cliques totais", value: fmtInt(r.geral.cliques_totais), sub: "somando e-mail, banner e post"},
     {label: "Engajamento geral", value: fmtPct(r.geral.engajamento_geral), sub: "cliques totais &divide; exposições totais"},
-    {label: "Taxa de abertura (e-mail)", value: fmtPct(r.email.taxa_abertura), sub: `${fmtInt(r.email.aberturas)} de ${fmtInt(r.email.enviados)} enviados`},
-    {label: "CTOR médio (e-mail)", value: fmtPct(r.email.ctor), sub: "cliques &divide; aberturas de e-mail"},
+    r.email
+      ? {label: "Taxa de abertura (e-mail)", value: fmtPct(r.email.taxa_abertura), sub: `${fmtInt(r.email.aberturas)} de ${fmtInt(r.email.enviados)} enviados`}
+      : {label: "Taxa de abertura (e-mail)", value: "&ndash;", sub: "canal e-mail não usado nesta campanha"},
+    r.email
+      ? {label: "CTOR médio (e-mail)", value: fmtPct(r.email.ctor), sub: "cliques &divide; aberturas de e-mail"}
+      : {label: "CTOR médio (e-mail)", value: "&ndash;", sub: "canal e-mail não usado nesta campanha"},
   ];
   document.getElementById("kpi-row").innerHTML = tiles.map(t => `
     <div class="kpi-tile">
@@ -356,6 +443,68 @@ function deltaBadge(curr, prev) {
       <div class="sub">${t.sub}</div>
     </div>
   `).join("");
+}
+
+(function initCampFilter(){
+  const sel = document.getElementById("camp-filter");
+  const opts = [`<option value="__all__">Todas as campanhas</option>`]
+    .concat(DATA.campanhas.map(c => `<option value="${esc(c.nome)}">${esc(c.nome)}</option>`));
+  sel.innerHTML = opts.join("");
+  sel.addEventListener("change", () => renderKPI(resumoFiltrado(sel.value)));
+  renderKPI(DATA.resumo);
+})();
+
+// ---------- Pillars: as 3 perguntas do relatório ----------
+(function renderPillars(){
+  const el = document.getElementById("pillar-grid");
+  const pillars = [
+    {
+      num: "1 &middot; Alcance", q: "A campanha chegou nas pessoas certas?",
+      a: "Disponível hoje: exposições, aberturas e cliques por canal e por variante &mdash; ver Resumo executivo, Comparativo de canais e Funil por campanha abaixo.",
+      badge: '<span class="badge badge-success">Disponível</span>',
+    },
+    {
+      num: "2 &middot; Conversão", q: "A campanha gerou leads?",
+      a: "Em breve: depende dos leads gerados que Tiago e Ângela vão preencher, segmentados por carteira (Start Small / Middle Large). Por enquanto, mostramos a meta de leads necessários calculada a partir do ticket médio &mdash; ver seção Metas.",
+      badge: '<span class="badge badge-neutral">Em breve</span>',
+    },
+    {
+      num: "3 &middot; Receita", q: "A campanha gerou receita?",
+      a: "Em breve: depende do fechamento real associado a cada campanha. A meta financeira já está definida por campanha &mdash; ver seção Metas.",
+      badge: '<span class="badge badge-neutral">Em breve</span>',
+    },
+  ];
+  el.innerHTML = pillars.map(p => `
+    <div class="pillar-card">
+      <div class="pnum">${p.num}</div>
+      <div class="pq">${p.q}</div>
+      <div class="pa">${p.a}</div>
+      ${p.badge}
+    </div>
+  `).join("");
+})();
+
+// ---------- Comparativo de canais ----------
+(function renderChannelComparison(){
+  const r = DATA.resumo;
+  const items = [
+    {label: "E-mail", value: r.email.ctor, color: "#1e5fa8", detail: `CTOR &mdash; cliques &divide; aberturas (${fmtInt(r.email.cliques)} de ${fmtInt(r.email.aberturas)} aberturas)`},
+    {label: "Banner", value: r.banner.taxa_clique, color: "#c9542a", detail: `Cliques &divide; exibições (${fmtInt(r.banner.cliques)} de ${fmtInt(r.banner.telas)} exibições)`},
+    {label: "Post", value: r.post.taxa_clique, color: "#128a5e", detail: `Cliques &divide; exibições (${fmtInt(r.post.cliques)} de ${fmtInt(r.post.telas)} exibições)`},
+  ];
+  const maxV = Math.max(...items.map(i => i.value), 0.01);
+  const rows = items.map(it => {
+    const w = Math.max(2, Math.round((it.value / maxV) * 100));
+    return `<div class="chcomp-row">
+      <div class="cclabel">${it.label}</div>
+      <div class="cctrack"><div class="ccfill" style="width:${w}%; background:${it.color};"></div></div>
+      <div class="ccvalue">${fmtPct(it.value)}</div>
+    </div>
+    <div style="padding-left:160px; margin-top:-6px; margin-bottom:10px; font-size:0.6875rem; color:var(--fg-3);">${it.detail}</div>`;
+  }).join("");
+  document.getElementById("chcomp-card").innerHTML = rows + `
+    <div class="chcomp-sub">As três taxas medem cliques sobre uma base diferente (e-mail: sobre quem abriu; banner e post: sobre quem foi exposto), então a comparação é direcional, não estritamente equivalente. Mesmo assim, é a leitura mais justa de qual canal converte proporcionalmente mais &mdash; ao contrário de comparar cliques em volume bruto, que favorece só o canal com mais alcance.</div>
+  `;
 })();
 
 // ---------- Funnels ----------
@@ -527,17 +676,29 @@ renderRankBars("rank-post", DATA.ranking_post, "taxa_clique");
   document.querySelector("#detail-table tbody").innerHTML = rows;
 })();
 
-// ---------- Revenue section ----------
+// ---------- Revenue + leads projection section ----------
 (function renderRevenue(){
+  const prem = DATA.premissas_leads;
+  document.getElementById("premissa-leads-txt").textContent =
+    `${(prem.realista*100).toLocaleString("pt-BR")}% realista a ${(prem.otimista*100).toLocaleString("pt-BR")}% otimista (lead &rarr; venda fechada)`;
+
   document.getElementById("revenue-grid").innerHTML = DATA.metas.map(m => {
     const pending = m.status.startsWith("Aguardando");
     const andamento = m.status.startsWith("Campanha em andamento");
     const tone = pending ? 'badge-neutral' : (andamento ? 'badge-info' : 'badge-warning');
+    const vendasNecessarias = Math.ceil(m.meta / m.ticket_medio);
+    const leadsOtimista = Math.ceil(vendasNecessarias / prem.otimista);
+    const leadsRealista = Math.ceil(vendasNecessarias / prem.realista);
     return `
     <div class="revenue-item">
       <div class="rname">${esc(m.campanha)}</div>
       <div class="rmeta">${esc(m.foco)}</div>
-      <div class="rgoal">Meta financeira: <strong>${fmtBRL(m.meta)}</strong><br>Receita realizada: <em>ainda não coletada</em></div>
+      <div class="rgoal">
+        Meta financeira: <strong>${fmtBRL(m.meta)}</strong> &middot; Ticket médio: <strong>${fmtBRL(m.ticket_medio)}</strong>
+        <span class="rlead">Vendas necessárias: <strong>${fmtInt(vendasNecessarias)}</strong></span>
+        <span class="rlead">Leads necessários: <strong>${fmtInt(leadsOtimista)} a ${fmtInt(leadsRealista)}</strong> (otimista&ndash;realista)</span>
+        <span class="rlead">Leads gerados: <em>ainda não coletados</em> &middot; Receita realizada: <em>ainda não coletada</em></span>
+      </div>
       <div class="rstatus"><span class="badge ${tone}">${esc(m.status)}</span></div>
     </div>`;
   }).join("");
