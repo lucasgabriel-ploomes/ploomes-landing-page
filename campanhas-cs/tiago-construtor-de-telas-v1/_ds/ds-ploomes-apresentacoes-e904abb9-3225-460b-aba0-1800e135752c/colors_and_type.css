@@ -1,0 +1,196 @@
+/* =========================================================================
+   Ploomes Design System — Colors & Typography Tokens
+   Source of truth: Figma "Novidades de produto (white model)"
+   ========================================================================= */
+
+/* The brand has TWO official type families per Brandbook v1.0.3:
+   — Manrope (principal, todos os textos)
+   — Lora   (apenas para destaques editoriais, sempre em itálico)
+   Both are served locally from brand-uploaded TTF files. */
+
+/* Manrope is served locally from brand-uploaded TTF files. */
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 200; font-display: swap; src: url("fonts/Manrope-ExtraLight.ttf") format("truetype"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 300; font-display: swap; src: url("fonts/Manrope-Light.ttf")      format("truetype"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/Manrope-Regular.ttf")    format("truetype"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/Manrope-Medium.ttf")     format("truetype"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/Manrope-SemiBold.ttf")   format("truetype"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/Manrope-Bold.ttf")       format("truetype"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 800; font-display: swap; src: url("fonts/Manrope-ExtraBold.ttf")  format("truetype"); }
+
+/* Lora — used only for editorial pull-quotes (preferably italic). */
+@font-face { font-family: "Lora"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/Lora-Regular.ttf")        format("truetype"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/Lora-Italic.ttf")         format("truetype"); }
+@font-face { font-family: "Lora"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/Lora-Medium.ttf")         format("truetype"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 500; font-display: swap; src: url("fonts/Lora-MediumItalic.ttf")   format("truetype"); }
+@font-face { font-family: "Lora"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/Lora-SemiBold.ttf")       format("truetype"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 600; font-display: swap; src: url("fonts/Lora-SemiBoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "Lora"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/Lora-Bold.ttf")           format("truetype"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 700; font-display: swap; src: url("fonts/Lora-BoldItalic.ttf")     format("truetype"); }
+
+:root {
+  /* ── Brand colors — Brandbook v1.0.3 ───────────────────────────────── */
+  /* The three official primaries. Always reference these by their named
+     tokens in customer-facing copy: "Purple Ploo", "Light Ploo", "Dark Ploo".
+     Pantone: Purple Ploo 2665C · Dark Ploo 2765C. */
+  --purple-ploo:        #843CFF;   /* PRIMARY brand color, "Purple Ploo" */
+  --light-ploo:         #EBE5FF;   /* Soft tint for fills, "Light Ploo"  */
+  --dark-ploo:          #1E0C45;   /* Ink / dark mode, "Dark Ploo"       */
+
+  /* ── Paleta expandida OFICIAL (Brandbook v1.0.3 §Paleta de cores) ──── */
+  /* The 12 hexes the brandbook publishes, verbatim, darkest → lightest.
+     THIS is the canonical ramp — prefer it for any new work. The three
+     primaries sit inside it (marked). Do not invent steps between these. */
+  --ploo-900: #1E0C45;   /* = Dark Ploo   */
+  --ploo-800: #330870;
+  --ploo-700: #5212A1;
+  --ploo-600: #610FC7;
+  --ploo-550: #7814EB;
+  --ploo-500: #8529FF;
+  --ploo-450: #843CFF;   /* = Purple Ploo */
+  --ploo-300: #AB82FF;
+  --ploo-200: #C7B0FF;
+  --ploo-100: #DBD4FF;
+  --ploo-50:  #EBE5FF;   /* = Light Ploo  */
+  --ploo-25:  #F5F2FF;
+
+  /* ── Brand Purples — legacy derived ramp ───────────────────────────── */
+  /* DERIVED (not from the brandbook) — kept because existing cards and
+     slide layouts reference it. For new work prefer --ploo-* above. */
+  --ploomes-purple-50:  #F2EBFF;   /* alias of Light Ploo, slightly cooler */
+  --ploomes-purple-100: #E0CCFF;
+  --ploomes-purple-200: #C7A6FF;
+  --ploomes-purple-300: #A773FF;   /* rgb(167,115,255) — gradient stop */
+  --ploomes-purple-400: #843CFF;   /* = Purple Ploo                    */
+  --ploomes-purple-500: #7E33E6;   /* rgb(126,51,230) — wordmark      */
+  --ploomes-purple-600: #7342F7;   /* rgb(115,66,247)                  */
+  --ploomes-purple-700: #4F2499;   /* rgb(79,36,153) — gradient stop  */
+  --ploomes-purple-800: #1E0C45;   /* = Dark Ploo                      */
+
+  /* Accent purples used in palette callouts */
+  --ploomes-violet:     #8A38F5;   /* rgb(138,56,245) — shadow + screen tint */
+  --ploomes-magenta:    #CD3DFF;   /* palette accent                  */
+  --ploomes-blue:       #0F2FFF;   /* palette accent                  */
+
+  /* ── Neutrals ──────────────────────────────────────────────────────── */
+  --ploomes-ink:        #1E0C45;   /* default text                     */
+  --ploomes-graphite:   #1E1E1E;   /* big display headlines            */
+  --ploomes-black:      #000000;
+  --ploomes-white:      #FFFFFF;
+  --ploomes-gray-100:   #F4F0FA;
+  --ploomes-gray-200:   #D9D9D9;
+  --ploomes-text-muted: rgba(0, 0, 0, 0.72);   /* H3 body copy        */
+
+  /* ── Semantic surface roles ───────────────────────────────────────── */
+  --bg:                 var(--ploomes-white);
+  --bg-tint:            var(--ploomes-gray-100);
+  --fg1:                var(--ploomes-ink);            /* primary text */
+  --fg2:                var(--ploomes-text-muted);     /* secondary text */
+  --fg3:                var(--ploomes-graphite);       /* display headlines */
+  --accent:             var(--ploomes-purple-400);
+  --accent-strong:      var(--ploomes-purple-500);
+  --accent-deep:        var(--ploomes-purple-700);
+
+  /* ── Translucent purples (used in soft halos / decorative blobs) ──── */
+  --purple-blob-10:     rgba(132, 60, 255, 0.10);
+  --purple-blob-15:     rgba(167, 115, 255, 0.15);
+  --purple-blob-15b:    rgba(79,  36, 153, 0.15);
+  --purple-blob-18:     rgba(132, 60, 255, 0.18);
+  --purple-blob-30:     rgba(132, 60, 255, 0.30);
+  --purple-blob-50:     rgba(115, 66, 247, 0.50);
+  --purple-blob-60:     rgba(132, 60, 255, 0.60);
+
+  /* ── Gradients ─────────────────────────────────────────────────────── */
+  /* Linear gradients — kept for legacy uses. New work should prefer the
+     soft-halo radial below for any background blob. */
+  --gradient-purple-soft:   linear-gradient(180deg, rgba(167,115,255,0.15) 0%, rgba(79,36,153,0.15) 100%); /* @kind color */
+  --gradient-purple-halo:   linear-gradient(180deg, rgba(132,60,255,0.18) 0%, rgba(132,60,255,0.30) 100%); /* @kind color */
+  --gradient-violet-solid:  linear-gradient(180deg, #8A38F5 0%, #8A38F5 100%); /* @kind color */
+
+  /* Soft halo blob — radial gradient that fades to transparent. Combine with
+     `filter: blur(60–120px)` for the signature soft, edgeless feel from the
+     deck. Apply to a rotated rounded-rect or ellipse positioned partly
+     off-canvas. */
+  --gradient-halo-soft:     radial-gradient(closest-side, rgba(132,60,255,0.42) 0%, rgba(132,60,255,0.18) 45%, rgba(132,60,255,0) 75%); /* @kind color */
+  --gradient-halo-violet:   radial-gradient(closest-side, rgba(167,115,255,0.35) 0%, rgba(132,60,255,0.16) 50%, rgba(132,60,255,0) 80%); /* @kind color */
+
+  /* ── Shadow systems ───────────────────────────────────────────────── */
+  --shadow-pill:    0 4.75px 19px 0 rgba(0,0,0,0.10);  /* pill buttons (Novidades) */
+  --shadow-screen:
+       10.84px 16.86px 44.56px 0 rgba(138,56,245,0.05),
+       45.76px 67.44px 81.89px 0 rgba(138,56,245,0.04),
+       102.36px 152.94px 110.79px 0 rgba(138,56,245,0.03),
+       180.64px 272.17px 130.06px 0 rgba(138,56,245,0.01),
+       283.00px 425.11px 143.31px 0 rgba(138,56,245,0.00);
+
+  /* ── Radii ─────────────────────────────────────────────────────────── */
+  --radius-pill:    9999px;
+  --radius-blob:    1988.77px;          /* Figma actual — yields perfect rounding on 1600+px shapes */
+  --radius-card-lg: 74px;
+  --radius-card:    24px;
+  --radius-sm:      8px;
+
+  /* ── Spacing scale (derived from Figma 30 / 24 / 16 grid) ─────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  30px;     /* page chrome padding (slide labels) */
+  --space-7:  48px;
+  --space-8:  74px;     /* halo gap */
+  --space-9:  128px;    /* slide left margin */
+
+  /* ── Logo clear-space (Brandbook §Área de respiro) ─────────────────── */
+  /* The non-interference area around the wordmark equals the height of the
+     logo itself, on every side. Around the icon-only or vertical lockup,
+     the clear-space equals the icon height. Use these tokens to size
+     paddings/margins of containers that hold the logo. */
+  --logo-clear-x:        1em;        /* multiply by logo height           */
+  --logo-min-height:     14px;       /* smallest legal print/screen size  */
+
+  /* ── Type families ────────────────────────────────────────────────── */
+  /* The brand has only TWO families: Manrope (principal) and Lora (editorial italic).
+     Both are served locally from `/fonts/`. Fallbacks intentionally use only
+     generic CSS keywords so no non-brand named font ever renders. */
+  --font-sans:    "Manrope", sans-serif;
+  --font-ui:      "Manrope", sans-serif;
+  --font-serif:   "Lora", serif;
+  --font-display: "Manrope", sans-serif;
+
+  /* ── Type scale (slide canvas = 1920×1080) ────────────────────────── */
+  --fs-mega:       176px;   /* "Momento Demo"             — Manrope 700 */
+  --fs-display-1:  122px;   /* "Atualização de framework" — Manrope 400 */
+  --fs-display-2:   89px;   /* "Mapa de Clientes"         — Manrope 400 */
+  --fs-display-3:   64px;   /* cover title                 — Manrope 400 */
+  --fs-h2:          48px;   /* section H2                  — Manrope 700 */
+  --fs-h3:          30px;   /* H3 regular body             — Manrope 300 */
+  --fs-pill:        28px;   /* pill text "Novidades"       — Manrope 400 */
+  --fs-h1:          24px;   /* slide chrome label H1       — Manrope 400 */
+  --fs-ui:          16px;   /* hex codes / micro labels    — Manrope 500 */
+
+  --lh-tight:    1.10;  /* @kind other */
+  --lh-display:  1.20;  /* @kind other */
+  --lh-snug:     1.31;  /* @kind other */
+  --lh-body:     1.36;  /* @kind other */
+  --lh-loose:    1.40;  /* @kind other */
+  --lh-ui:       1.50;  /* @kind other */
+
+  --tracking-tight:  -0.020em;   /* H2 + Mega                */
+  --tracking-snug:   -0.010em;   /* H1 / H3                  */
+  --tracking-ui:     -0.011em;   /* Manrope UI captions      */
+}
+
+/* ── Semantic element styles ─────────────────────────────────────────── */
+html { font-family: var(--font-sans); color: var(--fg1); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { background: var(--bg); }
+
+.h-mega       { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-mega);      line-height: var(--lh-display); letter-spacing: var(--tracking-tight); color: var(--fg1); }
+.h-display-1  { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-display-1); line-height: var(--lh-snug);    color: var(--fg3); }
+.h-display-2  { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-display-2); line-height: var(--lh-snug);    color: var(--fg3); }
+.h-display-3  { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-display-3); line-height: var(--lh-tight);   color: var(--fg1); text-align: center; }
+.h-2          { font-family: var(--font-sans);    font-weight: 700; font-size: var(--fs-h2);        line-height: var(--lh-display); letter-spacing: var(--tracking-tight); color: var(--fg1); }
+.h-3          { font-family: var(--font-sans);    font-weight: 300; font-size: var(--fs-h3);        line-height: var(--lh-body);    letter-spacing: var(--tracking-snug);   color: var(--fg2); }
+.h-1          { font-family: var(--font-sans);    font-weight: 400; font-size: var(--fs-h1);        line-height: var(--lh-loose);   letter-spacing: var(--tracking-snug);   color: var(--fg1); }
+.t-pill       { font-family: var(--font-sans);    font-weight: 400; font-size: var(--fs-pill);      line-height: 1;                                                        color: var(--ploomes-white); }
+.t-ui         { font-family: var(--font-ui);      font-weight: 500; font-size: var(--fs-ui);        line-height: var(--lh-ui);      letter-spacing: var(--tracking-ui);    }
+.t-serif-italic { font-family: var(--font-serif); font-style: italic; font-weight: 600; }

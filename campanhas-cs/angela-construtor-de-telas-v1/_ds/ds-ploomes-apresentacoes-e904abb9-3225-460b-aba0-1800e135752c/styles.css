@@ -1,0 +1,7 @@
+/* styles.css — design-system entry point.
+
+   This file is the conventional name the host scanner looks for.
+   All actual tokens (fonts, colors, type, spacing) live in
+   `colors_and_type.css`, which this file re-exports verbatim. */
+
+@import url("colors_and_type.css");
