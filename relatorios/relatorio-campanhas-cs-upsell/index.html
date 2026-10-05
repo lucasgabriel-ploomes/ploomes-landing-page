@@ -160,7 +160,7 @@
   .rank-card h3 { font-size: 0.8125rem; font-weight: 800; margin: 0 0 3px; }
   .rank-card .rank-sub { font-size: 0.71875rem; color: var(--fg-3); margin: 0 0 14px; }
   .rank-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-  .rank-row .rlabel { width: 190px; flex: none; font-size: 0.71875rem; color: var(--fg-2); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-row .rlabel { width: 200px; flex: none; font-size: 0.71875rem; color: var(--fg-2); text-align: right; line-height: 1.25; }
   .rank-row .rtrack { flex: 1; }
   .rank-row .rfill { height: 16px; border-radius: 4px; }
   .rank-row .rvalue { width: 52px; flex: none; font-size: 0.71875rem; font-weight: 700; }
@@ -188,27 +188,120 @@
   .canal-post { background: rgba(27,175,122,0.14); color: #128a5e; }
   .num-dim { color: var(--fg-3); }
 
-  /* Revenue section */
-  .revenue-card { background: var(--bg-surface); border: 1px dashed var(--border); border-radius: var(--radius-lg); padding: 18px 20px; }
-  .revenue-note {
-    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 10px;
-    background: var(--bg-subtle); margin-bottom: 16px; font-size: 0.78125rem; color: var(--fg-2); line-height: 1.5;
-  }
-  .revenue-note svg { flex: none; margin-top: 2px; color: var(--fg-3); }
-  .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-  .revenue-item { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
-  .revenue-item .rname { font-size: 0.8125rem; font-weight: 800; }
-  .revenue-item .rmeta { font-size: 0.75rem; color: var(--fg-2); margin-top: 3px; line-height: 1.4; }
-  .revenue-item .rgoal { font-size: 0.75rem; margin-top: 8px; color: var(--fg-2); line-height: 1.6; }
-  .revenue-item .rgoal .rlead { display: block; }
-  .revenue-item .rstatus { margin-top: 8px; }
-  .revenue-item .rstatus .badge { white-space: normal; text-align: left; line-height: 1.4; }
-  .revenue-item .rresults { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--gridline); }
-  .revenue-item .rresults-title { font-size: 10.5px; font-weight: 800; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-  .revenue-item .rres-row { display: flex; justify-content: space-between; gap: 8px; font-size: 0.75rem; color: var(--fg-2); margin-bottom: 3px; }
-  .revenue-item .rres-row .rres-val { font-weight: 700; color: var(--fg-1); text-align: right; }
-  .revenue-item .rres-row .rres-val.dim { font-weight: 400; font-style: italic; color: var(--fg-3); }
-  .revenue-item .rres-total { font-size: 0.75rem; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border); }
+  /* ============ Metas e resultados financeiros ============ */
+  .mr-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .mr-intro .mi { border-radius: 12px; padding: 12px 14px; font-size: 0.78125rem; line-height: 1.5; color: var(--fg-2); }
+  .mr-intro .mi strong { color: var(--fg-1); }
+  .mr-intro .mi .tag { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+  .mr-intro .mi.plan { background: var(--bg-brand-soft); border: 1px solid var(--border); }
+  .mr-intro .mi.plan .tag { color: var(--fg-brand); }
+  .mr-intro .mi.res { background: var(--info-soft); border: 1px solid #cfdcfb; }
+  .mr-intro .mi.res .tag { color: var(--seq-550); }
+
+  .mr-sub-title { font-size: 0.8125rem; font-weight: 800; margin: 22px 0 10px; color: var(--fg-1); display: flex; align-items: center; gap: 8px; }
+  .mr-sub-title:first-of-type { margin-top: 0; }
+  .mr-sub-title .rule { flex: 1; height: 1px; background: var(--gridline); }
+
+  .mr-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .mr-tile { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 16px 18px; }
+  .mr-tile .k { font-size: 11px; font-weight: 700; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .mr-tile .v { font-size: 1.875rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 6px; line-height: 1.1; }
+  .mr-tile .s { font-size: 0.75rem; color: var(--fg-2); margin-top: 6px; line-height: 1.45; }
+  .mr-tile.hero { background: linear-gradient(135deg, var(--ploo-purple) 0%, var(--ploo-brand-60) 100%); border-color: transparent; box-shadow: var(--shadow-brand); }
+  .mr-tile.hero .k, .mr-tile.hero .s { color: rgba(255,255,255,0.86); }
+  .mr-tile.hero .v { color: #fff; font-size: 2.25rem; }
+
+  .mr-two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; margin-top: 12px; }
+  .mr-panel { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 16px 18px; }
+  .mr-panel h3 { margin: 0 0 3px; font-size: 0.875rem; font-weight: 800; }
+  .mr-panel .psub { font-size: 0.75rem; color: var(--fg-2); margin: 0 0 12px; line-height: 1.45; }
+  .mr-panel .pnote { font-size: 0.71875rem; color: var(--fg-3); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--gridline); line-height: 1.5; }
+
+  .agm-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--gridline); }
+  .agm-row:last-of-type { border-bottom: none; }
+  .agm-row .nm { font-size: 0.875rem; font-weight: 800; }
+  .agm-row .nm small { font-weight: 600; color: var(--fg-3); font-size: 0.71875rem; margin-left: 6px; }
+  .agm-row .cv { font-size: 1.375rem; font-weight: 800; color: var(--fg-brand); text-align: right; letter-spacing: -0.01em; }
+  .agm-row .cv.dim { font-size: 0.75rem; font-weight: 600; color: var(--fg-3); font-style: italic; }
+  .agm-row .dt { grid-column: 1 / -1; font-size: 0.75rem; color: var(--fg-2); line-height: 1.5; }
+  .mini-bars { margin-top: 6px; }
+  .mini-row { display: grid; grid-template-columns: 120px 1fr 52px; gap: 8px; align-items: center; margin-top: 6px; font-size: 0.75rem; }
+  .mini-row .ml { color: var(--fg-2); font-weight: 600; }
+  .mini-row .mt { height: 10px; background: var(--info-soft); border-radius: 5px; overflow: hidden; }
+  .mini-row .mf { height: 100%; background: var(--seq-550); border-radius: 0 4px 4px 0; }
+  .mini-row .mv { font-weight: 800; text-align: right; }
+
+  .calc-field { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .calc-field label { font-size: 0.75rem; font-weight: 700; color: var(--fg-2); }
+  .calc-field .inp { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 10px; padding: 0 10px; background: var(--bg-surface); }
+  .calc-field .inp span { font-size: 0.8125rem; font-weight: 700; color: var(--fg-3); margin-right: 4px; }
+  .calc-field input { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 800; color: var(--fg-1); border: none; outline: none; width: 110px; padding: 8px 0; background: transparent; }
+  .calc-field .inp:focus-within { outline: 2px solid var(--ploo-brand-20); outline-offset: 1px; }
+  .calc-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .calc-box { border-radius: 12px; padding: 12px 14px; background: var(--bg-brand-soft); border: 1px solid var(--border); }
+  .calc-box .ck { font-size: 10.5px; font-weight: 800; color: var(--fg-brand); text-transform: uppercase; letter-spacing: 0.05em; }
+  .calc-box .cv { font-size: 1.25rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.01em; }
+  .calc-box .cs { font-size: 0.71875rem; color: var(--fg-2); margin-top: 3px; line-height: 1.4; }
+
+  .mr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 16px; }
+  .mr-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
+  .mr-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 16px 18px 14px; border-bottom: 1px solid var(--gridline); }
+  .mr-head h3 { margin: 0; font-size: 1.0625rem; font-weight: 800; letter-spacing: -0.01em; }
+  .mr-head .foco { font-size: 0.75rem; color: var(--fg-2); margin: 3px 0 0; line-height: 1.4; }
+  .mr-head .badge { white-space: normal; text-align: left; line-height: 1.35; max-width: 190px; flex: none; }
+
+  .mr-block { padding: 14px 18px 16px; }
+  .mr-block.plan { background: var(--bg-brand-soft); }
+  .mr-block.res { background: var(--bg-surface); }
+  .mr-label { display: flex; align-items: center; gap: 8px; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .mr-label .n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; color: #fff; font-size: 10.5px; }
+  .mr-block.plan .mr-label { color: var(--fg-brand); }
+  .mr-block.plan .mr-label .n { background: var(--ploo-purple); }
+  .mr-block.res .mr-label { color: var(--seq-550); }
+  .mr-block.res .mr-label .n { background: var(--seq-550); }
+  .mr-label .hint { margin-left: auto; font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--fg-3); font-size: 0.71875rem; }
+
+  .mr-steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1.25fr; gap: 8px; align-items: stretch; }
+  .mr-step { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; }
+  .mr-step .k { font-size: 10.5px; font-weight: 700; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .mr-step .v { font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 4px; line-height: 1.1; white-space: nowrap; }
+  .mr-step .v small { font-size: 0.75rem; font-weight: 700; color: var(--fg-2); letter-spacing: 0; }
+  .mr-step .s { font-size: 0.71875rem; color: var(--fg-2); margin-top: auto; padding-top: 6px; line-height: 1.4; }
+  .mr-step.hl { border-color: var(--ploo-purple); box-shadow: 0 0 0 1px var(--ploo-purple) inset; }
+  .mr-step.hl .v { color: var(--fg-brand); }
+  .mr-arrow { align-self: center; color: var(--fg-brand); font-weight: 800; font-size: 1rem; }
+
+  .mr-bar { margin-bottom: 12px; }
+  .mr-bar .bl { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 0.75rem; margin-bottom: 4px; }
+  .mr-bar .bl .nm { color: var(--fg-2); font-weight: 600; }
+  .mr-bar .bl .nm small { color: var(--fg-3); font-weight: 500; }
+  .mr-bar .bl .vl { font-weight: 800; color: var(--fg-1); font-size: 0.875rem; }
+  .mr-track { position: relative; height: 14px; background: var(--info-soft); border-radius: 7px; }
+  .mr-fill { height: 100%; border-radius: 0 6px 6px 0; min-width: 2px; }
+  .mr-fill.pot { background: var(--seq-300); }
+  .mr-fill.rec { background: var(--seq-550); }
+  .mr-tick { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--fg-1); border-radius: 1px; }
+  .mr-tick span { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 1px; font-size: 10px; font-weight: 700; color: var(--fg-2); white-space: nowrap; background: var(--bg-surface); padding: 0 3px; }
+  .mr-bars-wrap { padding-bottom: 12px; }
+
+  .mr-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0 14px; }
+  .mr-stat { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--bg-surface); }
+  .mr-stat .k { font-size: 10.5px; font-weight: 700; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .mr-stat .v { font-size: 1.625rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 3px; line-height: 1.1; color: var(--fg-brand); }
+  .mr-stat .s { font-size: 0.71875rem; color: var(--fg-2); margin-top: 3px; line-height: 1.4; }
+  .mr-stat .partial { font-size: 10px; font-weight: 700; color: var(--warning-ink); background: var(--warning-soft); border-radius: 9999px; padding: 1px 7px; margin-left: 4px; vertical-align: middle; text-transform: none; letter-spacing: 0; }
+
+  .mr-table { border: 1px solid var(--gridline); border-radius: 10px; overflow: hidden; font-size: 0.75rem; }
+  .mr-tr { display: grid; grid-template-columns: 1.3fr 1fr 1fr 0.8fr; gap: 8px; padding: 7px 10px; align-items: center; border-top: 1px solid var(--gridline); }
+  .mr-tr.th { background: var(--bg-subtle); border-top: none; font-size: 10.5px; font-weight: 800; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .mr-tr .r { text-align: right; }
+  .mr-tr .ag { font-weight: 800; }
+  .mr-tr .ag small { display: block; font-weight: 500; color: var(--fg-3); font-size: 0.6875rem; }
+  .mr-tr .na { grid-column: 2 / -1; color: var(--fg-3); font-style: italic; text-align: right; }
+  .mr-tr .dim { color: var(--fg-3); font-style: italic; font-weight: 400; }
+  .mr-tr .strong { font-weight: 800; }
+  .mr-empty { border: 1px dashed var(--border); border-radius: 12px; padding: 12px 14px; font-size: 0.78125rem; color: var(--fg-2); margin-bottom: 12px; background: var(--bg-subtle); line-height: 1.5; }
+  .mr-foot { font-size: 0.71875rem; color: var(--fg-3); margin-top: 8px; line-height: 1.5; }
 
   /* Pillars — as 3 perguntas do relatório */
   .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -229,6 +322,13 @@
     background-repeat: no-repeat; background-position: right 10px center;
   }
   select.filter-select:focus { outline: 2px solid var(--ploo-brand-20); outline-offset: 1px; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; margin-bottom: 14px; }
+  .filter-item { display: flex; align-items: center; gap: 8px; }
+  .filter-item label { font-size: 0.75rem; font-weight: 700; color: var(--fg-2); }
+  .filter-note { display: none; font-size: 0.71875rem; color: var(--fg-3); margin: -6px 0 14px; line-height: 1.5; }
+  .empty-note { padding: 14px 16px; border: 1px dashed var(--border); border-radius: 12px; font-size: 0.78125rem; color: var(--fg-2); background: var(--bg-subtle); line-height: 1.5; grid-column: 1 / -1; }
+  .table-count { font-size: 0.71875rem; color: var(--fg-3); margin: 8px 0 0; }
 
   /* Callout note (reused for funnel clarification) */
   .info-note {
@@ -255,6 +355,16 @@
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
     .rank-grid { grid-template-columns: 1fr; }
     .pillar-grid { grid-template-columns: 1fr; }
+    .mr-tiles, .mr-two, .mr-intro { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .mr-steps { grid-template-columns: 1fr; }
+    .mr-arrow { transform: rotate(90deg); justify-self: center; }
+    .mr-head { flex-direction: column; }
+    .mr-head .badge { max-width: none; }
+    .mr-stats, .calc-out { grid-template-columns: 1fr; }
+    .mini-row { grid-template-columns: 90px 1fr 46px; }
+    .mr-tr { grid-template-columns: 1.1fr 1fr 1fr 0.8fr; padding: 7px 8px; font-size: 0.6875rem; }
   }
 </style>
 </head>
@@ -276,6 +386,26 @@
     <div class="pillar-grid" id="pillar-grid"></div>
   </section>
 
+  <section id="sec-receita">
+    <h2>Metas e resultados financeiros por campanha <span class="badge badge-success">Leads e receita: parcial</span></h2>
+    <p class="section-sub">Quanto cada campanha precisa gerar para bater a meta, o que já foi reportado de leads e de receita fechada e como cada AGM está convertendo lead em caixa. Os resultados ainda estão incompletos &mdash; nem toda carteira preencheu para toda campanha.</p>
+
+    <div class="mr-intro">
+      <div class="mi plan"><span class="tag">1 &middot; Planejamento (meta calculada)</span><br>Meta em R$ &rarr; <strong>vendas necessárias</strong> (meta &divide; ticket médio) &rarr; <strong>leads necessários em unidades</strong> (vendas &divide; conversão lead&rarr;venda de <span id="premissa-leads-txt"></span>). &Eacute; uma contagem de leads, não um valor em R$.</div>
+      <div class="mi res"><span class="tag">2 &middot; Resultado (dados reportados)</span><br><strong>Leads gerados</strong> aparecem em <strong>valor potencial (R$)</strong> e a <strong>receita</strong> é o que de fato foi fechado. A <strong>conversão em caixa</strong> é receita &divide; valor potencial, e mostra como cada AGM está performando.</div>
+    </div>
+
+    <div class="mr-sub-title">Panorama geral <span class="rule"></span></div>
+    <div class="mr-tiles" id="mr-tiles"></div>
+    <div class="mr-two">
+      <div class="mr-panel" id="mr-agm"></div>
+      <div class="mr-panel" id="mr-calc"></div>
+    </div>
+
+    <div class="mr-sub-title" style="margin-top:26px">Por campanha <span class="rule"></span></div>
+    <div class="mr-grid" id="revenue-grid"></div>
+  </section>
+
   <section id="sec-resumo">
     <h2>Resumo executivo</h2>
     <p class="section-sub">Números do período coberto por este relatório. Use o filtro para ver só uma campanha.</p>
@@ -294,7 +424,9 @@
 
   <section id="sec-funil">
     <h2>Funil por campanha</h2>
-    <p class="section-sub">Envio/exibição &rarr; visualização/abertura &rarr; clique, por canal usado em cada campanha.</p>
+    <p class="section-sub">Envio/exibição &rarr; visualização/abertura &rarr; clique, por canal usado em cada campanha. Filtre por carteira para ver só Middle-Large ou só Start e Small.</p>
+    <div class="filters" id="funil-filters"></div>
+    <div class="filter-note" id="funil-note"></div>
     <div class="info-note">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
       <span><strong>Exibido &times; Visualizado (canal Post):</strong> "Exibido" é o post entregue &mdash; o cliente bateu na audiência e estava com sessão ativa no Ploomes, como um e-mail que chegou na caixa de entrada. "Visualizado" exige que o Intercom confirme que o conteúdo realmente renderizou na tela &mdash; esse evento pode não disparar por bloqueador de anúncio/tracking no navegador do cliente, mesmo com o post configurado para aparecer em tela cheia (não como snippet). O próprio Intercom considera saudável uma taxa de visualização entre 90% e 98%; abaixo disso não é necessariamente um problema de configuração nosso.</span>
@@ -305,6 +437,8 @@
   <section id="sec-ranking">
     <h2>Ranking comparativo entre campanhas</h2>
     <p class="section-sub">O indicador principal é o CTOR (cliques sobre aberturas) do e-mail &mdash; é o mais comparável entre campanhas de tamanhos diferentes. Banner e post entram como comparação complementar, já que medem cliques sobre exibição, não sobre abertura.</p>
+    <div class="filters" id="rank-filters"></div>
+    <div class="filter-note" id="rank-note"></div>
     <div class="rank-grid">
       <div class="rank-card wide">
         <h3>CTOR por variante de e-mail (indicador principal)</h3>
@@ -327,33 +461,27 @@
 
   <section id="sec-evolucao">
     <h2>Evolução ao longo do tempo</h2>
-    <p class="section-sub">Taxa de engajamento geral por campanha (cliques totais &divide; exposições totais, somando todos os canais), em ordem cronológica.</p>
+    <p class="section-sub">Taxa de engajamento (cliques totais &divide; exposições totais, somando todos os canais). Veja campanha a campanha em ordem cronológica ou escolha uma campanha para acompanhar dia a dia.</p>
+    <div class="filters" id="evo-filters"></div>
+    <div class="filter-note" id="evo-fnote"></div>
     <div class="evo-card">
       <div id="evo-chart"></div>
+      <div class="chcomp-sub" id="evo-note"></div>
     </div>
   </section>
 
   <section id="sec-tabela">
     <h2>Tabela detalhada por campanha</h2>
     <p class="section-sub">Uma linha por variante de divulgação (teste A/B, segmento ou remetente), conforme registrado na base consolidada.</p>
+    <div class="filters" id="tab-filters"></div>
+    <div class="filter-note" id="tab-note"></div>
     <div class="table-wrap">
       <table id="detail-table">
         <thead></thead>
         <tbody></tbody>
       </table>
     </div>
-  </section>
-
-  <section id="sec-receita">
-    <h2>Metas, leads necessários e receita <span class="badge badge-success">Leads e receita: parcial</span></h2>
-    <p class="section-sub">Conversão (leads) e receita já têm os primeiros números reais, reportados por Tiago e Ângela, segmentados por carteira (Middle-Large / Start e Small). Ainda estão incompletos &mdash; nem toda carteira preencheu para toda campanha &mdash; e por isso aparecem ao lado da meta calculada, nunca somados a ela.</p>
-    <div class="revenue-card">
-      <div class="revenue-note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <span>A faixa de leads necessários abaixo é uma <strong>meta calculada</strong> (meta financeira &divide; ticket médio = vendas necessárias; vendas necessárias &divide; conversão lead&rarr;venda = leads necessários), não um número de leads já gerados. Premissa de conversão: <span id="premissa-leads-txt"></span>.</span>
-      </div>
-      <div class="revenue-grid" id="revenue-grid"></div>
-    </div>
+    <p class="table-count" id="table-count"></p>
   </section>
 
   <footer id="footer"></footer>
@@ -361,7 +489,7 @@
 </div>
 
 <script>
-const DATA = {"atualizado_em": "2026-10-02", "fonte": "Intercom", "resultados_fonte": "Preenchido por Tiago Ribeiro (AGM CS) e Ângela — repassado por mensagem em 02/10/2026", "resumo": {"email": {"enviados": 25620, "aberturas": 6454, "cliques": 271, "taxa_abertura": 25.19, "ctr": 1.06, "ctor": 4.2}, "banner": {"telas": 21905, "cliques": 1242, "taxa_clique": 5.67}, "post": {"telas": 15982, "aberturas": 13774, "cliques": 334, "taxa_visualizacao": 86.18, "taxa_clique": 2.09}, "geral": {"exposicoes": 63507, "cliques_totais": 1847, "problemas": 3262, "n_campanhas": 5, "periodo_inicio": "2026-07-02", "periodo_fim": "2026-09-27", "engajamento_geral": 2.91}}, "campanhas": [{"nome": "Radar Ploomes", "canais": ["banner"], "data_inicio": "2026-07-02", "data_fim": "2026-07-10", "variantes_n": 4, "banner": {"telas": 5348, "cliques": 602, "taxa_clique": 11.26}, "exposicoes": 5348, "cliques_totais": 602, "engajamento_geral": 11.26}, {"nome": "Integração Serasa - Onda 1", "canais": ["post"], "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "variantes_n": 4, "post": {"telas": 738, "aberturas": 610, "cliques": 29, "taxa_visualizacao": 82.66, "taxa_clique": 3.93}, "exposicoes": 738, "cliques_totais": 29, "engajamento_geral": 3.93}, {"nome": "Integração Serasa - Onda 2", "canais": ["email", "banner", "post"], "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "variantes_n": 12, "email": {"enviados": 11115, "aberturas": 2973, "cliques": 185, "taxa_abertura": 26.75, "ctr": 1.66, "ctor": 6.22}, "banner": {"telas": 7016, "cliques": 337, "taxa_clique": 4.8}, "post": {"telas": 5751, "aberturas": 5183, "cliques": 130, "taxa_visualizacao": 90.12, "taxa_clique": 2.26}, "exposicoes": 23882, "cliques_totais": 652, "engajamento_geral": 2.73}, {"nome": "Propostas e Documentos", "canais": ["email", "banner", "post"], "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "variantes_n": 6, "email": {"enviados": 1157, "aberturas": 268, "cliques": 7, "taxa_abertura": 23.16, "ctr": 0.61, "ctor": 2.61}, "banner": {"telas": 779, "cliques": 17, "taxa_clique": 2.18}, "post": {"telas": 775, "aberturas": 730, "cliques": 15, "taxa_visualizacao": 94.19, "taxa_clique": 1.94}, "exposicoes": 2711, "cliques_totais": 39, "engajamento_geral": 1.44}, {"nome": "Playbook AI", "canais": ["email", "banner", "post"], "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "variantes_n": 6, "email": {"enviados": 13348, "aberturas": 3213, "cliques": 79, "taxa_abertura": 24.07, "ctr": 0.59, "ctor": 2.46}, "banner": {"telas": 8762, "cliques": 286, "taxa_clique": 3.26}, "post": {"telas": 8718, "aberturas": 7251, "cliques": 160, "taxa_visualizacao": 83.17, "taxa_clique": 1.84}, "exposicoes": 30828, "cliques_totais": 525, "engajamento_geral": 1.7, "em_andamento": false}], "ranking_ctor": [{"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "ctor": 8.21, "ctr": 2.08, "taxa_abertura": 25.29}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "ctor": 8.0, "ctr": 2.37, "taxa_abertura": 29.64}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "ctor": 4.27, "ctr": 1.12, "taxa_abertura": 26.11}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "ctor": 3.85, "ctr": 1.0, "taxa_abertura": 25.87}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "ctor": 3.43, "ctr": 0.84, "taxa_abertura": 24.57}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "ctor": 3.37, "ctr": 0.78, "taxa_abertura": 23.14}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "ctor": 1.83, "ctr": 0.4, "taxa_abertura": 21.72}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "ctor": 1.76, "ctr": 0.44, "taxa_abertura": 24.83}], "ranking_banner": [{"campanha": "Radar Ploomes", "variante": "Small Banner A", "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Banner B", "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Banner A", "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "taxa_clique": 4.04}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "taxa_clique": 3.74}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "taxa_clique": 2.95}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "taxa_clique": 2.87}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "taxa_clique": 0.42}], "ranking_post": [{"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "taxa_clique": 4.4, "taxa_visualizacao": 86.79}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "taxa_clique": 4.08, "taxa_visualizacao": 80.82}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "taxa_clique": 3.63, "taxa_visualizacao": 81.85}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "taxa_clique": 3.49, "taxa_visualizacao": 82.56}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "taxa_clique": 2.46, "taxa_visualizacao": 91.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "taxa_clique": 2.28, "taxa_visualizacao": 91.02}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "taxa_clique": 2.23, "taxa_visualizacao": 93.88}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "taxa_clique": 2.03, "taxa_visualizacao": 84.95}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "taxa_clique": 1.98, "taxa_visualizacao": 77.94}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "taxa_clique": 1.72, "taxa_visualizacao": 87.48}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "taxa_clique": 1.39, "taxa_visualizacao": 95.83}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "taxa_clique": 1.27, "taxa_visualizacao": 94.92}], "tabela": [{"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1618, "cliques_banner": 167, "problemas": 0, "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1749, "cliques_banner": 194, "problemas": 0, "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 1141, "cliques_banner": 161, "problemas": 0, "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 840, "cliques_banner": 80, "problemas": 0, "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 203, "cliques": null, "telas": 248, "cliques_banner": 9, "problemas": 0, "taxa_visualizacao": 81.85, "taxa_clique": 3.63}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 198, "cliques": null, "telas": 245, "cliques_banner": 10, "problemas": 0, "taxa_visualizacao": 80.82, "taxa_clique": 4.08}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 138, "cliques": null, "telas": 159, "cliques_banner": 7, "problemas": 0, "taxa_visualizacao": 86.79, "taxa_clique": 4.4}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 71, "cliques": null, "telas": 86, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 82.56, "taxa_clique": 3.49}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1187, "cliques_banner": 49, "problemas": 0, "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1536, "cliques_banner": 100, "problemas": 0, "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 2575, "cliques_banner": 104, "problemas": 0, "taxa_clique": 4.04}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1718, "cliques_banner": 84, "problemas": 0, "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 2361, "aberturas": 597, "cliques": 49, "telas": null, "cliques_banner": null, "problemas": 192, "taxa_abertura": 25.29, "ctr": 2.08, "ctor": 8.21}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2255, "aberturas": 554, "cliques": 19, "telas": null, "cliques_banner": null, "problemas": 372, "taxa_abertura": 24.57, "ctr": 0.84, "ctor": 3.43}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 3542, "aberturas": 1050, "cliques": 84, "telas": null, "cliques_banner": null, "problemas": 184, "taxa_abertura": 29.64, "ctr": 2.37, "ctor": 8.0}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2957, "aberturas": 772, "cliques": 33, "telas": null, "cliques_banner": null, "problemas": 411, "taxa_abertura": 26.11, "ctr": 1.12, "ctor": 4.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 276, "cliques": null, "telas": 288, "cliques_banner": 4, "problemas": 0, "taxa_visualizacao": 95.83, "taxa_clique": 1.39}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1005, "cliques": null, "telas": 1183, "cliques_banner": 24, "problemas": 0, "taxa_visualizacao": 84.95, "taxa_clique": 2.03}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 2342, "cliques": null, "telas": 2566, "cliques_banner": 63, "problemas": 0, "taxa_visualizacao": 91.27, "taxa_clique": 2.46}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1560, "cliques": null, "telas": 1714, "cliques_banner": 39, "problemas": 0, "taxa_visualizacao": 91.02, "taxa_clique": 2.28}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 543, "cliques_banner": 16, "problemas": 0, "taxa_clique": 2.95}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 236, "cliques_banner": 1, "problemas": 0, "taxa_clique": 0.42}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 755, "aberturas": 164, "cliques": 3, "telas": null, "cliques_banner": null, "problemas": 85, "taxa_abertura": 21.72, "ctr": 0.4, "ctor": 1.83}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 402, "aberturas": 104, "cliques": 4, "telas": null, "cliques_banner": null, "problemas": 65, "taxa_abertura": 25.87, "ctr": 1.0, "ctor": 3.85}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 506, "cliques": null, "telas": 539, "cliques_banner": 12, "problemas": 0, "taxa_visualizacao": 93.88, "taxa_clique": 2.23}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 224, "cliques": null, "telas": 236, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 94.92, "taxa_clique": 1.27}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": null, "cliques": null, "telas": 4804, "cliques_banner": 138, "problemas": 0, "taxa_clique": 2.87}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": null, "cliques": null, "telas": 3958, "cliques_banner": 148, "problemas": 0, "taxa_clique": 3.74}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-26", "enviados": 7329, "aberturas": 1820, "cliques": 32, "telas": null, "cliques_banner": null, "problemas": 940, "taxa_abertura": 24.83, "ctr": 0.44, "ctor": 1.76}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-26", "enviados": 6019, "aberturas": 1393, "cliques": 47, "telas": null, "cliques_banner": null, "problemas": 1013, "taxa_abertura": 23.14, "ctr": 0.78, "ctor": 3.37}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": 4180, "cliques": null, "telas": 4778, "cliques_banner": 82, "problemas": 0, "taxa_visualizacao": 87.48, "taxa_clique": 1.72}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": 3071, "cliques": null, "telas": 3940, "cliques_banner": 78, "problemas": 0, "taxa_visualizacao": 77.94, "taxa_clique": 1.98}], "premissas_leads": {"realista": 0.02, "otimista": 0.05, "fonte": "Reunião Tiago Ribeiro (AGM CS) + Lucas Gabriel, 24/09/2026", "nota": "Conversão de lead para venda fechada: 2% no cenário realista (observado após a campanha Radar Ploomes), 5% no cenário otimista (estimativa original de planejamento)."}, "metas": [{"campanha": "Radar Ploomes", "meta": 3000, "ticket_medio": 600, "foco": "Cross-sell do módulo Radar Ploomes", "status": "Campanha divulgada — receita ainda não coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_gerados": null, "receita_realizada": null}, {"carteira": "Start e Small (Ângela)", "leads_gerados": null, "receita_realizada": null}]}, {"campanha": "Integração Serasa", "meta": 11400, "ticket_medio": 400, "foco": "Venda da integração Ploomes + Serasa para consulta de crédito", "status": "Campanha divulgada (2 ondas) — receita parcialmente coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_gerados": 47, "receita_realizada": 925}, {"carteira": "Start e Small (Ângela)", "leads_gerados": null, "receita_realizada": null}]}, {"campanha": "Propostas e Documentos", "meta": 7000, "ticket_medio": 900, "foco": "Cross-sell do módulo de automação de propostas e documentos", "status": "Campanha divulgada — receita ainda não coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_gerados": null, "receita_realizada": null}, {"carteira": "Start e Small (Ângela)", "leads_gerados": null, "receita_realizada": null}]}, {"campanha": "Playbook AI", "meta": 4000, "ticket_medio": 350, "foco": "Cross-sell do módulo Biblioteca com IA (playbooks)", "status": "Campanha divulgada — receita parcialmente coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_gerados": 9, "receita_realizada": 1400}, {"carteira": "Start e Small (Ângela)", "leads_gerados": 780, "receita_realizada": null}]}]};
+const DATA = {"atualizado_em": "2026-10-05", "fonte": "Intercom", "resultados_fonte": "Preenchido por Tiago Ribeiro (AGM CS) e Ângela — repassado por mensagem em 05/10/2026", "resumo": {"email": {"enviados": 25620, "aberturas": 6454, "cliques": 271, "taxa_abertura": 25.19, "ctr": 1.06, "ctor": 4.2}, "banner": {"telas": 21905, "cliques": 1242, "taxa_clique": 5.67}, "post": {"telas": 15982, "aberturas": 13774, "cliques": 334, "taxa_visualizacao": 86.18, "taxa_clique": 2.09}, "geral": {"exposicoes": 63507, "cliques_totais": 1847, "problemas": 3262, "n_campanhas": 5, "periodo_inicio": "2026-07-02", "periodo_fim": "2026-09-27", "engajamento_geral": 2.91}}, "campanhas": [{"nome": "Radar Ploomes", "canais": ["banner"], "data_inicio": "2026-07-02", "data_fim": "2026-07-10", "variantes_n": 4, "banner": {"telas": 5348, "cliques": 602, "taxa_clique": 11.26}, "exposicoes": 5348, "cliques_totais": 602, "engajamento_geral": 11.26}, {"nome": "Integração Serasa - Onda 1", "canais": ["post"], "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "variantes_n": 4, "post": {"telas": 738, "aberturas": 610, "cliques": 29, "taxa_visualizacao": 82.66, "taxa_clique": 3.93}, "exposicoes": 738, "cliques_totais": 29, "engajamento_geral": 3.93}, {"nome": "Integração Serasa - Onda 2", "canais": ["email", "banner", "post"], "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "variantes_n": 12, "email": {"enviados": 11115, "aberturas": 2973, "cliques": 185, "taxa_abertura": 26.75, "ctr": 1.66, "ctor": 6.22}, "banner": {"telas": 7016, "cliques": 337, "taxa_clique": 4.8}, "post": {"telas": 5751, "aberturas": 5183, "cliques": 130, "taxa_visualizacao": 90.12, "taxa_clique": 2.26}, "exposicoes": 23882, "cliques_totais": 652, "engajamento_geral": 2.73}, {"nome": "Propostas e Documentos", "canais": ["email", "banner", "post"], "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "variantes_n": 6, "email": {"enviados": 1157, "aberturas": 268, "cliques": 7, "taxa_abertura": 23.16, "ctr": 0.61, "ctor": 2.61}, "banner": {"telas": 779, "cliques": 17, "taxa_clique": 2.18}, "post": {"telas": 775, "aberturas": 730, "cliques": 15, "taxa_visualizacao": 94.19, "taxa_clique": 1.94}, "exposicoes": 2711, "cliques_totais": 39, "engajamento_geral": 1.44}, {"nome": "Playbook AI", "canais": ["email", "banner", "post"], "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "variantes_n": 6, "email": {"enviados": 13348, "aberturas": 3213, "cliques": 79, "taxa_abertura": 24.07, "ctr": 0.59, "ctor": 2.46}, "banner": {"telas": 8762, "cliques": 286, "taxa_clique": 3.26}, "post": {"telas": 8718, "aberturas": 7251, "cliques": 160, "taxa_visualizacao": 83.17, "taxa_clique": 1.84}, "exposicoes": 30828, "cliques_totais": 525, "engajamento_geral": 1.7, "em_andamento": false}], "ranking_ctor": [{"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "ctor": 8.21, "ctr": 2.08, "taxa_abertura": 25.29}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "ctor": 8.0, "ctr": 2.37, "taxa_abertura": 29.64}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "ctor": 4.27, "ctr": 1.12, "taxa_abertura": 26.11}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "ctor": 3.85, "ctr": 1.0, "taxa_abertura": 25.87}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "ctor": 3.43, "ctr": 0.84, "taxa_abertura": 24.57}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "ctor": 3.37, "ctr": 0.78, "taxa_abertura": 23.14}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "ctor": 1.83, "ctr": 0.4, "taxa_abertura": 21.72}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "ctor": 1.76, "ctr": 0.44, "taxa_abertura": 24.83}], "ranking_banner": [{"campanha": "Radar Ploomes", "variante": "Small Banner A", "taxa_clique": 14.11}, {"campanha": "Radar Ploomes", "variante": "Banner B", "taxa_clique": 11.09}, {"campanha": "Radar Ploomes", "variante": "Banner A", "taxa_clique": 10.32}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "taxa_clique": 9.52}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "taxa_clique": 6.51}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "taxa_clique": 4.89}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "taxa_clique": 4.13}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "taxa_clique": 4.04}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "taxa_clique": 3.74}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "taxa_clique": 2.95}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "taxa_clique": 2.87}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "taxa_clique": 0.42}], "ranking_post": [{"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "taxa_clique": 4.4, "taxa_visualizacao": 86.79}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "taxa_clique": 4.08, "taxa_visualizacao": 80.82}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "taxa_clique": 3.63, "taxa_visualizacao": 81.85}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "taxa_clique": 3.49, "taxa_visualizacao": 82.56}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "taxa_clique": 2.46, "taxa_visualizacao": 91.27}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "taxa_clique": 2.28, "taxa_visualizacao": 91.02}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "taxa_clique": 2.23, "taxa_visualizacao": 93.88}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "taxa_clique": 2.03, "taxa_visualizacao": 84.95}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "taxa_clique": 1.98, "taxa_visualizacao": 77.94}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "taxa_clique": 1.72, "taxa_visualizacao": 87.48}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "taxa_clique": 1.39, "taxa_visualizacao": 95.83}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "taxa_clique": 1.27, "taxa_visualizacao": 94.92}], "tabela": [{"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1618, "cliques_banner": 167, "problemas": 0, "taxa_clique": 10.32, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data_inicio": "2026-07-02", "data_fim": "2026-07-08", "enviados": null, "aberturas": null, "cliques": null, "telas": 1749, "cliques_banner": 194, "problemas": 0, "taxa_clique": 11.09, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 1141, "cliques_banner": 161, "problemas": 0, "taxa_clique": 14.11, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data_inicio": "2026-07-06", "data_fim": "2026-07-10", "enviados": null, "aberturas": null, "cliques": null, "telas": 840, "cliques_banner": 80, "problemas": 0, "taxa_clique": 9.52, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 203, "cliques": null, "telas": 248, "cliques_banner": 9, "problemas": 0, "taxa_visualizacao": 81.85, "taxa_clique": 3.63, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 198, "cliques": null, "telas": 245, "cliques_banner": 10, "problemas": 0, "taxa_visualizacao": 80.82, "taxa_clique": 4.08, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-20", "enviados": null, "aberturas": 138, "cliques": null, "telas": 159, "cliques_banner": 7, "problemas": 0, "taxa_visualizacao": 86.79, "taxa_clique": 4.4, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-13", "data_fim": "2026-07-19", "enviados": null, "aberturas": 71, "cliques": null, "telas": 86, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 82.56, "taxa_clique": 3.49, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1187, "cliques_banner": 49, "problemas": 0, "taxa_clique": 4.13, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1536, "cliques_banner": 100, "problemas": 0, "taxa_clique": 6.51, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 2575, "cliques_banner": 104, "problemas": 0, "taxa_clique": 4.04, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": null, "cliques": null, "telas": 1718, "cliques_banner": 84, "problemas": 0, "taxa_clique": 4.89, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 2361, "aberturas": 597, "cliques": 49, "telas": null, "cliques_banner": null, "problemas": 192, "taxa_abertura": 25.29, "ctr": 2.08, "ctor": 8.21, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2255, "aberturas": 554, "cliques": 19, "telas": null, "cliques_banner": null, "problemas": 372, "taxa_abertura": 24.57, "ctr": 0.84, "ctor": 3.43, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-29", "enviados": 3542, "aberturas": 1050, "cliques": 84, "telas": null, "cliques_banner": null, "problemas": 184, "taxa_abertura": 29.64, "ctr": 2.37, "ctor": 8.0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": 2957, "aberturas": 772, "cliques": 33, "telas": null, "cliques_banner": null, "problemas": 411, "taxa_abertura": 26.11, "ctr": 1.12, "ctor": 4.27, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 276, "cliques": null, "telas": 288, "cliques_banner": 4, "problemas": 0, "taxa_visualizacao": 95.83, "taxa_clique": 1.39, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1005, "cliques": null, "telas": 1183, "cliques_banner": 24, "problemas": 0, "taxa_visualizacao": 84.95, "taxa_clique": 2.03, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 2342, "cliques": null, "telas": 2566, "cliques_banner": 63, "problemas": 0, "taxa_visualizacao": 91.27, "taxa_clique": 2.46, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data_inicio": "2026-07-23", "data_fim": "2026-07-30", "enviados": null, "aberturas": 1560, "cliques": null, "telas": 1714, "cliques_banner": 39, "problemas": 0, "taxa_visualizacao": 91.02, "taxa_clique": 2.28, "carteira": "Middle-Large"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 543, "cliques_banner": 16, "problemas": 0, "taxa_clique": 2.95, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": null, "cliques": null, "telas": 236, "cliques_banner": 1, "problemas": 0, "taxa_clique": 0.42, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 755, "aberturas": 164, "cliques": 3, "telas": null, "cliques_banner": null, "problemas": 85, "taxa_abertura": 21.72, "ctr": 0.4, "ctor": 1.83, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data_inicio": "2026-08-13", "data_fim": "2026-09-02", "enviados": 402, "aberturas": 104, "cliques": 4, "telas": null, "cliques_banner": null, "problemas": 65, "taxa_abertura": 25.87, "ctr": 1.0, "ctor": 3.85, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 506, "cliques": null, "telas": 539, "cliques_banner": 12, "problemas": 0, "taxa_visualizacao": 93.88, "taxa_clique": 2.23, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data_inicio": "2026-08-13", "data_fim": "2026-09-04", "enviados": null, "aberturas": 224, "cliques": null, "telas": 236, "cliques_banner": 3, "problemas": 0, "taxa_visualizacao": 94.92, "taxa_clique": 1.27, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": null, "cliques": null, "telas": 4804, "cliques_banner": 138, "problemas": 0, "taxa_clique": 2.87, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": null, "cliques": null, "telas": 3958, "cliques_banner": 148, "problemas": 0, "taxa_clique": 3.74, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-26", "enviados": 7329, "aberturas": 1820, "cliques": 32, "telas": null, "cliques_banner": null, "problemas": 940, "taxa_abertura": 24.83, "ctr": 0.44, "ctor": 1.76, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data_inicio": "2026-09-11", "data_fim": "2026-09-26", "enviados": 6019, "aberturas": 1393, "cliques": 47, "telas": null, "cliques_banner": null, "problemas": 1013, "taxa_abertura": 23.14, "ctr": 0.78, "ctor": 3.37, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": 4180, "cliques": null, "telas": 4778, "cliques_banner": 82, "problemas": 0, "taxa_visualizacao": 87.48, "taxa_clique": 1.72, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data_inicio": "2026-09-11", "data_fim": "2026-09-27", "enviados": null, "aberturas": 3071, "cliques": null, "telas": 3940, "cliques_banner": 78, "problemas": 0, "taxa_visualizacao": 77.94, "taxa_clique": 1.98, "carteira": "Start e Small"}], "premissas_leads": {"realista": 0.02, "otimista": 0.05, "fonte": "Reunião Tiago Ribeiro (AGM CS) + Lucas Gabriel, 24/09/2026", "nota": "Conversão de lead para venda fechada: 2% no cenário realista (observado após a campanha Radar Ploomes), 5% no cenário otimista (estimativa original de planejamento)."}, "metas": [{"campanha": "Radar Ploomes", "meta": 3000, "ticket_medio": 600, "foco": "Cross-sell do módulo Radar Ploomes", "status": "Campanha divulgada — receita parcialmente coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_qtd": null, "leads_valor": 16200, "receita_realizada": 1500, "nao_se_aplica": false}, {"carteira": "Start e Small (Ângela)", "leads_qtd": null, "leads_valor": null, "receita_realizada": null, "nao_se_aplica": false}]}, {"campanha": "Integração Serasa", "meta": 11400, "ticket_medio": 400, "foco": "Venda da integração Ploomes + Serasa para consulta de crédito", "status": "Campanha divulgada (2 ondas) — receita parcialmente coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_qtd": 47, "leads_valor": 18753, "receita_realizada": 925, "nao_se_aplica": false}, {"carteira": "Start e Small (Ângela)", "leads_qtd": null, "leads_valor": null, "receita_realizada": null, "nao_se_aplica": false}]}, {"campanha": "Propostas e Documentos", "meta": 7000, "ticket_medio": 900, "foco": "Cross-sell do módulo de automação de propostas e documentos", "status": "Campanha divulgada — receita ainda não coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_qtd": null, "leads_valor": null, "receita_realizada": null, "nao_se_aplica": true}, {"carteira": "Start e Small (Ângela)", "leads_qtd": null, "leads_valor": null, "receita_realizada": null, "nao_se_aplica": false}]}, {"campanha": "Playbook AI", "meta": 4000, "ticket_medio": 350, "foco": "Cross-sell do módulo Biblioteca com IA (playbooks)", "status": "Campanha divulgada — receita parcialmente coletada", "resultados": [{"carteira": "Middle-Large (Tiago)", "leads_qtd": 9, "leads_valor": 4050, "receita_realizada": 1400, "nao_se_aplica": false}, {"carteira": "Start e Small (Ângela)", "leads_qtd": null, "leads_valor": 780, "receita_realizada": null, "nao_se_aplica": false}]}], "serie": [{"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data": "2026-07-13", "exp": 78, "ab": 64, "cl": 5, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data": "2026-07-14", "exp": 69, "ab": 61, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data": "2026-07-15", "exp": 53, "ab": 41, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data": "2026-07-16", "exp": 34, "ab": 25, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data": "2026-07-17", "exp": 12, "ab": 11, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela A", "canal": "post", "data": "2026-07-19", "exp": 2, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-13", "exp": 76, "ab": 61, "cl": 6, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-14", "exp": 55, "ab": 43, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-15", "exp": 58, "ab": 48, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-16", "exp": 32, "ab": 26, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-17", "exp": 19, "ab": 16, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-18", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-19", "exp": 2, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Angela B", "canal": "post", "data": "2026-07-20", "exp": 2, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-13", "exp": 51, "ab": 44, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-14", "exp": 38, "ab": 32, "cl": 3, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-15", "exp": 26, "ab": 22, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-16", "exp": 28, "ab": 24, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-17", "exp": 10, "ab": 10, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-18", "exp": 1, "ab": 1, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-19", "exp": 2, "ab": 2, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-20", "exp": 3, "ab": 3, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-13", "exp": 23, "ab": 19, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-14", "exp": 14, "ab": 11, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-15", "exp": 17, "ab": 15, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-16", "exp": 24, "ab": 18, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-17", "exp": 6, "ab": 6, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 1", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-19", "exp": 2, "ab": 2, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-23", "exp": 672, "ab": 0, "cl": 33, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-24", "exp": 255, "ab": 0, "cl": 4, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-25", "exp": 5, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-26", "exp": 5, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-27", "exp": 134, "ab": 0, "cl": 10, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-28", "exp": 59, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-29", "exp": 48, "ab": 0, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela A", "canal": "banner", "data": "2026-07-30", "exp": 9, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-23", "exp": 877, "ab": 0, "cl": 75, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-24", "exp": 311, "ab": 0, "cl": 16, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-25", "exp": 7, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-26", "exp": 10, "ab": 0, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-27", "exp": 180, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-28", "exp": 83, "ab": 0, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-29", "exp": 60, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Angela B", "canal": "banner", "data": "2026-07-30", "exp": 8, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-23", "exp": 1615, "ab": 0, "cl": 84, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-24", "exp": 438, "ab": 0, "cl": 11, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-25", "exp": 18, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-26", "exp": 17, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-27", "exp": 278, "ab": 0, "cl": 6, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-28", "exp": 132, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-29", "exp": 68, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago A", "canal": "banner", "data": "2026-07-30", "exp": 9, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-23", "exp": 1028, "ab": 0, "cl": 56, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-24", "exp": 293, "ab": 0, "cl": 15, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-25", "exp": 9, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-26", "exp": 3, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-27", "exp": 200, "ab": 0, "cl": 7, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-28", "exp": 95, "ab": 0, "cl": 3, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-29", "exp": 85, "ab": 0, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Banner Tiago B", "canal": "banner", "data": "2026-07-30", "exp": 5, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data": "2026-07-23", "exp": 2350, "ab": 596, "cl": 49, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data": "2026-07-24", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data": "2026-07-27", "exp": 4, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data": "2026-07-28", "exp": 2, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela A", "canal": "email", "data": "2026-07-29", "exp": 4, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data": "2026-07-23", "exp": 2238, "ab": 549, "cl": 19, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data": "2026-07-24", "exp": 3, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data": "2026-07-27", "exp": 3, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data": "2026-07-28", "exp": 5, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data": "2026-07-29", "exp": 4, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Angela B", "canal": "email", "data": "2026-07-30", "exp": 2, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data": "2026-07-23", "exp": 3515, "ab": 1046, "cl": 83, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data": "2026-07-24", "exp": 6, "ab": 2, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data": "2026-07-27", "exp": 6, "ab": 2, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data": "2026-07-28", "exp": 5, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago A", "canal": "email", "data": "2026-07-29", "exp": 10, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data": "2026-07-23", "exp": 2933, "ab": 764, "cl": 32, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data": "2026-07-24", "exp": 4, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data": "2026-07-27", "exp": 7, "ab": 3, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data": "2026-07-28", "exp": 6, "ab": 1, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data": "2026-07-29", "exp": 6, "ab": 3, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Email Tiago B", "canal": "email", "data": "2026-07-30", "exp": 1, "ab": 1, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-23", "exp": 158, "ab": 157, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-24", "exp": 64, "ab": 59, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-25", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-26", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-27", "exp": 34, "ab": 32, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-28", "exp": 17, "ab": 16, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-29", "exp": 12, "ab": 10, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela A", "canal": "post", "data": "2026-07-30", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-23", "exp": 670, "ab": 577, "cl": 15, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-24", "exp": 251, "ab": 210, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-25", "exp": 5, "ab": 4, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-26", "exp": 5, "ab": 3, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-27", "exp": 133, "ab": 113, "cl": 5, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-28", "exp": 60, "ab": 52, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-29", "exp": 48, "ab": 37, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Angela B", "canal": "post", "data": "2026-07-30", "exp": 11, "ab": 9, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-23", "exp": 1596, "ab": 1475, "cl": 44, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-24", "exp": 445, "ab": 401, "cl": 8, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-25", "exp": 18, "ab": 16, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-26", "exp": 17, "ab": 17, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-27", "exp": 278, "ab": 246, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-28", "exp": 132, "ab": 120, "cl": 5, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-29", "exp": 71, "ab": 60, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago A", "canal": "post", "data": "2026-07-30", "exp": 9, "ab": 7, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-23", "exp": 1021, "ab": 940, "cl": 24, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-24", "exp": 296, "ab": 261, "cl": 8, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-25", "exp": 9, "ab": 8, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-26", "exp": 3, "ab": 3, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-27", "exp": 200, "ab": 182, "cl": 4, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-28", "exp": 96, "ab": 88, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-29", "exp": 84, "ab": 75, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Integração Serasa - Onda 2", "variante": "Post Tiago B", "canal": "post", "data": "2026-07-30", "exp": 5, "ab": 3, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-11", "exp": 395, "ab": 0, "cl": 15, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-12", "exp": 160, "ab": 0, "cl": 7, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-13", "exp": 112, "ab": 0, "cl": 4, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-14", "exp": 2566, "ab": 0, "cl": 82, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-15", "exp": 495, "ab": 0, "cl": 13, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-16", "exp": 265, "ab": 0, "cl": 5, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-17", "exp": 183, "ab": 0, "cl": 5, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-18", "exp": 108, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-19", "exp": 4, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-21", "exp": 146, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-22", "exp": 108, "ab": 0, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-23", "exp": 110, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-24", "exp": 89, "ab": 0, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-25", "exp": 61, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-26", "exp": 1, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Middle-Large", "canal": "banner", "data": "2026-09-27", "exp": 1, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-11", "exp": 169, "ab": 0, "cl": 14, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-12", "exp": 156, "ab": 0, "cl": 20, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-13", "exp": 102, "ab": 0, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-14", "exp": 2090, "ab": 0, "cl": 78, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-15", "exp": 474, "ab": 0, "cl": 15, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-16", "exp": 241, "ab": 0, "cl": 5, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-17", "exp": 178, "ab": 0, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-18", "exp": 118, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-19", "exp": 9, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-20", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-21", "exp": 130, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-22", "exp": 93, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-23", "exp": 73, "ab": 0, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-24", "exp": 69, "ab": 0, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-25", "exp": 51, "ab": 0, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-26", "exp": 2, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Banner Start e Small", "canal": "banner", "data": "2026-09-27", "exp": 2, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-11", "exp": 733, "ab": 159, "cl": 9, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-14", "exp": 3, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-15", "exp": 2, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-16", "exp": 1, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-17", "exp": 6484, "ab": 1628, "cl": 22, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-18", "exp": 8, "ab": 2, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-19", "exp": 3, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-20", "exp": 4, "ab": 1, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-21", "exp": 13, "ab": 2, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-22", "exp": 16, "ab": 5, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-23", "exp": 27, "ab": 9, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-24", "exp": 15, "ab": 4, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-25", "exp": 18, "ab": 10, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Middle-Large", "canal": "email", "data": "2026-09-26", "exp": 2, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-11", "exp": 5914, "ab": 1370, "cl": 47, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-14", "exp": 16, "ab": 4, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-15", "exp": 7, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-16", "exp": 9, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-17", "exp": 9, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-18", "exp": 11, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-21", "exp": 10, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-22", "exp": 8, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-23", "exp": 11, "ab": 5, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-24", "exp": 13, "ab": 5, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-25", "exp": 10, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "E-mail Start e Small", "canal": "email", "data": "2026-09-26", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-11", "exp": 446, "ab": 428, "cl": 11, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-12", "exp": 154, "ab": 141, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-13", "exp": 108, "ab": 99, "cl": 3, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-14", "exp": 2512, "ab": 2176, "cl": 45, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-15", "exp": 492, "ab": 335, "cl": 10, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-16", "exp": 263, "ab": 239, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-17", "exp": 181, "ab": 171, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-18", "exp": 107, "ab": 99, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-19", "exp": 4, "ab": 4, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-21", "exp": 144, "ab": 140, "cl": 3, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-22", "exp": 107, "ab": 102, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-23", "exp": 110, "ab": 102, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-24", "exp": 89, "ab": 84, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-25", "exp": 59, "ab": 58, "cl": 2, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-26", "exp": 1, "ab": 1, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Middle-Large", "canal": "post", "data": "2026-09-27", "exp": 1, "ab": 1, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-11", "exp": 168, "ab": 160, "cl": 10, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-12", "exp": 157, "ab": 145, "cl": 12, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-13", "exp": 102, "ab": 96, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-14", "exp": 2078, "ab": 1595, "cl": 30, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-15", "exp": 470, "ab": 208, "cl": 8, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-16", "exp": 240, "ab": 195, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-17", "exp": 178, "ab": 164, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-18", "exp": 121, "ab": 110, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-19", "exp": 9, "ab": 8, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-20", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-21", "exp": 131, "ab": 124, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-22", "exp": 89, "ab": 82, "cl": 4, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-23", "exp": 73, "ab": 68, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-24", "exp": 68, "ab": 63, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-25", "exp": 51, "ab": 49, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-26", "exp": 2, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Playbook AI", "variante": "Post Start e Small", "canal": "post", "data": "2026-09-27", "exp": 2, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-13", "exp": 57, "ab": 0, "cl": 4, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-24", "exp": 215, "ab": 0, "cl": 6, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-25", "exp": 116, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-26", "exp": 40, "ab": 0, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-27", "exp": 27, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-28", "exp": 17, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-29", "exp": 3, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-30", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-08-31", "exp": 19, "ab": 0, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-09-01", "exp": 17, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-09-02", "exp": 20, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-09-03", "exp": 5, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small A", "canal": "banner", "data": "2026-09-04", "exp": 6, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-13", "exp": 28, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-24", "exp": 85, "ab": 0, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-25", "exp": 43, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-26", "exp": 15, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-27", "exp": 12, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-28", "exp": 6, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-29", "exp": 2, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-08-31", "exp": 18, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-09-01", "exp": 12, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-09-02", "exp": 10, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-09-03", "exp": 2, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Banner Start e Small B", "canal": "banner", "data": "2026-09-04", "exp": 3, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-13", "exp": 726, "ab": 153, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-17", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-18", "exp": 3, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-20", "exp": 2, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-21", "exp": 3, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-24", "exp": 5, "ab": 3, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-25", "exp": 6, "ab": 4, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-26", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-08-31", "exp": 3, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-09-01", "exp": 3, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small A", "canal": "email", "data": "2026-09-02", "exp": 2, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-13", "exp": 390, "ab": 101, "cl": 4, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-14", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-17", "exp": 3, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-18", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-19", "exp": 2, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-20", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-21", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-08-24", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-09-01", "exp": 1, "ab": 0, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Email Start e Small B", "canal": "email", "data": "2026-09-02", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-13", "exp": 56, "ab": 54, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-24", "exp": 214, "ab": 205, "cl": 5, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-25", "exp": 116, "ab": 107, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-26", "exp": 39, "ab": 32, "cl": 2, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-27", "exp": 27, "ab": 25, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-28", "exp": 17, "ab": 17, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-29", "exp": 3, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-30", "exp": 1, "ab": 1, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-08-31", "exp": 19, "ab": 18, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-09-01", "exp": 17, "ab": 15, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-09-02", "exp": 20, "ab": 20, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-09-03", "exp": 5, "ab": 5, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small A", "canal": "post", "data": "2026-09-04", "exp": 5, "ab": 5, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-13", "exp": 28, "ab": 27, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-24", "exp": 85, "ab": 79, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-25", "exp": 43, "ab": 42, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-26", "exp": 15, "ab": 15, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-27", "exp": 12, "ab": 11, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-28", "exp": 6, "ab": 5, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-29", "exp": 2, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-08-31", "exp": 18, "ab": 18, "cl": 1, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-09-01", "exp": 12, "ab": 10, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-09-02", "exp": 10, "ab": 10, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-09-03", "exp": 2, "ab": 2, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Propostas e Documentos", "variante": "Post Start e Small B", "canal": "post", "data": "2026-09-04", "exp": 3, "ab": 3, "cl": 0, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-02", "exp": 1016, "ab": 0, "cl": 130, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-03", "exp": 279, "ab": 0, "cl": 21, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-04", "exp": 13, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-05", "exp": 3, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-06", "exp": 175, "ab": 0, "cl": 10, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-07", "exp": 77, "ab": 0, "cl": 4, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner A", "canal": "banner", "data": "2026-07-08", "exp": 55, "ab": 0, "cl": 1, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-02", "exp": 1113, "ab": 0, "cl": 139, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-03", "exp": 317, "ab": 0, "cl": 25, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-04", "exp": 5, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-05", "exp": 5, "ab": 0, "cl": 0, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-06", "exp": 163, "ab": 0, "cl": 23, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-07", "exp": 83, "ab": 0, "cl": 4, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Banner B", "canal": "banner", "data": "2026-07-08", "exp": 63, "ab": 0, "cl": 3, "carteira": "Middle-Large"}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data": "2026-07-06", "exp": 205, "ab": 0, "cl": 38, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data": "2026-07-07", "exp": 689, "ab": 0, "cl": 101, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data": "2026-07-08", "exp": 141, "ab": 0, "cl": 9, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data": "2026-07-09", "exp": 54, "ab": 0, "cl": 6, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner A", "canal": "banner", "data": "2026-07-10", "exp": 52, "ab": 0, "cl": 7, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data": "2026-07-06", "exp": 165, "ab": 0, "cl": 18, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data": "2026-07-07", "exp": 471, "ab": 0, "cl": 50, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data": "2026-07-08", "exp": 117, "ab": 0, "cl": 9, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data": "2026-07-09", "exp": 43, "ab": 0, "cl": 3, "carteira": "Start e Small"}, {"campanha": "Radar Ploomes", "variante": "Small Banner B", "canal": "banner", "data": "2026-07-10", "exp": 44, "ab": 0, "cl": 0, "carteira": "Start e Small"}]};
 
 const CAMP_COLOR_VAR = {
   "Radar Ploomes": "--c-radar",
@@ -463,7 +591,7 @@ function renderKPI(r) {
 // ---------- Pillars: as 3 perguntas do relatório ----------
 (function renderPillars(){
   const el = document.getElementById("pillar-grid");
-  const campsComLead = DATA.metas.filter(m => (m.resultados||[]).some(r => r.leads_gerados !== null)).length;
+  const campsComLead = DATA.metas.filter(m => (m.resultados||[]).some(r => r.leads_valor !== null)).length;
   const campsComReceita = DATA.metas.filter(m => (m.resultados||[]).some(r => r.receita_realizada !== null)).length;
   const totalCamps = DATA.metas.length;
   const pillars = [
@@ -474,12 +602,12 @@ function renderKPI(r) {
     },
     {
       num: "2 &middot; Conversão", q: "A campanha gerou leads?",
-      a: `Parcial: ${campsComLead} de ${totalCamps} campanhas já têm leads reportados por pelo menos uma carteira (Tiago ou Ângela), mas nem toda carteira preencheu ainda. Ver detalhamento por carteira na seção Metas.`,
+      a: `Parcial: ${campsComLead} de ${totalCamps} campanhas já têm valor potencial de leads reportado por pelo menos uma carteira (Tiago ou Ângela), mas nem toda carteira preencheu ainda. Ver o detalhamento por carteira e a conversão por AGM na seção logo abaixo.`,
       badge: '<span class="badge badge-success">Parcial</span>',
     },
     {
       num: "3 &middot; Receita", q: "A campanha gerou receita?",
-      a: `Parcial: ${campsComReceita} de ${totalCamps} campanhas já têm receita fechada reportada por pelo menos uma carteira. Números ainda incompletos &mdash; ver seção Metas para o detalhamento e o que falta.`,
+      a: `Parcial: ${campsComReceita} de ${totalCamps} campanhas já têm receita fechada reportada por pelo menos uma carteira. Números ainda incompletos &mdash; ver a seção logo abaixo para o detalhamento e o que falta.`,
       badge: '<span class="badge badge-success">Parcial</span>',
     },
   ];
@@ -516,6 +644,75 @@ function renderKPI(r) {
   `;
 })();
 
+// ---------- Filtros por carteira e campanha (funil, ranking, evolução, tabela) ----------
+const CARTEIRAS = ["Middle-Large", "Start e Small"];
+const SUM = (arr, k) => arr.reduce((s, r) => s + (r[k] || 0), 0);
+function filtrar(rows, f) {
+  return rows.filter(r =>
+    (!f.carteira || f.carteira === "__all__" || r.carteira === f.carteira) &&
+    (!f.campanha || f.campanha === "__all__" || r.campanha === f.campanha));
+}
+// Reagrega linhas de variante no formato que o funil e a evolução esperam (taxas em %, sem arredondar)
+function agregar(rows) {
+  const out = {email: null, banner: null, post: null};
+  const em = rows.filter(r => r.canal === "email");
+  const bn = rows.filter(r => r.canal === "banner");
+  const ps = rows.filter(r => r.canal === "post");
+  let exp = 0, cli = 0;
+  if (em.length) {
+    const env = SUM(em, "enviados"), ab = SUM(em, "aberturas"), cl = SUM(em, "cliques");
+    out.email = {enviados: env, aberturas: ab, cliques: cl, taxa_abertura: ab / env * 100, ctr: cl / env * 100, ctor: ab ? cl / ab * 100 : 0};
+    exp += env; cli += cl;
+  }
+  if (bn.length) {
+    const t = SUM(bn, "telas"), cl = SUM(bn, "cliques_banner");
+    out.banner = {telas: t, cliques: cl, taxa_clique: cl / t * 100};
+    exp += t; cli += cl;
+  }
+  if (ps.length) {
+    const t = SUM(ps, "telas"), ab = SUM(ps, "aberturas"), cl = SUM(ps, "cliques_banner");
+    out.post = {telas: t, aberturas: ab, cliques: cl, taxa_visualizacao: ab / t * 100, taxa_clique: cl / t * 100};
+    exp += t; cli += cl;
+  }
+  out.exposicoes = exp; out.cliques_totais = cli;
+  out.engajamento_geral = exp ? cli / exp * 100 : 0;
+  out.data_inicio = rows.map(r => r.data_inicio).sort()[0];
+  out.data_fim = rows.map(r => r.data_fim).sort().slice(-1)[0];
+  return out;
+}
+function emptyMsg(f) {
+  const c = f.campanha && f.campanha !== "__all__" ? f.campanha : null;
+  const cart = f.carteira && f.carteira !== "__all__" ? f.carteira : null;
+  if (c && cart) {
+    const semCart = DATA.tabela.filter(r => r.campanha === c).every(r => !r.carteira);
+    return semCart
+      ? `${c} não tem carteira identificada nos dados de divulgação, então não entra no filtro ${cart}.`
+      : `${c} não foi divulgada para a carteira ${cart}.`;
+  }
+  return "Nenhum dado para o filtro selecionado.";
+}
+function carteiraNote(id, f) {
+  const el = document.getElementById(id);
+  if (!f.carteira || f.carteira === "__all__") { el.style.display = "none"; el.innerHTML = ""; return; }
+  const sem = DATA.campanhas.filter(c => DATA.tabela.filter(r => r.campanha === c.nome).every(r => !r.carteira)).map(c => c.nome);
+  el.style.display = "block";
+  el.innerHTML = `Carteira ${f.carteira}: segmento de cada variante; na Integração Serasa, definida pelo remetente (Tiago = Middle-Large, Ângela = Start e Small); no Radar Ploomes, variantes "Small" = Start e Small e as demais = Middle-Large.`
+    + (sem.length ? ` Ficam de fora deste filtro: ${sem.join(", ")}, cujos dados de divulgação não identificam a carteira.` : "");
+}
+function mountFilters(containerId, opts, onChange) {
+  const box = document.getElementById(containerId);
+  const state = {carteira: "__all__", campanha: "__all__"};
+  const sel = (key, label, options) =>
+    `<div class="filter-item"><label for="${containerId}-${key}">${label}</label><select class="filter-select" id="${containerId}-${key}" data-key="${key}">${options}</select></div>`;
+  let html = sel("carteira", "Carteira:", `<option value="__all__">Todas as carteiras</option>` + CARTEIRAS.map(c => `<option value="${c}">${c}</option>`).join(""));
+  if (opts.campanha) {
+    html += sel("campanha", "Campanha:", `<option value="__all__">Todas as campanhas</option>` + DATA.campanhas.map(c => `<option value="${esc(c.nome)}">${esc(c.nome)}</option>`).join(""));
+  }
+  box.innerHTML = html;
+  box.querySelectorAll("select").forEach(s => s.addEventListener("change", () => { state[s.dataset.key] = s.value; onChange(state); }));
+  onChange(state);
+}
+
 // ---------- Funnels ----------
 function funnelStages(camp) {
   const groups = [];
@@ -544,11 +741,13 @@ function funnelStages(camp) {
 const ORDINAL_3 = ["var(--seq-250)", "var(--seq-400)", "var(--seq-600)"];
 const ORDINAL_2 = ["var(--seq-300)", "var(--seq-550)"];
 
-(function renderFunnels(){
+function renderFunnels(f) {
   const el = document.getElementById("funnel-grid");
-  el.innerHTML = DATA.campanhas.map(camp => {
-    const groups = funnelStages(camp);
-    const groupsHtml = groups.map(g => {
+  const cards = DATA.campanhas.map(base => {
+    const rows = filtrar(DATA.tabela, {carteira: f.carteira, campanha: base.nome});
+    if (!rows.length) return "";
+    const camp = Object.assign(agregar(rows), {nome: base.nome, em_andamento: base.em_andamento, variantes_n: rows.length});
+    const groupsHtml = funnelStages(camp).map(g => {
       const maxV = g.stages[0].value || 1;
       const ramp = g.stages.length === 3 ? ORDINAL_3 : ORDINAL_2;
       const stagesHtml = g.stages.map((s, i) => {
@@ -569,17 +768,21 @@ const ORDINAL_2 = ["var(--seq-300)", "var(--seq-550)"];
       </div>`;
     }).join("");
     const andamentoBadge = camp.em_andamento ? '<span class="badge badge-info">Em andamento</span>' : '';
+    const cartTxt = f.carteira && f.carteira !== "__all__" ? ` &middot; ${f.carteira}` : "";
     return `<div class="funnel-card">
       <div class="camp-title-row"><span class="camp-title">${esc(camp.nome)}</span>${andamentoBadge}</div>
-      <div class="camp-meta">${fmtDateShort(camp.data_inicio)} &ndash; ${fmtDateShort(camp.data_fim)} &middot; ${camp.variantes_n} variante(s)</div>
+      <div class="camp-meta">${fmtDateShort(camp.data_inicio)} &ndash; ${fmtDateShort(camp.data_fim)} &middot; ${camp.variantes_n} variante(s)${cartTxt}</div>
       ${groupsHtml}
     </div>`;
   }).join("");
-})();
+  el.innerHTML = cards || `<div class="empty-note">${emptyMsg(f)}</div>`;
+}
+mountFilters("funil-filters", {campanha: false}, f => { carteiraNote("funil-note", f); renderFunnels(f); });
 
 // ---------- Rankings ----------
 function renderRankBars(containerId, items, valueKey) {
   const el = document.getElementById(containerId);
+  if (!items.length) { el.innerHTML = '<div class="empty-note">Sem variantes deste canal no filtro selecionado.</div>'; return; }
   const maxV = Math.max(...items.map(i => i[valueKey] || 0), 0.01);
   el.innerHTML = items.map(it => {
     const w = Math.max(2, Math.round(((it[valueKey]||0) / maxV) * 100));
@@ -592,73 +795,148 @@ function renderRankBars(containerId, items, valueKey) {
     </div>`;
   }).join("");
 }
-renderRankBars("rank-ctor", DATA.ranking_ctor, "ctor");
-renderRankBars("rank-banner", DATA.ranking_banner, "taxa_clique");
-renderRankBars("rank-post", DATA.ranking_post, "taxa_clique");
-
-(function renderLegend(){
-  const el = document.getElementById("legend-campanhas");
-  el.innerHTML = DATA.campanhas.map(c => `
+function renderRanking(f) {
+  const rows = filtrar(DATA.tabela, f);
+  const byDesc = k => (a, b) => b[k] - a[k];
+  renderRankBars("rank-ctor", rows.filter(r => r.canal === "email" && r.aberturas)
+    .map(r => ({campanha: r.campanha, variante: r.variante, ctor: r.cliques / r.aberturas * 100})).sort(byDesc("ctor")), "ctor");
+  renderRankBars("rank-banner", rows.filter(r => r.canal === "banner" && r.telas)
+    .map(r => ({campanha: r.campanha, variante: r.variante, taxa_clique: r.cliques_banner / r.telas * 100})).sort(byDesc("taxa_clique")), "taxa_clique");
+  renderRankBars("rank-post", rows.filter(r => r.canal === "post" && r.telas)
+    .map(r => ({campanha: r.campanha, variante: r.variante, taxa_clique: r.cliques_banner / r.telas * 100})).sort(byDesc("taxa_clique")), "taxa_clique");
+  const presentes = DATA.campanhas.filter(c => rows.some(r => r.campanha === c.nome));
+  document.getElementById("legend-campanhas").innerHTML = presentes.map(c => `
     <div class="legend-item"><span class="legend-dot" style="background:${campColor(c.nome)}"></span>${esc(c.nome)}</div>
   `).join("");
-})();
+  if (!rows.length) document.getElementById("rank-ctor").innerHTML = `<div class="empty-note">${emptyMsg(f)}</div>`;
+}
+mountFilters("rank-filters", {campanha: true}, f => { carteiraNote("rank-note", f); renderRanking(f); });
 
 // ---------- Evolution line chart ----------
-(function renderEvolution(){
-  const pts = DATA.campanhas.map(c => ({label: c.nome, value: c.engajamento_geral, date: c.data_inicio}));
+function evoCampaignsSvg(pts) {
   const W = 1000, H = 240, padL = 46, padR = 24, padT = 26, padB = 58;
-  const maxV = Math.max(...pts.map(p => p.value)) * 1.25;
+  const maxV = Math.max(...pts.map(p => p.value), 0.5) * 1.25;
   const stepX = (W - padL - padR) / Math.max(1, pts.length - 1);
-  const x = i => padL + i * stepX;
+  const x = i => pts.length === 1 ? W / 2 : padL + i * stepX;
   const y = v => padT + (H - padT - padB) * (1 - v / maxV);
-
   let gridLines = "";
-  const ticks = 4;
-  for (let t = 0; t <= ticks; t++) {
-    const v = (maxV / ticks) * t;
-    const yy = y(v);
+  for (let t = 0; t <= 4; t++) {
+    const v = (maxV / 4) * t, yy = y(v);
     gridLines += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="var(--gridline)" stroke-width="1"/>`;
     gridLines += `<text x="${padL-8}" y="${yy+4}" text-anchor="end" font-size="10.5" fill="var(--fg-3)">${v.toFixed(1)}%</text>`;
   }
-
-  const linePts = pts.map((p,i) => `${x(i)},${y(p.value)}`).join(" ");
-  const dots = pts.map((p,i) => `
-    <circle cx="${x(i)}" cy="${y(p.value)}" r="4.5" fill="var(--seq-400)" stroke="var(--bg-surface)" stroke-width="2"/>
+  const linePts = pts.map((p, i) => `${x(i)},${y(p.value)}`).join(" ");
+  const dots = pts.map((p, i) => `
+    <circle cx="${x(i)}" cy="${y(p.value)}" r="4.5" fill="var(--seq-400)" stroke="var(--bg-surface)" stroke-width="2"><title>${esc(p.label)}: ${p.value.toFixed(2)}% (${fmtInt(p.cl)} cliques em ${fmtInt(p.exp)} exposições)</title></circle>
     <text x="${x(i)}" y="${y(p.value)-12}" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--fg-1)">${p.value.toFixed(2)}%</text>
     <text x="${x(i)}" y="${H-padB+18}" text-anchor="middle" font-size="10.5" fill="var(--fg-2)">${esc(p.label)}</text>
     <text x="${x(i)}" y="${H-padB+32}" text-anchor="middle" font-size="10" fill="var(--fg-3)">${fmtDateShort(p.date)}</text>
   `).join("");
-
-  document.getElementById("evo-chart").innerHTML = `
-    <svg viewBox="0 0 ${W} ${H}" width="100%" style="overflow:visible; font-family:inherit;">
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="overflow:visible; font-family:inherit;">
       ${gridLines}
       <polyline points="${linePts}" fill="none" stroke="var(--seq-400)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
       ${dots}
-    </svg>
-    <div style="display:flex; gap:24px; justify-content:center; margin: 4px 0 14px; flex-wrap:wrap;">
-      ${pts.map((p,i) => i===0 ? "" : `<div style="font-size:11.5px; color:var(--fg-2); display:flex; align-items:center; gap:6px;">${esc(p.label)} vs. anterior ${deltaBadge(p.value, pts[i-1].value)}</div>`).join("")}
-    </div>
-  `;
-})();
+    </svg>`;
+}
+function evoDailySvg(rows) {
+  const byDay = {};
+  rows.forEach(r => { const d = byDay[r.data] || (byDay[r.data] = {exp: 0, cl: 0}); d.exp += r.exp; d.cl += r.cl; });
+  const dates = Object.keys(byDay).sort();
+  if (!dates.length) return "";
+  const DAY = 86400000;
+  const day0 = new Date(dates[0] + "T00:00:00Z").getTime();
+  const idxOf = d => Math.round((new Date(d + "T00:00:00Z").getTime() - day0) / DAY);
+  const n = idxOf(dates[dates.length - 1]) + 1;
+  const W = 1000, padL = 46, padR = 24, lineTop = 28, lineH = 180, gap = 40, barH = 56;
+  const H = lineTop + lineH + gap + barH + 40;
+  const x = i => n === 1 ? W / 2 : padL + i * (W - padL - padR) / (n - 1);
+  const pts = dates.map(d => ({d, i: idxOf(d), exp: byDay[d].exp, cl: byDay[d].cl, v: byDay[d].cl / byDay[d].exp * 100}));
+  const maxV = Math.max(...pts.map(p => p.v), 0.5) * 1.2;
+  const y = v => lineTop + lineH * (1 - v / maxV);
+  const maxE = Math.max(...pts.map(p => p.exp));
+  const barTop = lineTop + lineH + gap;
+  const bw = Math.max(3, Math.min(24, (W - padL - padR) / Math.max(n, 1) * 0.6));
+  let grid = "";
+  for (let t = 0; t <= 4; t++) {
+    const v = (maxV / 4) * t, yy = y(v);
+    grid += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="var(--gridline)" stroke-width="1"/>`;
+    grid += `<text x="${padL-8}" y="${yy+4}" text-anchor="end" font-size="10.5" fill="var(--fg-3)">${v.toFixed(1)}%</text>`;
+  }
+  const maxP = pts.reduce((m, p) => p.v > m.v ? p : m, pts[0]);
+  const showLabel = p => pts.length <= 12 || p === maxP || p === pts[pts.length - 1];
+  const line = pts.map(p => `${x(p.i)},${y(p.v)}`).join(" ");
+  const dots = pts.map(p => {
+    const low = p.exp < 30;
+    return `<circle cx="${x(p.i)}" cy="${y(p.v)}" r="4.5" fill="${low ? 'var(--bg-surface)' : 'var(--seq-400)'}" stroke="${low ? 'var(--seq-400)' : 'var(--bg-surface)'}" stroke-width="2"><title>${fmtDateShort(p.d)}: ${p.v.toFixed(2)}% (${fmtInt(p.cl)} cliques em ${fmtInt(p.exp)} exposições)</title></circle>`
+      + (showLabel(p) ? `<text x="${x(p.i)}" y="${y(p.v)-11}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--fg-1)">${p.v.toFixed(2)}%</text>` : "");
+  }).join("");
+  const bars = pts.map(p => {
+    const h = Math.max(1.5, barH * p.exp / maxE);
+    return `<rect x="${x(p.i) - bw/2}" y="${barTop + barH - h}" width="${bw}" height="${h}" rx="2" fill="var(--seq-250)"><title>${fmtDateShort(p.d)}: ${fmtInt(p.exp)} exposições</title></rect>`;
+  }).join("");
+  const k = Math.max(1, Math.ceil(n / 10));
+  let xl = "";
+  for (let i = 0; i < n; i += k) {
+    const iso = new Date(day0 + i * DAY).toISOString().slice(0, 10);
+    xl += `<text x="${x(i)}" y="${barTop + barH + 18}" text-anchor="middle" font-size="10.5" fill="var(--fg-3)">${fmtDateShort(iso)}</text>`;
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="overflow:visible; font-family:inherit;">
+      <text x="${padL}" y="14" font-size="11" font-weight="700" fill="var(--fg-2)">Engajamento do dia (cliques &divide; exposições)</text>
+      ${grid}
+      <polyline points="${line}" fill="none" stroke="var(--seq-400)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${dots}
+      <text x="${padL}" y="${barTop - 10}" font-size="11" font-weight="700" fill="var(--fg-2)">Exposições por dia (máx. ${fmtInt(maxE)})</text>
+      <line x1="${padL}" y1="${barTop + barH}" x2="${W-padR}" y2="${barTop + barH}" stroke="var(--gridline)" stroke-width="1"/>
+      ${bars}
+      ${xl}
+    </svg>`;
+}
+function renderEvolution(f) {
+  const el = document.getElementById("evo-chart");
+  const note = document.getElementById("evo-note");
+  const rows = filtrar(DATA.tabela, f);
+  if (!rows.length) { el.innerHTML = `<div class="empty-note">${emptyMsg(f)}</div>`; note.innerHTML = ""; return; }
+  if (!f.campanha || f.campanha === "__all__") {
+    const pts = DATA.campanhas.map(c => {
+      const rs = rows.filter(r => r.campanha === c.nome);
+      if (!rs.length) return null;
+      const a = agregar(rs);
+      return {label: c.nome, value: a.engajamento_geral, date: a.data_inicio, cl: a.cliques_totais, exp: a.exposicoes};
+    }).filter(Boolean).sort((a, b) => a.date.localeCompare(b.date));
+    el.innerHTML = evoCampaignsSvg(pts) + `
+      <div style="display:flex; gap:24px; justify-content:center; margin: 4px 0 14px; flex-wrap:wrap;">
+        ${pts.map((p, i) => i === 0 ? "" : `<div style="font-size:11.5px; color:var(--fg-2); display:flex; align-items:center; gap:6px;">${esc(p.label)} vs. anterior ${deltaBadge(p.value, pts[i-1].value)}</div>`).join("")}
+      </div>`;
+    note.innerHTML = "Uma campanha por ponto, em ordem cronológica. Escolha uma campanha no filtro para ver a evolução dia a dia.";
+  } else {
+    const sr = filtrar(DATA.serie, f);
+    el.innerHTML = evoDailySvg(sr);
+    note.innerHTML = "Cada ponto reúne os envios/exibições feitos no dia e os cliques que eles geraram. Pontos vazados têm menos de 30 exposições no dia, então a taxa oscila mais. As barras mostram o volume diário.";
+  }
+}
+mountFilters("evo-filters", {campanha: true}, f => { carteiraNote("evo-fnote", f); renderEvolution(f); });
 
 // ---------- Detail table ----------
-(function renderTable(){
-  const cols = [
-    {k: "campanha", label: "Campanha"},
-    {k: "variante", label: "Variante"},
-    {k: "canal", label: "Canal"},
-    {k: "periodo", label: "Período"},
-    {k: "enviados", label: "Enviados"},
-    {k: "aberturas", label: "Aberturas"},
-    {k: "cliques", label: "Cliques"},
-    {k: "telas", label: "Telas (impressões)"},
-    {k: "cliques_banner", label: "Cliques banner/post"},
-    {k: "taxas", label: "Taxas"},
-    {k: "problemas", label: "Problemas"},
-  ];
-  document.querySelector("#detail-table thead").innerHTML = "<tr>" + cols.map(c=>`<th>${c.label}</th>`).join("") + "</tr>";
-
-  const rows = DATA.tabela.map(r => {
+const TABLE_COLS = [
+  {k: "campanha", label: "Campanha"},
+  {k: "variante", label: "Variante"},
+  {k: "carteira", label: "Carteira"},
+  {k: "canal", label: "Canal"},
+  {k: "periodo", label: "Período"},
+  {k: "enviados", label: "Enviados"},
+  {k: "aberturas", label: "Aberturas"},
+  {k: "cliques", label: "Cliques"},
+  {k: "telas", label: "Telas (impressões)"},
+  {k: "cliques_banner", label: "Cliques banner/post"},
+  {k: "taxas", label: "Taxas"},
+  {k: "problemas", label: "Problemas"},
+];
+document.querySelector("#detail-table thead").innerHTML = "<tr>" + TABLE_COLS.map(c => `<th>${c.label}</th>`).join("") + "</tr>";
+function renderTable(f) {
+  const all = DATA.tabela;
+  const list = filtrar(all, f);
+  const dash = '<span class="num-dim">&ndash;</span>';
+  const rows = list.map(r => {
     let taxas = "&ndash;";
     if (r.canal === "email") {
       taxas = `Abertura ${fmtPct(r.taxa_abertura)} &middot; CTR ${fmtPct(r.ctr)} &middot; CTOR ${fmtPct(r.ctor)}`;
@@ -667,77 +945,218 @@ renderRankBars("rank-post", DATA.ranking_post, "taxa_clique");
     } else if (r.canal === "post") {
       taxas = `Visualização ${fmtPct(r.taxa_visualizacao)} &middot; Clique ${fmtPct(r.taxa_clique)}`;
     }
-    const pillClass = "canal-" + r.canal;
     return `<tr>
       <td class="camp-cell">${esc(r.campanha)}</td>
       <td>${esc(r.variante)}</td>
-      <td><span class="canal-pill ${pillClass}">${esc(r.canal)}</span></td>
+      <td>${r.carteira ? esc(r.carteira) : '<span class="num-dim">não identificada</span>'}</td>
+      <td><span class="canal-pill canal-${r.canal}">${esc(r.canal)}</span></td>
       <td>${fmtDateShort(r.data_inicio)} &ndash; ${fmtDateShort(r.data_fim)}</td>
-      <td>${r.enviados===null ? '<span class="num-dim">&ndash;</span>' : fmtInt(r.enviados)}</td>
-      <td>${r.aberturas===null ? '<span class="num-dim">&ndash;</span>' : fmtInt(r.aberturas)}</td>
-      <td>${r.cliques===null ? '<span class="num-dim">&ndash;</span>' : fmtInt(r.cliques)}</td>
-      <td>${r.telas===null ? '<span class="num-dim">&ndash;</span>' : fmtInt(r.telas)}</td>
-      <td>${r.cliques_banner===null ? '<span class="num-dim">&ndash;</span>' : fmtInt(r.cliques_banner)}</td>
+      <td>${r.enviados === null ? dash : fmtInt(r.enviados)}</td>
+      <td>${r.aberturas === null ? dash : fmtInt(r.aberturas)}</td>
+      <td>${r.cliques === null ? dash : fmtInt(r.cliques)}</td>
+      <td>${r.telas === null ? dash : fmtInt(r.telas)}</td>
+      <td>${r.cliques_banner === null ? dash : fmtInt(r.cliques_banner)}</td>
       <td>${taxas}</td>
       <td>${r.problemas ? fmtInt(r.problemas) : '<span class="num-dim">0</span>'}</td>
     </tr>`;
   }).join("");
-  document.querySelector("#detail-table tbody").innerHTML = rows;
+  document.querySelector("#detail-table tbody").innerHTML = rows ||
+    `<tr><td colspan="${TABLE_COLS.length}"><div class="empty-note" style="margin:6px 0">${emptyMsg(f)}</div></td></tr>`;
+  document.getElementById("table-count").textContent = `${list.length} de ${all.length} variantes`;
+}
+mountFilters("tab-filters", {campanha: true}, f => { carteiraNote("tab-note", f); renderTable(f); });
+
+// ---------- Metas e resultados financeiros ----------
+function parseCarteira(c) {
+  const i = c.indexOf("(");
+  if (i < 0) return {seg: c, agm: c};
+  return {seg: c.slice(0, i).trim(), agm: c.slice(i + 1).replace(")", "").trim()};
+}
+function fmtBRL0(n) { return "R$ " + Math.round(n).toLocaleString("pt-BR"); }
+function pctTxt(v, d) { return (v * 100).toLocaleString("pt-BR", {minimumFractionDigits: d === undefined ? 1 : d, maximumFractionDigits: d === undefined ? 1 : d}) + "%"; }
+
+// Linhas planas campanha x carteira (só carteiras às quais a campanha se aplica)
+const MR_ROWS = DATA.metas.flatMap(m => (m.resultados || []).filter(r => !r.nao_se_aplica).map(r => {
+  const p = parseCarteira(r.carteira);
+  return {campanha: m.campanha, meta: m.meta, seg: p.seg, agm: p.agm, pot: r.leads_valor, rec: r.receita_realizada, qtd: r.leads_qtd};
+}));
+// "Pares completos": carteiras com potencial E receita informados (só nelas a conversão é calculável)
+const MR_PARES = MR_ROWS.filter(r => r.pot !== null && r.rec !== null && r.pot > 0);
+const MR_SUM = (arr, k) => arr.reduce((s, r) => s + r[k], 0);
+const MR_CONV = MR_PARES.length ? MR_SUM(MR_PARES, "rec") / MR_SUM(MR_PARES, "pot") : null;
+const MR_RATES = MR_PARES.map(r => r.rec / r.pot);
+const MR_MIN = MR_RATES.length ? Math.min.apply(null, MR_RATES) : null;
+const MR_MAX = MR_RATES.length ? Math.max.apply(null, MR_RATES) : null;
+
+(function renderPremissa(){
+  const prem = DATA.premissas_leads;
+  document.getElementById("premissa-leads-txt").innerHTML =
+    `${(prem.otimista*100).toLocaleString("pt-BR")}% (otimista) a ${(prem.realista*100).toLocaleString("pt-BR")}% (realista)`;
 })();
 
-// ---------- Revenue + leads projection section ----------
+(function renderPanorama(){
+  const potRows = MR_ROWS.filter(r => r.pot !== null);
+  const recRows = MR_ROWS.filter(r => r.rec !== null);
+  const potTotal = MR_SUM(potRows, "pot");
+  const recTotal = MR_SUM(recRows, "rec");
+  const metaTotal = DATA.metas.reduce((s, m) => s + m.meta, 0);
+  const nCampPot = new Set(potRows.map(r => r.campanha)).size;
+  const nCampRec = new Set(recRows.map(r => r.campanha)).size;
+  const nCamp = DATA.metas.length;
+
+  document.getElementById("mr-tiles").innerHTML = `
+    <div class="mr-tile">
+      <div class="k">Receita fechada</div>
+      <div class="v">${fmtBRL(recTotal)}</div>
+      <div class="s">${pctTxt(recTotal / metaTotal)} da soma das metas (${fmtBRL0(metaTotal)}). Reportado em ${nCampRec} de ${nCamp} campanhas &mdash; parcial.</div>
+    </div>
+    <div class="mr-tile">
+      <div class="k">Leads gerados (valor potencial)</div>
+      <div class="v">${fmtBRL(potTotal)}</div>
+      <div class="s">Reportado em ${nCampPot} de ${nCamp} campanhas &mdash; parcial. &Eacute; valor potencial em R$, não quantidade de leads.</div>
+    </div>
+    <div class="mr-tile hero">
+      <div class="k">Conversão em caixa (receita &divide; potencial)</div>
+      <div class="v">${MR_CONV === null ? "&ndash;" : pctTxt(MR_CONV)}</div>
+      <div class="s">${MR_CONV === null ? "Ainda sem carteira com potencial e receita informados." : `A cada R$ 100 de potencial gerado, cerca de R$ ${(MR_CONV*100).toLocaleString("pt-BR", {maximumFractionDigits: 1})} viraram receita. Base: ${MR_PARES.length} campanhas; varia de ${pctTxt(MR_MIN)} a ${pctTxt(MR_MAX)}.`}</div>
+    </div>`;
+
+  // ---- Performance por AGM ----
+  const agms = [];
+  MR_ROWS.forEach(r => { if (agms.indexOf(r.agm) < 0) agms.push(r.agm); });
+  const maxRate = MR_MAX || 1;
+  const small = MR_PARES.filter(r => r.qtd !== null && r.qtd < 20);
+  const smallNote = small.length ? ' Atenção: ' + small.map(r => r.campanha + ' (' + pctTxt(r.rec / r.pot) + ')').join(', ') + ' vem de apenas ' + small.map(r => r.qtd).join(', ') + ' leads, então pesa pouco como referência.' : '';
+  const agmHtml = agms.map(a => {
+    const rows = MR_ROWS.filter(r => r.agm === a);
+    const seg = rows[0].seg;
+    const pares = MR_PARES.filter(r => r.agm === a);
+    if (!pares.length) {
+      const potA = rows.filter(r => r.pot !== null);
+      const det = potA.length
+        ? `Reportou valor potencial em ${potA.length} campanha(s) (${fmtBRL0(MR_SUM(potA, "pot"))}), mas ainda nenhuma receita fechada &mdash; conversão não calculável.`
+        : "Ainda não reportou resultados.";
+      return `<div class="agm-row"><div class="nm">${a}<small>${seg}</small></div><div class="cv dim">sem dados completos</div><div class="dt">${det}</div></div>`;
+    }
+    const pot = MR_SUM(pares, "pot"), rec = MR_SUM(pares, "rec");
+    const bars = pares.map(r => `
+      <div class="mini-row" title="${r.campanha}: ${fmtBRL(r.rec)} de ${fmtBRL(r.pot)}">
+        <span class="ml">${r.campanha}</span>
+        <span class="mt"><span class="mf" style="display:block;width:${(r.rec / r.pot) / maxRate * 100}%"></span></span>
+        <span class="mv">${pctTxt(r.rec / r.pot)}</span>
+      </div>`).join("");
+    return `<div class="agm-row"><div class="nm">${a}<small>${seg}</small></div><div class="cv">${pctTxt(rec / pot)}</div>
+      <div class="dt">${fmtBRL0(rec)} fechados sobre ${fmtBRL0(pot)} de potencial em ${pares.length} campanha(s) com dados completos.</div>
+      <div class="mini-bars" style="grid-column:1/-1">${bars}</div></div>`;
+  }).join("");
+  document.getElementById("mr-agm").innerHTML = `
+    <h3>Performance por AGM</h3>
+    <p class="psub">Quanto do valor potencial de leads cada carteira converteu em receita fechada.</p>
+    ${agmHtml}
+    <div class="pnote">Só entram campanhas em que a carteira informou potencial e receita. Leads ainda em negociação podem fechar depois, então estas taxas tendem a subir.${smallNote}</div>`;
+
+  // ---- Calibragem ----
+  document.getElementById("mr-calc").innerHTML = `
+    <h3>Calibrar a próxima meta</h3>
+    <p class="psub">Com a conversão observada, quanto de lead (valor potencial) é preciso gerar para bater uma meta?</p>
+    <div class="calc-field">
+      <label for="calc-meta">Meta financeira</label>
+      <span class="inp"><span>R$</span><input id="calc-meta" type="text" inputmode="numeric" value="10.000" aria-label="Meta financeira da próxima campanha em reais"></span>
+    </div>
+    <div class="calc-out" id="calc-out"></div>
+    <div class="pnote">Taxa em R$ (receita &divide; valor potencial), diferente da conversão de 2% a 5% usada nos leads necessários em unidades. Base ainda pequena (${MR_PARES.length} campanhas, só a carteira Middle-Large): use como referência e recalibre a cada campanha nova.</div>`;
+  const inp = document.getElementById("calc-meta");
+  function calc() {
+    const meta = parseInt((inp.value || "").replace(/[^0-9]/g, ""), 10) || 0;
+    const out = document.getElementById("calc-out");
+    if (MR_CONV === null || !meta) { out.innerHTML = '<div class="calc-box"><div class="cs">Informe uma meta e aguarde dados completos.</div></div>'; return; }
+    out.innerHTML = `
+      <div class="calc-box"><div class="ck">Cenário conservador</div><div class="cv">${fmtBRL0(meta / MR_MIN)}</div><div class="cs">de potencial, com a menor taxa observada (${pctTxt(MR_MIN)})</div></div>
+      <div class="calc-box"><div class="ck">Cenário de referência</div><div class="cv">${fmtBRL0(meta / MR_CONV)}</div><div class="cs">de potencial, com a taxa agregada (${pctTxt(MR_CONV)})</div></div>`;
+  }
+  inp.addEventListener("input", calc);
+  inp.addEventListener("blur", () => { const n = parseInt((inp.value || "").replace(/[^0-9]/g, ""), 10) || 0; inp.value = n ? n.toLocaleString("pt-BR") : ""; calc(); });
+  calc();
+})();
+
 (function renderRevenue(){
   const prem = DATA.premissas_leads;
-  document.getElementById("premissa-leads-txt").textContent =
-    `${(prem.realista*100).toLocaleString("pt-BR")}% realista a ${(prem.otimista*100).toLocaleString("pt-BR")}% otimista (lead &rarr; venda fechada)`;
-
   document.getElementById("revenue-grid").innerHTML = DATA.metas.map(m => {
     const pending = m.status.startsWith("Aguardando");
     const andamento = m.status.startsWith("Campanha em andamento");
     const parcial = m.status.includes("parcialmente coletada");
     const tone = pending ? 'badge-neutral' : (andamento ? 'badge-info' : (parcial ? 'badge-success' : 'badge-warning'));
-    const vendasNecessarias = Math.ceil(m.meta / m.ticket_medio);
-    const leadsOtimista = Math.ceil(vendasNecessarias / prem.otimista);
-    const leadsRealista = Math.ceil(vendasNecessarias / prem.realista);
+    const vendas = Math.ceil(m.meta / m.ticket_medio);
+    const leadsOt = Math.ceil(vendas / prem.otimista);
+    const leadsRe = Math.ceil(vendas / prem.realista);
 
-    const resultados = m.resultados || [];
-    const algumInformado = resultados.some(r => r.leads_gerados !== null || r.receita_realizada !== null);
-    const resultsHtml = algumInformado ? (() => {
-      const rows = resultados.map(r => {
-        const leadsTxt = r.leads_gerados === null ? '<span class="rres-val dim">não informado</span>' : `<span class="rres-val">${fmtInt(r.leads_gerados)} leads</span>`;
-        const receitaTxt = r.receita_realizada === null ? '<span class="rres-val dim">não informado</span>' : `<span class="rres-val">${fmtBRL(r.receita_realizada)}</span>`;
-        return `<div class="rres-row"><span>${esc(r.carteira)}</span>${leadsTxt}</div>
-                <div class="rres-row"><span>&middot; receita</span>${receitaTxt}</div>`;
-      }).join("");
-      const leadsConhecidos = resultados.filter(r => r.leads_gerados !== null).reduce((s,r)=>s+r.leads_gerados,0);
-      const receitaConhecida = resultados.filter(r => r.receita_realizada !== null).reduce((s,r)=>s+r.receita_realizada,0);
-      const faltandoLeads = resultados.filter(r => r.leads_gerados === null).map(r=>r.carteira);
-      const faltandoReceita = resultados.filter(r => r.receita_realizada === null).map(r=>r.carteira);
-      const avisos = [];
-      if (faltandoLeads.length) avisos.push(`leads de ${faltandoLeads.map(esc).join(" e ")}`);
-      if (faltandoReceita.length) avisos.push(`receita de ${faltandoReceita.map(esc).join(" e ")}`);
-      const totalNote = avisos.length
-        ? `Total reportado até agora: <strong>${fmtInt(leadsConhecidos)} leads</strong> &middot; <strong>${fmtBRL(receitaConhecida)}</strong> &mdash; ainda falta ${avisos.join(" e ")}`
-        : `Total: <strong>${fmtInt(leadsConhecidos)} leads</strong> &middot; <strong>${fmtBRL(receitaConhecida)}</strong>`;
-      return `<div class="rresults">
-        <div class="rresults-title">Resultados reportados por carteira</div>
-        ${rows}
-        <div class="rres-total">${totalNote}</div>
-      </div>`;
-    })() : `<div class="rresults"><div class="rresults-title">Resultados reportados por carteira</div><div class="rres-row"><span>Middle-Large e Start e Small</span><span class="rres-val dim">nenhum dado informado ainda</span></div></div>`;
+    const aplica = (m.resultados || []).filter(r => !r.nao_se_aplica);
+    const algum = aplica.some(r => r.leads_valor !== null || r.receita_realizada !== null);
+    const pot = aplica.filter(r => r.leads_valor !== null).reduce((s, r) => s + r.leads_valor, 0);
+    const rec = aplica.filter(r => r.receita_realizada !== null).reduce((s, r) => s + r.receita_realizada, 0);
+    const temPot = aplica.some(r => r.leads_valor !== null);
+    const temRec = aplica.some(r => r.receita_realizada !== null);
+    const pares = aplica.filter(r => r.leads_valor !== null && r.receita_realizada !== null && r.leads_valor > 0);
+    const conv = pares.length ? pares.reduce((s, r) => s + r.receita_realizada, 0) / pares.reduce((s, r) => s + r.leads_valor, 0) : null;
+    const faltaRec = aplica.some(r => r.receita_realizada === null);
+
+    // linhas por carteira
+    const tr = (m.resultados || []).map(r => {
+      const p = parseCarteira(r.carteira);
+      if (r.nao_se_aplica) return `<div class="mr-tr"><div class="ag">${p.agm}<small>${p.seg}</small></div><div class="na">não se aplica &mdash; campanha só para Start e Small</div></div>`;
+      const potC = r.leads_valor === null ? '<span class="dim">não informado</span>' : `<span class="strong">${fmtBRL0(r.leads_valor)}</span>${r.leads_qtd !== null ? ` <small style="color:var(--fg-3)">(${fmtInt(r.leads_qtd)} leads)</small>` : ''}`;
+      const recC = r.receita_realizada === null ? '<span class="dim">não informado</span>' : `<span class="strong">${fmtBRL0(r.receita_realizada)}</span>`;
+      const cvC = (r.leads_valor !== null && r.receita_realizada !== null && r.leads_valor > 0) ? `<span class="strong" style="color:var(--fg-brand)">${pctTxt(r.receita_realizada / r.leads_valor)}</span>` : '<span class="dim">&ndash;</span>';
+      return `<div class="mr-tr"><div class="ag">${p.agm}<small>${p.seg}</small></div><div class="r">${potC}</div><div class="r">${recC}</div><div class="r">${cvC}</div></div>`;
+    }).join("");
+    const table = `<div class="mr-table"><div class="mr-tr th"><div>AGM / carteira</div><div class="r">Leads (potencial)</div><div class="r">Receita</div><div class="r">Conversão</div></div>${tr}</div>`;
+
+    let resBody;
+    if (!algum) {
+      resBody = `<div class="mr-empty">Nenhum resultado informado ainda. ${aplica.length ? "Aguardando " + aplica.map(r => parseCarteira(r.carteira).agm).join(" e ") + "." : ""}</div>${table}`;
+    } else {
+      const max = Math.max(pot, rec, m.meta) * 1.02;
+      const tickAt = m.meta / max * 100;
+      const tick = (lbl) => `<div class="mr-tick" style="left:${tickAt}%">${lbl ? "<span>meta " + fmtBRL0(m.meta) + "</span>" : ""}</div>`;
+      const bar = (cls, nome, sub, val, tem, lbl) => `
+        <div class="mr-bar">
+          <div class="bl"><span class="nm">${nome} <small>${sub}</small></span><span class="vl">${tem ? fmtBRL0(val) : '<span style="font-weight:400;font-style:italic;color:var(--fg-3)">não informado</span>'}</span></div>
+          <div class="mr-track" title="${nome}: ${tem ? fmtBRL(val) : 'não informado'} &middot; meta ${fmtBRL(m.meta)}">${tem ? `<div class="mr-fill ${cls}" style="width:${val / max * 100}%"></div>` : ''}${tick(lbl)}</div>
+        </div>`;
+      const partialTag = faltaRec && temRec ? '<span class="partial">parcial</span>' : '';
+      resBody = `
+        <div class="mr-bars-wrap">
+          ${bar("pot", "Leads gerados", "valor potencial", pot, temPot, false)}
+          ${bar("rec", "Receita fechada", "convertida em caixa", rec, temRec, true)}
+        </div>
+        <div class="mr-stats">
+          <div class="mr-stat"><div class="k">Conversão em caixa</div><div class="v">${conv === null ? "&ndash;" : pctTxt(conv)}</div><div class="s">${conv === null ? "Falta potencial ou receita para calcular." : "receita &divide; valor potencial" + (pares.length < aplica.length ? " (só carteiras com ambos informados)" : "")}</div></div>
+          <div class="mr-stat"><div class="k">Meta atingida ${partialTag}</div><div class="v">${temRec ? pctTxt(rec / m.meta, 0) : "&ndash;"}</div><div class="s">${temRec ? fmtBRL0(rec) + " de " + fmtBRL0(m.meta) : "Receita ainda não informada."}</div></div>
+        </div>
+        ${table}`;
+    }
 
     return `
-    <div class="revenue-item">
-      <div class="rname">${esc(m.campanha)}</div>
-      <div class="rmeta">${esc(m.foco)}</div>
-      <div class="rgoal">
-        Meta financeira: <strong>${fmtBRL(m.meta)}</strong> &middot; Ticket médio: <strong>${fmtBRL(m.ticket_medio)}</strong>
-        <span class="rlead">Vendas necessárias: <strong>${fmtInt(vendasNecessarias)}</strong></span>
-        <span class="rlead">Leads necessários (meta): <strong>${fmtInt(leadsOtimista)} a ${fmtInt(leadsRealista)}</strong> (otimista&ndash;realista)</span>
+    <article class="mr-card">
+      <div class="mr-head">
+        <div><h3>${esc(m.campanha)}</h3><p class="foco">${esc(m.foco)}</p></div>
+        <span class="badge ${tone}">${esc(m.status)}</span>
       </div>
-      ${resultsHtml}
-      <div class="rstatus"><span class="badge ${tone}">${esc(m.status)}</span></div>
-    </div>`;
+      <div class="mr-block plan">
+        <div class="mr-label"><span class="n">1</span>Planejamento da meta<span class="hint">meta calculada, não resultado</span></div>
+        <div class="mr-steps">
+          <div class="mr-step"><span class="k">Meta financeira</span><span class="v">${fmtBRL0(m.meta)}</span><span class="s">receita a gerar</span></div>
+          <div class="mr-arrow">&rarr;</div>
+          <div class="mr-step"><span class="k">Vendas necessárias</span><span class="v">${fmtInt(vendas)} <small>vendas</small></span><span class="s">meta &divide; ticket médio de ${fmtBRL0(m.ticket_medio)}</span></div>
+          <div class="mr-arrow">&rarr;</div>
+          <div class="mr-step hl"><span class="k">Leads necessários</span><span class="v">${fmtInt(leadsOt)} a ${fmtInt(leadsRe)} <small>leads</small></span><span class="s">em unidades &middot; conversão de ${(prem.otimista*100).toLocaleString("pt-BR")}% a ${(prem.realista*100).toLocaleString("pt-BR")}%</span></div>
+        </div>
+      </div>
+      <div class="mr-block res">
+        <div class="mr-label"><span class="n">2</span>Resultado até agora<span class="hint">dados reportados pelos AGMs</span></div>
+        ${resBody}
+      </div>
+    </article>`;
   }).join("");
 })();
 
